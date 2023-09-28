@@ -1,0 +1,123 @@
+
+<div class="card pt-2 d-flex justify-content-center">
+    <div class="d-flex justify-content-center">
+        <div class="card-body d-flex justify-content-start">
+            <div class="col-sm-11">
+                <div class="row">
+                    <div class="col-sm-2 d-flex justify-content-end">
+                        <h6 class="mb-0">Wifi Mode :</h6>
+                    </div>
+                    <div class="col-sm-4 d-flex justify-content-start">
+                        <span id="x_Wifi_Mode" style="font-size: small" >{{wifiConfig.Wifi_Mode}}</span>
+                    </div>
+                </div>
+                <hr class="mx-auto" style="width: 70%;">
+                <div class="row">
+                    <div class="col-sm-2 d-flex justify-content-end">
+                        <h6 class="mb-0">SSID :</h6>
+                    </div>
+                    <div class="col-sm-4 d-flex justify-content-start">
+                        <span id="x_ssid" style="font-size: small" >{{wifiConfig.ssid}}</span>
+                    </div>
+                </div>
+                <hr class="mx-auto" style="width: 70%;">
+                <div class="row">
+                    <div class="col-sm-2 d-flex justify-content-end">
+                        <h6 class="mb-0">IP :</h6>
+                    </div>
+                    <div class="col-sm-4 d-flex justify-content-start">
+                        <span id="x_ip" style="font-size: small" >{{wifiConfig.ip}}</span>
+                    </div>
+                </div>
+                <hr class="mx-auto" style="width: 70%;">
+                <div class="row">
+                    <div class="col-sm-2 d-flex justify-content-end">
+                        <h6 class="mb-0">Netmask :</h6>
+                    </div>
+                    <div class="col-sm-4 d-flex justify-content-start">
+                        <span id="x_netmask" style="font-size: small" >{{wifiConfig.netmask}}</span>
+                    </div>
+                </div>
+                <hr class="mx-auto" style="width: 70%;">
+                <div class="row">
+                    <div class="col-sm-2 d-flex justify-content-end">
+                        <h6 class="mb-0">Gateway :</h6>
+                    </div>
+                    <div class="col-sm-4 d-flex justify-content-start">
+                        <span id="x_gateway" style="font-size: small" >{{wifiConfig.gateway}}</span>
+                    </div>
+                </div>
+                <hr class="mx-auto" style="width: 70%;">
+                <div class="row">
+                    <div class="col-sm-2 d-flex justify-content-end">
+                        <h6 class="mb-0">DNS :</h6>
+                    </div>
+                    <div class="col-sm-4 d-flex justify-content-start">
+                        <span id="x_dns" style="font-size: small" >{{wifiConfig.dns}}</span>
+                    </div>
+                </div>
+                <hr class="mx-auto" style="width: 70%;">
+                <div class="row">
+                    <div class="col-sm-2 d-flex justify-content-end">
+                        <h6 class="mb-0">Mac :</h6>
+                    </div>
+                    <div class="col-sm-4 d-flex justify-content-start">
+                        <span id="x_mac" style="font-size: small"></span>
+                    </div>
+                </div>
+                <hr class="mx-auto" style="width: 70%;">
+                <div class="row">
+                    <div class="col-sm-2 d-flex justify-content-end">
+                        <h6 class="mb-0">NTP Date:</h6>
+                    </div>
+                    <div class="col-sm-4 d-flex justify-content-start">
+                        <span id="x_ntp_date" style="font-size: small"></span>
+                    </div>
+                </div>
+                <hr class="mx-auto" style="width: 70%;">
+                <div class="row">
+                    <div class="col-sm-2 d-flex justify-content-end">
+                        <h6 class="mb-0">NTP Time:</h6>
+                    </div>
+                    <div class="col-sm-4 d-flex justify-content-start">
+                        <span id="x_ntp_time" style="font-size: small"></span>
+                    </div>
+                </div>
+                <hr class="mx-auto" style="width: 70%;">
+                <div class="row">
+                    <div class="col-sm-2 d-flex justify-content-end">
+                        <h6 class="mb-0">Last sync:</h6>
+                    </div>
+                    <div class="col-sm-4 d-flex justify-content-start">
+                        <span id="x_ntp_sync" style="font-size: small"></span>
+                    </div>
+                </div>
+                <hr class="mx-auto" style="width: 70%;">
+                <div class="row">
+                    <div class="col-sm-2 d-flex justify-content-end">
+                        <h6 class="mb-0">Uptime:</h6>
+                    </div>
+                    <div class="col-sm-4 d-flex justify-content-start">
+                        <span id="x_uptime" style="font-size: small"></span>
+                    </div>
+                </div>
+                <hr class="mx-auto" style="width: 70%;">
+                <div class="row">
+                    <div class="col-sm-2 d-flex justify-content-end">
+                        <h6 class="mb-0">Last boot:</h6>
+                    </div>
+                    <div class="col-sm-4 d-flex justify-content-start">
+                        <span id="x_last_boot" style="font-size: small"></span>
+                    </div>
+                </div>
+                <hr class="mx-auto mb-4" style="width: 70%;">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-11 d-flex justify-content-end">
+            <button class="btn btn-primary btn-block fa-lg gradient-custom-2 border border-color-none mb-4 me-4"
+                type="submit">Refresh</button>
+        </div>
+    </div>
+</div>

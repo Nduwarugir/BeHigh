@@ -1,0 +1,95 @@
+
+<div class="card mb-4 d-flex justify-content-center" style="font-size: small">
+    <div class="card-body">
+
+        <div class="row mt-5 mb-2">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+                <h4 class="sub-title"> Editeur FS
+                    <hr class="mb-2">
+                </h4>
+                <div class="d-flex justify-content-end mb-lg-2" >
+                    <ion-button block color="primary" type="button" class="fa-lg gradient-custom-2 border border-color-none" href="/tabs/edit">
+                        Editer
+                    </ion-button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+                <h4 class="sub-title"> Redémarrage
+                    <hr class="mb-2">
+                </h4>
+                <div class="d-flex justify-content-end mb-lg-2" >
+                    <ion-button block color="primary" type="button" class="fa-lg gradient-custom-2 border border-color-none" (click)="restartESP()" >
+                        Redémarrer
+                    </ion-button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+                <h4 class="sub-title"> Mise à jour OTA
+                    <hr class="mb-2">
+                </h4>
+                <div class="d-flex justify-content-end mb-lg-2" >
+                    <ion-button block color="primary" type="button" class="fa-lg gradient-custom-2 border border-color-none" href="/tabs/update" >
+                        Mise à jour
+                    </ion-button>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+                <h4 class="sub-title">
+                    <hr class="mb-4">
+                </h4>
+            </div>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="submit()" id="wwwAuthForm" action="" method="get">
+            <div class="d-flex justify-content-center mt-2">
+                <div class="col-sm-10">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-sm-1 d-flex justify-content-start">
+                            <label for="wwwuser" class="mb-0">User: </label>
+                        </div>
+                        <div class="col-sm-3">
+                            <input style="border: solid black;" type="text" name="wwwuser" id="wwwuser" class="form-control form-control-sm" >
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-sm-1 d-flex justify-content-start">
+                            <label for="wwwpass" class="mb-0">Password: </label>
+                        </div>
+                        <div class="col-sm-3">
+                            <input style="border: solid black;" type="password" id="wwwpass" name="wwwpass" class="form-control form-control-sm" >
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-sm-6">
+                            <p class="ms-1" id="submitResult" style="color: red; font-size: small; "></p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-sm-6">
+                            <p class="mb-0">Notice password is used for HTTP Auth, AP Mode and OTA</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-end mb-lg-2" >
+                        <button id="updateButton" type="submit" class="btn btn-primary btn-block fa-lg gradient-custom-2 border border-color-none">Sauvegarder</button>
+                       <!-- <a id="updateButton" class="btn btn-primary btn-block fa-lg gradient-custom-2 border border-color-none" href='javascript:submitFrm(document.forms["wwwAuthForm"])'>Sauvegarder</a> -->
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

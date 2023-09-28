@@ -1,0 +1,23 @@
+
+<div class="card mb-4 d-flex justify-content-center" style="height: 350px">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="card-body d-flex justify-content-center">
+            <div class="col-sm-9">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h4>Name of Device</h4>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" id="devicename" name="devicename" class="form-control form-control-sm" formControlName="devicename">
+                    </div>
+                </div>
+                <hr class="mb-4">
+                <div class="row">
+                    <div class="button d-flex justify-content-end mb-4">
+                        <button [disabled]="form.invalid" class="btn btn-primary btn-block fa-lg gradient-custom-2 border border-color-none" style="margin-left: 20px; height: 40px;" id="submitButton" type="submit" >Valider</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

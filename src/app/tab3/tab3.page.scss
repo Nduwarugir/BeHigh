@@ -1,0 +1,24 @@
+.container {
+    height: 100vh;
+    margin-top: 5%;
+    margin-bottom: -50px;
+    font-size: small;
+    padding-left: 2%;
+}
+
+.list-group-item:hover {
+    cursor: pointer;
+}
+
+.active {
+    color: white;
+    background-color: blue;
+}
+
+.sub-title {
+    margin: auto;
+}
+
+h4 {
+    font-size: small;
+}

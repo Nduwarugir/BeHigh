@@ -1,0 +1,43 @@
+[
+	{
+		"type": "Video",
+		"link": "tayc.mp4",
+		"timing": 1
+	},{
+		"type": "Texte",
+		"text": "CAMTRONICS SARL BETA TECHNOLOGIE",
+		"font": "Roboto",
+		"size": 12,
+		"bcolor": "000000",
+		"fcolor": "ff0000",
+		"animation": "Droite vers Gauche",
+		"speed": 1000,
+		"timing": 1
+	},
+	{
+		"type": "Image",
+		"link": "logo.jpg",
+		"timing": 1
+	},
+	{
+		"type": "Texte",
+		"text": "ioui oiuy",
+		"font": "Arial",
+		"size": 24,
+		"bcolor": "000000",
+		"fcolor": "0000ff",
+		"animation": "Droite vers Gauche",
+		"speed": 1000,
+		"timing": 1
+	},
+	{
+		"type": "Video",
+		"link": "tomb.raider.mp4",
+		"timing": 1
+	},
+	{
+		"type": "Effet",
+		"link": "chasm1.gif",
+		"timing": 15
+	}
+]

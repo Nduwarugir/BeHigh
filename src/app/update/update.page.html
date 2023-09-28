@@ -1,0 +1,91 @@
+<ion-header [translucent]="true">
+<ion-toolbar>
+    <ion-title>Mise à jour</ion-title>
+</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large">edit</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content [fullscreen]="true">
+
+        <div class="card mb-4 d-flex justify-content-center" style="height: 550px">
+            <form [formGroup]="form" (ngSubmit)="send()" enctype='multipart/form-data'>
+                <div class="card-body d-flex justify-content-center">
+
+                    <div class="col-sm-10">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h4>Upload the file</h4>
+                            </div>
+                            <div class="col-sm-8">
+                                <input class="form-control form-control-sm" id="fileName" type='file' name='update' formControlName="file"
+                                    accept=".ino.bin"
+                                    (change)="summd5()" style="border: solid black;">
+                            </div>
+                        </div>
+                        <hr class="mb-4">
+                        <div id="query" *ngIf="lvl == 1 ">
+                            <div class="row d-flex justify-content-end mb-1">
+                                <div class="col-sm-9 d-flex justify-content-end">
+                                    <label for="confirm">Veuillez confirmer votre identité pour effectuer la mise à
+                                        jour...</label>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" name="confirm" id="confirm" placeholder="mot de passe" formControlName="confirm"
+                                        class="form-control form-control-sm" style="border: solid black">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="button d-flex justify-content-end mb-4" id="updateButton2">
+                                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 border border-color-none"
+                                        style="margin-left: 20px; height: 40px;"
+                                        id="updateButton" type="button" (click)="changer()" >Mettre à jour
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                        <div id="md5row" hidden>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    Calculated file MD5 hash:
+                                </div>
+                                <div class="col-sm-8">
+                                    <span id="clientHash">Select a file</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    Size:
+                                </div>
+                                <div class="col-sm-8">
+                                    <span id="fileSize"></span> Bytes
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                Checking if remote update is possible...
+                            </div>
+                            <div class="col-sm-6">
+                                <span id="remupd"></span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <span id="remupdResult" style="color: #009dff;"></span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </ion-content>
+
+</ion-content>

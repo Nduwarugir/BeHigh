@@ -1,17 +1,257 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+        <ion-title>
+            Espace scénario
+        </ion-title>
     </ion-toolbar>
-  </ion-header>
+    </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
-</ion-content>
+    <ion-content [fullscreen]="true">
+        <ion-header collapse="condense">
+        </ion-header>
+
+
+        <ion-content [fullscreen]="true">
+
+            <div class="container" xmlns="http://www.w3.org/1999/xhtml">
+
+                <div class="main-container">
+                    <section>
+                        <!-- <form onsubmit="send()"> -->
+
+                            <div class="container py-1">
+                                <div class="row row-cols-5 row-cols-md-5 mx-3 text-center" >
+                                    <div class="col mb-4">
+                                        <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" id="l001" (click)="toggleView(0)" [class]="_active == 0 ? 'active' : ''">
+                                            <h4 class="my-auto">1</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col mb-4">
+                                        <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" id="l002" (click)="toggleView(1)" [class]="_active == 1 ? 'active' : ''">
+                                            <h4 class="my-auto">2</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col mb-4">
+                                        <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" id="l003" (click)="toggleView(2)" [class]="_active == 2 ? 'active' : ''">
+                                            <h4 class="my-auto">3</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col mb-4">
+                                        <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" id="l004" (click)="toggleView(3)" [class]="_active == 3 ? 'active' : ''">
+                                            <h4 class="my-auto">4</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col mb-4">
+                                        <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" id="l005" (click)="toggleView(4)" [class]="_active == 4 ? 'active' : ''">
+                                            <h4 class="my-auto">5</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col mb-4">
+                                        <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" id="l006" (click)="toggleView(5)" [class]="_active == 5 ? 'active' : ''">
+                                            <h4 class="my-auto">6</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col mb-4">
+                                        <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" id="l007" (click)="toggleView(6)" [class]="_active == 6 ? 'active' : ''">
+                                            <h4 class="my-auto">7</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col mb-4">
+                                        <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" id="l008" (click)="toggleView(7)" [class]="_active == 7 ? 'active' : ''">
+                                            <h4 class="my-auto">8</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col mb-4">
+                                        <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" id="l009" (click)="toggleView(8)" [class]="_active == 8 ? 'active' : ''">
+                                            <h4 class="my-auto">9</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col mb-4">
+                                        <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" id="l010" (click)="toggleView(9)" [class]="_active == 9 ? 'active' : ''">
+                                            <h4 class="my-auto">10</h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <ion-row>
+                                    <ion-col size="10" class="mx-auto">
+                                        <div class="card-2 mb-4 mb-lg-0">
+                                            <div class="card-2-body p-0">
+                                                <ul class="list-group list-group-flush rounded-3">
+                                                    <li *ngIf="_active == 0" class="list-group-item d-flex justify-content-between align-items-center p-3"  id="l101" >
+                                                        <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                                                        <label for="S001"></label>
+                                                        <select class="select form-control form-control-sm" id="form2Example11" style="width: 150%; height: 35px;" id="S001" [value]="type">
+                                                        <option (click)="toggleNScript(0)" value="null" (click)="toggleType('null')"  (click)="toggleVisibility(1)">Rien</option>
+                                                        <option (click)="toggleNScript(0)" value="Texte" (click)="toggleType('Texte')"  (click)="toggleVisibility(1)">Texte</option>
+                                                        <option (click)="toggleNScript(0)" value="Image" (click)="toggleType('Image')"  (click)="toggleVisibility(1)">Image</option>
+                                                        <option (click)="toggleNScript(0)" value="Video" (click)="toggleType('Video')"  (click)="toggleVisibility(1)">Video</option>
+                                                        <option (click)="toggleNScript(0)" value="Effet" (click)="toggleType('Effet')"  (click)="toggleVisibility(1)">Effet</option>
+                                                    </select>
+                                                    </li>
+
+                                                    <li *ngIf="_active == 1" class="list-group-item d-flex justify-content-between align-items-center p-3"  id="l102" >
+                                                        <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                                                        <label for="S002"></label>
+                                                        <select class="select form-control form-control-sm" style="width: 150%; height: 35px;" id="S002" [value]="type">
+                                                        <option (click)="toggleNScript(1)" value="null" (click)="toggleType('null')" (click)="toggleVisibility(2)">Rien</option>
+                                                        <option (click)="toggleNScript(1)" value="Texte" (click)="toggleType('Texte')" (click)="toggleVisibility(2)">Texte</option>
+                                                        <option (click)="toggleNScript(1)" value="Image" (click)="toggleType('Image')" (click)="toggleVisibility(2)">Image</option>
+                                                        <option (click)="toggleNScript(1)" value="Video" (click)="toggleType('Video')" (click)="toggleVisibility(2)">Video</option>
+                                                        <option (click)="toggleNScript(1)" value="Effet" (click)="toggleType('Effet')" (click)="toggleVisibility(2)">Effet</option>
+                                                    </select>
+                                                    </li>
+
+                                                    <li *ngIf="_active == 2" class="list-group-item d-flex justify-content-between align-items-center p-3"  id="l103" >
+                                                        <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                                                        <label for="S003"></label>
+                                                        <select class="select form-control form-control-sm" style="width: 150%; height: 35px;" id="S003" [value]="type">
+                                                        <option (click)="toggleNScript(2)" value="null" (click)="toggleType('null')" (click)="toggleVisibility(3)">Rien</option>
+                                                        <option (click)="toggleNScript(2)" value="Texte" (click)="toggleType('Texte')" (click)="toggleVisibility(3)">Texte</option>
+                                                        <option (click)="toggleNScript(2)" value="Image" (click)="toggleType('Image')" (click)="toggleVisibility(3)">Image</option>
+                                                        <option (click)="toggleNScript(2)" value="Video" (click)="toggleType('Video')" (click)="toggleVisibility(3)">Video</option>
+                                                        <option (click)="toggleNScript(2)" value="Effet" (click)="toggleType('Effet')" (click)="toggleVisibility(3)">Effet</option>
+                                                    </select>
+                                                    </li>
+
+                                                    <li *ngIf="_active == 3" class="list-group-item d-flex justify-content-between align-items-center p-3"  id="l104" >
+                                                        <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                                                        <label for="S004"></label>
+                                                        <select class="select form-control form-control-sm" style="width: 150%; height: 35px;" id="S004" [value]="type">
+                                                        <option (click)="toggleNScript(3)" value="null" (click)="toggleType('null')" (click)="toggleVisibility(4)">Rien</option>
+                                                        <option (click)="toggleNScript(3)" value="Texte" (click)="toggleType('Texte')" (click)="toggleVisibility(4)">Texte</option>
+                                                        <option (click)="toggleNScript(3)" value="Image" (click)="toggleType('Image')" (click)="toggleVisibility(4)">Image</option>
+                                                        <option (click)="toggleNScript(3)" value="Video" (click)="toggleType('Video')" (click)="toggleVisibility(4)">Video</option>
+                                                        <option (click)="toggleNScript(3)" value="Effet" (click)="toggleType('Effet')" (click)="toggleVisibility(4)">Effet</option>
+                                                    </select>
+                                                    </li>
+
+                                                    <li *ngIf="_active == 4" class="list-group-item d-flex justify-content-between align-items-center p-3"  id="l105" >
+                                                        <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                                                        <label for="S005"></label>
+                                                        <select class="select form-control form-control-sm" style="width: 150%; height: 35px;" id="S005" [value]="type">
+                                                        <option (click)="toggleNScript(4)" value="null" (click)="toggleType('null')" (click)="toggleVisibility(5)">Rien</option>
+                                                        <option (click)="toggleNScript(4)" value="Texte" (click)="toggleType('Texte')" (click)="toggleVisibility(5)">Texte</option>
+                                                        <option (click)="toggleNScript(4)" value="Image" (click)="toggleType('Image')" (click)="toggleVisibility(5)">Image</option>
+                                                        <option (click)="toggleNScript(4)" value="Video" (click)="toggleType('Video')" (click)="toggleVisibility(5)">Video</option>
+                                                        <option (click)="toggleNScript(4)" value="Effet" (click)="toggleType('Effet')" (click)="toggleVisibility(5)">Effet</option>
+                                                    </select>
+                                                    </li>
+
+                                                    <li *ngIf="_active == 5" class="list-group-item d-flex justify-content-between align-items-center p-3"  id="l106" >
+                                                        <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                                                        <label for="S006"></label>
+                                                        <select class="select form-control form-control-sm" style="width: 150%; height: 35px;" id="S006" [value]="type">
+                                                        <option (click)="toggleNScript(5)" value="null" (click)="toggleType('null')" (click)="toggleVisibility(6)">Rien</option>
+                                                        <option (click)="toggleNScript(5)" value="Texte" (click)="toggleType('Texte')" (click)="toggleVisibility(6)">Texte</option>
+                                                        <option (click)="toggleNScript(5)" value="Image" (click)="toggleType('Image')" (click)="toggleVisibility(6)">Image</option>
+                                                        <option (click)="toggleNScript(5)" value="Video" (click)="toggleType('Video')" (click)="toggleVisibility(6)">Video</option>
+                                                        <option (click)="toggleNScript(5)" value="Effet" (click)="toggleType('Effet')" (click)="toggleVisibility(6)">Effet</option>
+                                                    </select>
+                                                    </li>
+
+                                                    <li *ngIf="_active == 6" class="list-group-item d-flex justify-content-between align-items-center p-3"  id="l107" >
+                                                        <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                                                        <label for="S007"></label>
+                                                        <select class="select form-control form-control-sm" style="width: 150%; height: 35px;" id="S007" [value]="type">
+                                                        <option (click)="toggleNScript(6)" value="null" (click)="toggleType('null')" (click)="toggleVisibility(7)">Rien</option>
+                                                        <option (click)="toggleNScript(6)" value="Texte" (click)="toggleType('Texte')" (click)="toggleVisibility(7)">Texte</option>
+                                                        <option (click)="toggleNScript(6)" value="Image" (click)="toggleType('Image')" (click)="toggleVisibility(7)">Image</option>
+                                                        <option (click)="toggleNScript(6)" value="Video" (click)="toggleType('Video')" (click)="toggleVisibility(7)">Video</option>
+                                                        <option (click)="toggleNScript(6)" value="Effet" (click)="toggleType('Effet')" (click)="toggleVisibility(7)">Effet</option>
+                                                    </select>
+                                                    </li>
+
+                                                    <li *ngIf="_active == 7" class="list-group-item d-flex justify-content-between align-items-center p-3"  id="l108" >
+                                                        <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                                                        <label for="S008"></label>
+                                                        <select class="select form-control form-control-sm" style="width: 150%; height: 35px;" id="S008" [value]="type">
+                                                        <option (click)="toggleNScript(7)" value="null" (click)="toggleType('null')" (click)="toggleVisibility(8)">Rien</option>
+                                                        <option (click)="toggleNScript(7)" value="Texte" (click)="toggleType('Texte')" (click)="toggleVisibility(8)">Texte</option>
+                                                        <option (click)="toggleNScript(7)" value="Image" (click)="toggleType('Image')" (click)="toggleVisibility(8)">Image</option>
+                                                        <option (click)="toggleNScript(7)" value="Video" (click)="toggleType('Video')" (click)="toggleVisibility(8)">Video</option>
+                                                        <option (click)="toggleNScript(7)" value="Effet" (click)="toggleType('Effet')" (click)="toggleVisibility(8)">Effet</option>
+                                                    </select>
+                                                    </li>
+
+                                                    <li *ngIf="_active == 8" class="list-group-item d-flex justify-content-between align-items-center p-3"  id="l109" >
+                                                        <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                                                        <label for="S009"></label>
+                                                        <select class="select form-control form-control-sm" style="width: 150%; height: 35px;" id="S009" [value]="type">
+                                                        <option (click)="toggleNScript(8)" value="null" (click)="toggleType('null')" (click)="toggleVisibility(9)">Rien</option>
+                                                        <option (click)="toggleNScript(8)" value="Texte" (click)="toggleType('Texte')" (click)="toggleVisibility(9)">Texte</option>
+                                                        <option (click)="toggleNScript(8)" value="Image" (click)="toggleType('Image')" (click)="toggleVisibility(9)">Image</option>
+                                                        <option (click)="toggleNScript(8)" value="Video" (click)="toggleType('Video')" (click)="toggleVisibility(9)">Video</option>
+                                                        <option (click)="toggleNScript(8)" value="Effet" (click)="toggleType('Effet')" (click)="toggleVisibility(9)">Effet</option>
+                                                    </select>
+                                                    </li>
+
+                                                    <li *ngIf="_active == 9" class="list-group-item d-flex justify-content-between align-items-center p-3" id="l110" >
+                                                        <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                                                        <label for="S010"></label>
+                                                        <select class="select form-control form-control-sm" style="width: 150%; height: 35px;" id="S010" [value]="type">
+                                                        <option (click)="toggleNScript(9)" value="null" (click)="toggleType('null')" (click)="toggleVisibility(10)">Rien</option>
+                                                        <option (click)="toggleNScript(9)" value="Texte" (click)="toggleType('Texte')" (click)="toggleVisibility(10)">Texte</option>
+                                                        <option (click)="toggleNScript(9)" value="Image" (click)="toggleType('Image')" (click)="toggleVisibility(10)">Image</option>
+                                                        <option (click)="toggleNScript(9)" value="Video" (click)="toggleType('Video')" (click)="toggleVisibility(10)">Video</option>
+                                                        <option (click)="toggleNScript(9)" value="Effet" (click)="toggleType('Effet')" (click)="toggleVisibility(10)">Effet</option>
+                                                    </select>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </ion-col>
+                                </ion-row>
+
+                                <div class="row"></div>
+
+                                <div class="row">
+
+                                    <div class="col-lg-9">
+
+                                        <div class="scripts" [ngSwitch]="type" >
+                                            <div *ngSwitchCase="'null'">
+                                                <div class="card text-center mb-4" style="height: 350px">
+                                                    <h4 class="sub-title"> Choisissez <br> une <br> configuration ! </h4>
+                                                </div>
+                                            </div>
+                                            <div *ngSwitchCase="'Texte'">
+                                                <app-text [nScript]="nScript" [scenario]="scenarios[nScript]" (newScenarioEvent)="add($event)"></app-text>
+                                            </div>
+                                            <div *ngSwitchCase="'Image'">
+                                                <app-image [nScript]="nScript" [scenario]="scenarios[nScript]" (newScenarioEvent)="add($event)"></app-image>
+                                            </div>
+                                            <div *ngSwitchCase="'Video'">
+                                                <app-video [nScript]="nScript" [scenario]="scenarios[nScript]" (newScenarioEvent)="add($event)"></app-video>
+                                            </div>
+                                            <div *ngSwitchCase="'Effet'">
+                                                <app-effet [nScript]="nScript" [scenario]="scenarios[nScript]" (newScenarioEvent)="add($event)"></app-effet>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="button d-flex justify-content-end mb-4">
+                                                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 border border-color-none" style="margin-left: 20px; height: 40px;" [disabled]="disabled()" type="button" (click)="submit()">Envoyer</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="visual" style="background-color: aquamarine; height: 300px; width: 100%;" *ngIf="visual">
+                                            <p>mama</p>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        <!-- </form> -->
+                    </section>
+
+                </div>
+
+            </div>
+
+        </ion-content>
+
+    </ion-content>

@@ -1,0 +1,204 @@
+
+<div class="card mb-4 d-flex justify-content-center">
+    <form [formGroup]="form" (ngSubmit)="submit()" id="configForm">
+        <div class="card-body d-flex justify-content-center">
+            <div class="col-sm-10">
+                <div class="row mx-auto" style="width: 90%;">
+                    <div class="col-sm-3 d-flex justify-content-start">
+                        <label for="modeap" class="mb-0">Mode AP </label>
+                    </div>
+                    <div class="col-sm-1">
+                        <input type="checkbox" name="modeap" id="modeap" class="form-check-input" formControlName="modeap" (click)="disable_ap()">
+                    </div>
+                </div>
+                <hr>
+                <div class="row mx-auto" style="width: 90%;">
+                    <div class="col-sm-3 d-flex justify-content-start">
+                        <label for="ssid" class="mb-0">SSID </label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="text" name="ssid" id="ssid" class="form-control form-control-sm" formControlName="ssid">
+                    </div>
+                </div>
+                <hr>
+                <div class="row mx-auto" style="width: 90%;">
+                    <div class="col-sm-3 d-flex justify-content-start">
+                        <label for="password" class="mb-0">PASSWORD </label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="password" name="password" id="password" class="form-control form-control-sm" formControlName="pass">
+                    </div>
+                </div>
+                <hr>
+                <div class="row mx-auto" style="width: 90%;">
+                    <div class="col-sm-3 d-flex justify-content-start">
+                        <label for="dhcp" class="mb-0">DHCP </label>
+                    </div>
+                    <div class="col-sm-1">
+                        <input type="checkbox" name="dhcp" id="dhcp" class="form-check-input" formControlName="dhcp" (click)="disable()">
+                    </div>
+                </div>
+                <hr>
+                <div class="row mx-auto" style="width: 90%;">
+                    <div class="col-sm-3 d-flex justify-content-start">
+                    <label class="mb-0">IP </label>
+                    </div>
+                    <div class="col-sm-8">
+
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <input type="text" name="ip_1" id="ip_1" placeholder="{{ _disabled ? wifiConfig.ip[0]:''}}" class="form-control form-control-sm" formControlName="ip_1">
+                            </div>.
+                            <div class="col-sm-2">
+                                <input type="text" name="ip_2" id="ip_2" placeholder="{{ _disabled ? wifiConfig.ip[1]:''}}" class="form-control form-control-sm" formControlName="ip_2">
+                            </div>.
+                            <div class="col-sm-2">
+                                <input type="text" name="ip_3" id="ip_3" placeholder="{{ _disabled ? wifiConfig.ip[2]:''}}" class="form-control form-control-sm" formControlName="ip_3">
+                            </div>.
+                            <div class="col-sm-2">
+                                <input type="text" name="ip_4" id="ip_4" placeholder="{{ _disabled ? wifiConfig.ip[3]:''}}" class="custom-text-input form-control form-control-sm" formControlName="ip_4">
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="error == 1" style="color: red; font-size: small;">
+                            <div class="col-sm-6 ml-5">
+                                Please enter number please.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row mx-auto" style="width: 90%;">
+                    <div class="col-sm-3 d-flex justify-content-start">
+                        <p class="mb-0">MASQUE</p>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <input type="text" name="nm_1" id="nm_1" placeholder="{{ _disabled ? wifiConfig.netmask[0]:''}}" class="form-control form-control-sm" formControlName="nm_1">
+                            </div>.
+                            <div class="col-sm-2">
+                                <input type="text" name="nm_2" id="nm_2" placeholder="{{ _disabled ? wifiConfig.netmask[1]:''}}" class="form-control form-control-sm" formControlName="nm_2">
+                            </div>.
+                            <div class="col-sm-2">
+                                <input type="text" name="nm_3" id="nm_3" placeholder="{{ _disabled ? wifiConfig.netmask[2]:''}}" class="form-control form-control-sm" formControlName="nm_3">
+                            </div>.
+                            <div class="col-sm-2">
+                                <input type="text" name="nm_4" id="nm_4" placeholder="{{ _disabled ? wifiConfig.netmask[3]:''}}" class="form-control form-control-sm" formControlName="nm_4">
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="error == 2" style="color: red; font-size: small;">
+                            <div class="col-sm-6 ml-5">
+                                Please enter number please.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row mx-auto" style="width: 90%;">
+                    <div class="col-sm-3 d-flex justify-content-start">
+                    <p class="mb-0">PASSERELLE</p>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <input type="text" name="gw_1" id="gw_1" placeholder="{{ _disabled ? wifiConfig.gateway[0]:''}}" class="form-control form-control-sm" formControlName="gw_1">
+                            </div>.
+                            <div class="col-sm-2">
+                                <input type="text" name="gw_2" id="gw_2" placeholder="{{ _disabled ? wifiConfig.gateway[1]:''}}" class="form-control form-control-sm" formControlName="gw_2">
+                            </div>.
+                            <div class="col-sm-2">
+                                <input type="text" name="gw_3" id="gw_3" placeholder="{{ _disabled ? wifiConfig.gateway[2]:''}}" class="form-control form-control-sm" formControlName="gw_3">
+                            </div>.
+                            <div class="col-sm-2">
+                                <input type="text" name="gw_4" id="gw_4" placeholder="{{ _disabled ? wifiConfig.gateway[3]:''}}" class="form-control form-control-sm" formControlName="gw_4">
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="error == 3" style="color: red; font-size: small;">
+                            <div class="col-sm-6 ml-5">
+                                Please enter number please.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row mx-auto" style="width: 90%;">
+                    <div class="col-sm-3 d-flex justify-content-start">
+                    <p class="mb-0">DNS</p>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <input type="text" name="dns_1" id="dns_1" placeholder="{{ _disabled ? wifiConfig.dns[0]:''}}" class="form-control form-control-sm" formControlName="dns_1">
+                            </div>.
+                            <div class="col-sm-2">
+                                <input type="text" name="dns_2" id="dns_2" placeholder="{{ _disabled ? wifiConfig.dns[1]:''}}" class="form-control form-control-sm" formControlName="dns_2">
+                            </div>.
+                            <div class="col-sm-2">
+                                <input type="text" name="dns_3" id="dns_3" placeholder="{{ _disabled ? wifiConfig.dns[2]:''}}" class="form-control form-control-sm" formControlName="dns_3">
+                            </div>.
+                            <div class="col-sm-2">
+                                <input type="text" name="dns_4" id="dns_4" placeholder="{{ _disabled ? wifiConfig.dns[3]:''}}" class="form-control form-control-sm" formControlName="dns_4">
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="error == 4" style="color: red; font-size: small;">
+                            <div class="col-sm-6 ml-5">
+                                Please enter number please.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="mb-4">
+                <div class="row">
+                    <div class="d-flex justify-content-end mb-lg-2">
+                        <p class="mr-4" id="message" style="color: #007bff; font-size: large; " ></p>
+                        <ion-button block color="primary" type="submit" [disabled]="form.invalid" class="fa-lg gradient-custom-2 border border-color-none me-4">
+                            Sauvegarder
+                        </ion-button> <!-- style="height: 40px;-->
+                    </div>
+                </div>
+
+                <div style="font-size: large;">
+                    <hr>
+                    <div class="row mx-auto" style="width: 90%;">
+                        <div class="col-sm-4">
+                            <strong>Connection State:</strong>
+                        </div>
+                        <div class="col-sm-5">
+                            <div id="connectionstate">N/A</div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row mx-auto" style="width: 90%;">
+                        <div class="col-sm-4">
+                            <strong>Networks: </strong><span id="numNets"></span>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="card">
+                                <div class="card-body">
+                                    <table border="0" cellspacing="3" style="width: 50px">
+                                        <thead bgcolor='#DDDDDD'>
+                                        <tr>
+                                            <th style="width: 6%">SSID</th>
+                                            <th>Channel</th>
+                                            <th style="width:5%">Secure</th>
+                                            <th>RSSI</th>
+                                        </tr>
+                                        </thead>
+                                        <tr>
+                                            <tbody id="networks" style="min-height: 100px;"></tbody>
+                                        </tr>
+                                        <tr>
+                                            <td align="center">
+                                                <a href="javascript:GetState(); getNetwork();" style="width:150px" class="btn btn--m btn--blue">Refresh</a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
