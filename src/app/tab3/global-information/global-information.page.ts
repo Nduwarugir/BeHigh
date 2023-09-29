@@ -32,8 +32,8 @@ export class GlobalInformationPage implements OnInit {
             var xhr = new XMLHttpRequest();
             let formData = new FormData();
             formData.append("devicename", this.form.value.devicename);
-            // xhr.open("POST", "http://192.168.1.117/admin/general", true);
-            xhr.open("POST", "http://10.1.1.1/admin/general", true);
+            xhr.open("POST", "http://192.168.1.117/admin/general", true);
+            // xhr.open("POST", "http://10.1.1.1/admin/general", true);
             xhr.send(formData);
 
             console.log(this.form.value.devicename);
@@ -44,8 +44,8 @@ export class GlobalInformationPage implements OnInit {
 
     read() {
         // fetch('assets/json/config.json')
-        // fetch('http://192.168.1.117/jsonFiles/config.json')
-        fetch('http://10.1.1.1/jsonFiles/config.json')
+        fetch('http://192.168.1.117/jsonFiles/config.json')
+        // fetch('http://10.1.1.1/jsonFiles/config.json')
             .then(response => response.json())
             .then(data => {
                 // use the 'data' variable which contains the parsed JSON data

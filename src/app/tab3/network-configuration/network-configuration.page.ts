@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { IWifiConfig } from '../../model/wifi-config';
+import { INetwork } from 'src/app/model/network';
 
 @Component({
     selector: 'app-network-configuration',
@@ -11,20 +12,17 @@ import { IWifiConfig } from '../../model/wifi-config';
     standalone: true,
     imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
 })
-export class NetworkConfigurationPage implements OnInit {
+export class NetworkConfigurationPage implements OnInit, AfterViewInit {
 
     form! : FormGroup;
     _disabled!: boolean;
 
     wifiConfig!: IWifiConfig;
-
-    ngOnInit(){
-        this.read();
-    }
+    connectionState!: string;
+    networks!: INetwork[];
 
     //On verifie que chaque champ soit remplir
     constructor(private fb : FormBuilder){
-
         this.form= this.fb.group({
             modeap:['', Validators.nullValidator],
             ssid:['', Validators.required],
@@ -49,8 +47,15 @@ export class NetworkConfigurationPage implements OnInit {
         });
     }
 
-    disable(): void {
+    ngOnInit(){
+        this.read();
+    }
 
+    ngAfterViewInit(): void {
+        this.scan();
+    }
+
+    disable(): void {
         // Désactivation des configs
         this.dhcp?.valueChanges.subscribe(
             (val) => {
@@ -60,7 +65,6 @@ export class NetworkConfigurationPage implements OnInit {
                     this.nm_1?.disable(); this.nm_2?.disable(); this.nm_3?.disable(); this.nm_4?.disable();
                     this.gw_1?.disable(); this.gw_2?.disable(); this.gw_3?.disable(); this.gw_4?.disable();
                     this.dns_1?.disable(); this.dns_2?.disable(); this.dns_3?.disable(); this.dns_4?.disable();
-
 
                     // Opérations pour le DHCP
                     // Example define the default DNS
@@ -130,11 +134,16 @@ export class NetworkConfigurationPage implements OnInit {
                 this.formToConfig();
                 console.log("WifiConfig: ", this.wifiConfig);
 
+                this.form.value.ip_1 = Number(this.ip_1?.value); this.form.value.ip_2 = Number(this.ip_2?.value); this.form.value.ip_3 = Number(this.ip_3?.value); this.form.value.ip_4 = Number(this.ip_4?.value);
+                this.form.value.nm_1 = Number(this.nm_1?.value); this.form.value.nm_2 = Number(this.nm_2?.value); this.form.value.nm_3 = Number(this.nm_3?.value); this.form.value.nm_4 = Number(this.nm_4?.value);
+                this.form.value.gw_1 = Number(this.gw_1?.value); this.form.value.gw_2 = Number(this.gw_2?.value); this.form.value.gw_3 = Number(this.gw_3?.value); this.form.value.gw_4 = Number(this.gw_4?.value);
+                this.form.value.dns_1 = Number(this.dns_1?.value); this.form.value.dns_2 = Number(this.dns_2?.value); this.form.value.dns_3 = Number(this.dns_3?.value); this.form.value.dns_4 = Number(this.dns_4?.value);
+    
                 var xhr = new XMLHttpRequest();
                 let formData = new FormData();
                 formData.append("configs", JSON.stringify(this.form.value, null, 4));
-                // xhr.open("POST", "http://192.168.1.117/admin/config", true);
-                xhr.open("POST", "http://10.1.1.1/admin/config", true);
+                xhr.open("POST", "http://192.168.1.117/admin/config", true);
+                // xhr.open("POST", "http://10.1.1.1/admin/config", true);
                 xhr.send(formData);
 
                 alert("Paramètres enregistrése avec succès !");
@@ -190,21 +199,55 @@ export class NetworkConfigurationPage implements OnInit {
     }
 
     refresh() {
-        console.log("Form Values", this.form.value);
+        // console.log("Form Values", this.form.value);
+        // console.log("wifiConfig: ", this.wifiConfig);
 
-        console.log("wifiConfig: ", this.wifiConfig);
+        this.read();
+        this.scan();
     }
 
     read() {
         // fetch('assets/json/config.json')
-        // fetch('http://192.168.1.117/jsonFiles/config.json')
-        fetch('http://10.1.1.1/jsonFiles/config.json')
+        fetch('http://192.168.1.117/jsonFiles/config.json')
+        // fetch('http://10.1.1.1/jsonFiles/config.json')
             .then(response => response.json())
             .then(data => {
                 // use the 'data' variable which contains the parsed JSON data
                 this.wifiConfig = data;
                 console.log('wifiConfig: ', this.wifiConfig);
                 this.load();
+            })
+            .catch(error => {
+                // handle any errors that occur during the fetch request
+                console.error(error);
+            });
+
+        fetch('http://192.168.1.117/admin/connectionstate')
+        // fetch('http://10.1.1.1/admin/connectionstate')
+            .then(response => response.text())
+            .then(data => {
+                // use the 'data' variable which contains the parsed JSON data
+                let fields: string[] = data.split('|');
+                this.connectionState = fields[1];
+                console.log('/connectionstate: ', fields);
+            })
+            .catch(error => {
+                // handle any errors that occur during the fetch request
+                console.error(error);
+            });
+
+    }
+
+    scan() {
+
+        fetch('http://192.168.1.117/scan')
+        // fetch('http://10.1.1.1/scan')
+            .then(response => response.json())
+            .then(data => {
+                // use the 'data' variable which contains the parsed JSON data
+                this.networks = data;
+                console.log("/scan: ", data);
+
             })
             .catch(error => {
                 // handle any errors that occur during the fetch request
@@ -219,8 +262,35 @@ export class NetworkConfigurationPage implements OnInit {
         this._err = n;
     }
 
-    get error(){
-        return this._err;
+    formToConfig() {
+
+        if (Number.isNaN(Number(this.ip_1?.value)) || Number.isNaN(Number(this.ip_2?.value)) || Number.isNaN(Number(this.ip_3?.value)) || Number.isNaN(Number(this.ip_4?.value)) ) {
+            console.log("Null ip");
+            this.setError(1);
+        } else if (Number.isNaN(Number(this.nm_1?.value)) || Number.isNaN(Number(this.nm_2?.value)) || Number.isNaN(Number(this.nm_3?.value)) || Number.isNaN(Number(this.nm_4?.value)) ) {
+            console.log("Null netmask");
+            this.setError(2);
+        } else if (Number.isNaN(Number(this.gw_1?.value)) || Number.isNaN(Number(this.gw_2?.value)) || Number.isNaN(Number(this.gw_3?.value)) || Number.isNaN(Number(this.gw_4?.value)) ) {
+            console.log("Null gateway");
+            this.setError(3);
+        } else if (Number.isNaN(Number(this.dns_1?.value)) || Number.isNaN(Number(this.dns_2?.value)) || Number.isNaN(Number(this.dns_3?.value)) || Number.isNaN(Number(this.dns_4?.value)) ) {
+            console.log("Null dns");
+            this.setError(4);
+        } else {
+
+            console.log("Form: ", this.form.value);
+
+            this.wifiConfig.Wifi_Mode = this.modeap?.value;
+            this.wifiConfig.ssid = this.ssid?.value;
+            this.wifiConfig.pass= this.pass?.value;
+            this.wifiConfig.dhcp = this.dhcp?.value;
+            this.wifiConfig.ip = [Number(this.ip_1?.value), Number(this.ip_2?.value), Number(this.ip_3?.value), Number(this.ip_4?.value)];
+            this.wifiConfig.netmask = [Number(this.nm_1?.value), Number(this.nm_2?.value), Number(this.nm_3?.value), Number(this.nm_4?.value)];
+            this.wifiConfig.gateway = [Number(this.gw_1?.value), Number(this.gw_2?.value), Number(this.gw_3?.value), Number(this.gw_4?.value)];
+            this.wifiConfig.dns = [Number(this.dns_1?.value), Number(this.dns_2?.value), Number(this.dns_3?.value), Number(this.dns_4?.value)];
+
+        }
+
     }
 
     //Les getters
@@ -305,35 +375,8 @@ export class NetworkConfigurationPage implements OnInit {
         return this.form.get('dns_4');
     }
 
-    formToConfig() {
-
-        if (Number.isNaN(Number(this.ip_1?.value)) || Number.isNaN(Number(this.ip_2?.value)) || Number.isNaN(Number(this.ip_3?.value)) || Number.isNaN(Number(this.ip_4?.value)) ) {
-            console.log("Null ip");
-            this.setError(1);
-        } else if (Number.isNaN(Number(this.nm_1?.value)) || Number.isNaN(Number(this.nm_2?.value)) || Number.isNaN(Number(this.nm_3?.value)) || Number.isNaN(Number(this.nm_4?.value)) ) {
-            console.log("Null netmask");
-            this.setError(2);
-        } else if (Number.isNaN(Number(this.gw_1?.value)) || Number.isNaN(Number(this.gw_2?.value)) || Number.isNaN(Number(this.gw_3?.value)) || Number.isNaN(Number(this.gw_4?.value)) ) {
-            console.log("Null gateway");
-            this.setError(3);
-        } else if (Number.isNaN(Number(this.dns_1?.value)) || Number.isNaN(Number(this.dns_2?.value)) || Number.isNaN(Number(this.dns_3?.value)) || Number.isNaN(Number(this.dns_4?.value)) ) {
-            console.log("Null dns");
-            this.setError(4);
-        } else {
-
-            console.log("Form: ", this.form.value);
-
-            this.wifiConfig.Wifi_Mode = this.modeap?.value;
-            this.wifiConfig.ssid = this.ssid?.value;
-            this.wifiConfig.pass= this.pass?.value;
-            this.wifiConfig.dhcp = this.dhcp?.value;
-            this.wifiConfig.ip = [Number(this.ip_1?.value), Number(this.ip_2?.value), Number(this.ip_3?.value), Number(this.ip_4?.value)];
-            this.wifiConfig.netmask = [Number(this.nm_1?.value), Number(this.nm_2?.value), Number(this.nm_3?.value), Number(this.nm_4?.value)];
-            this.wifiConfig.gateway = [Number(this.gw_1?.value), Number(this.gw_2?.value), Number(this.gw_3?.value), Number(this.gw_4?.value)];
-            this.wifiConfig.dns = [Number(this.dns_1?.value), Number(this.dns_2?.value), Number(this.dns_3?.value), Number(this.dns_4?.value)];
-
-        }
-
+    get error(){
+        return this._err;
     }
 
 }

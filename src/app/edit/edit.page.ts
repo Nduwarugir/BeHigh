@@ -15,6 +15,14 @@ export class EditPage implements OnInit {
     constructor() { }
 
     ngOnInit() {
+        this.getValue();
     }
 
+    myTSFunction(){
+
+    }
+
+    getValue() {
+
+    }
 }

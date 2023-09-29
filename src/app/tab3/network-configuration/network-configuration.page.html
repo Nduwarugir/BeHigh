@@ -1,5 +1,5 @@
 
-<div class="card mb-4 d-flex justify-content-center">
+<div class="card d-flex justify-content-center" style="margin-bottom: 5%">
     <form [formGroup]="form" (ngSubmit)="submit()" id="configForm">
         <div class="card-body d-flex justify-content-center">
             <div class="col-sm-10">
@@ -59,7 +59,7 @@
                                 <input type="text" name="ip_4" id="ip_4" placeholder="{{ _disabled ? wifiConfig.ip[3]:''}}" class="custom-text-input form-control form-control-sm" formControlName="ip_4">
                             </div>
                         </div>
-                        <div class="row" *ngIf="error == 1" style="color: red; font-size: small;">
+                        <div class="row" *ngIf="error === 1" style="color: red; font-size: small;">
                             <div class="col-sm-6 ml-5">
                                 Please enter number please.
                             </div>
@@ -86,7 +86,7 @@
                                 <input type="text" name="nm_4" id="nm_4" placeholder="{{ _disabled ? wifiConfig.netmask[3]:''}}" class="form-control form-control-sm" formControlName="nm_4">
                             </div>
                         </div>
-                        <div class="row" *ngIf="error == 2" style="color: red; font-size: small;">
+                        <div class="row" *ngIf="error === 2" style="color: red; font-size: small;">
                             <div class="col-sm-6 ml-5">
                                 Please enter number please.
                             </div>
@@ -113,7 +113,7 @@
                                 <input type="text" name="gw_4" id="gw_4" placeholder="{{ _disabled ? wifiConfig.gateway[3]:''}}" class="form-control form-control-sm" formControlName="gw_4">
                             </div>
                         </div>
-                        <div class="row" *ngIf="error == 3" style="color: red; font-size: small;">
+                        <div class="row" *ngIf="error === 3" style="color: red; font-size: small;">
                             <div class="col-sm-6 ml-5">
                                 Please enter number please.
                             </div>
@@ -140,7 +140,7 @@
                                 <input type="text" name="dns_4" id="dns_4" placeholder="{{ _disabled ? wifiConfig.dns[3]:''}}" class="form-control form-control-sm" formControlName="dns_4">
                             </div>
                         </div>
-                        <div class="row" *ngIf="error == 4" style="color: red; font-size: small;">
+                        <div class="row" *ngIf="error === 4" style="color: red; font-size: small;">
                             <div class="col-sm-6 ml-5">
                                 Please enter number please.
                             </div>
@@ -164,7 +164,8 @@
                             <strong>Connection State:</strong>
                         </div>
                         <div class="col-sm-5">
-                            <div id="connectionstate">N/A</div>
+                            <div *ngIf="!connectionState">N/A</div>
+                            <div *ngIf="connectionState"> {{connectionState}} </div>
                         </div>
                     </div>
                     <hr>
@@ -184,14 +185,21 @@
                                             <th>RSSI</th>
                                         </tr>
                                         </thead>
-                                        <tr>
-                                            <tbody id="networks" style="min-height: 100px;"></tbody>
-                                        </tr>
-                                        <tr>
-                                            <td align="center">
-                                                <a href="javascript:GetState(); getNetwork();" style="width:150px" class="btn btn--m btn--blue">Refresh</a>
-                                            </td>
-                                        </tr>
+                                        <tbody id="networks" style="min-height: 100px;" *ngIf="networks">
+                                            <tr *ngFor="let network of networks">
+                                                <td>{{ network.ssid }}</td>
+                                                <td>{{ network.channel }}</td>
+                                                <td>{{ network.secure }}</td>
+                                                <td>{{ network.rssi }}</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr class="d-flex justify-content-end">
+                                                <ion-button expand="block" (click)="refresh()" type="button"class="fa-lg gradient-custom-2 border border-color-none">
+                                                    Refresh
+                                                </ion-button>
+                                            </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                             </div>

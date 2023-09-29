@@ -3,19 +3,23 @@
         <ion-title>Edit</ion-title>
     </ion-toolbar>
     </ion-header>
-
+    
     <ion-content [fullscreen]="true">
         <ion-header collapse="condense">
             <ion-toolbar>
-                <ion-title size="large">edit</ion-title>
+                <ion-title size="large">Edit</ion-title>
             </ion-toolbar>
         </ion-header>
-
+    
         <ion-content [fullscreen]="true">
-
+    
             <div class="card mb-4 d-flex justify-content-center" style="height: 550px">
+                <button type="button">click me</button>
+                <div  #myNameElem onclick="myJSFunction()"></div>
+                <button id="callMyJSFunction" onclick="myJSFunction()" style="display:none;"></button> <script> function myJSFunction(){ alert('IN'); } </script>
             </div>
-
+    
         </ion-content>
-
+    
     </ion-content>
+    

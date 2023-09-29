@@ -96,8 +96,8 @@ export class VideoPage  implements OnInit {
     read(): void {
 
         // fetch('assets/json/videos.json')
-        // fetch('http://192.168.1.117/jsonFiles/videos.json')
-        fetch('http://10.1.1.1/jsonFiles/videos.json')
+        fetch('http://192.168.1.117/jsonFiles/videos.json')
+        // fetch('http://10.1.1.1/jsonFiles/videos.json')
             .then(response => response.json())
             .then(data => {
                 // use the 'data' variable which contains the parsed JSON data

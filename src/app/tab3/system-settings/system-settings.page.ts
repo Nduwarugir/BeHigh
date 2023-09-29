@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonicModule, NavController } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
     selector: 'app-system-settings',
@@ -14,7 +14,7 @@ export class SystemSettingsPage implements OnInit {
 
     form!: FormGroup;
 
-    constructor(private formBuilder: FormBuilder, private navCtrl: NavController) {
+    constructor(private formBuilder: FormBuilder) {
         this.form = this.formBuilder.group({
             login: ['', [Validators.required]],
             password: ['', [Validators.minLength(6), Validators.required]],
@@ -29,6 +29,12 @@ export class SystemSettingsPage implements OnInit {
     }
 
     restartESP() {
-        console.log('Method not implemented.');
+
+        var xhr = new XMLHttpRequest();
+        let formData = new FormData();
+        formData.append("configs", JSON.stringify(this.form.value, null, 4));
+        xhr.open("GET", "http://192.168.1.117/admin/restart", true);
+        // xhr.open("POST", "http://10.1.1.1/admin/config", true);
+        xhr.send(formData);
     }
 }

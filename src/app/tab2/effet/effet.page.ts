@@ -97,8 +97,8 @@ export class EffetPage implements OnInit {
     read(): void {
 
         // fetch('assets/json/effets.json')
-        // fetch('http://192.168.1.117/jsonFiles/effets.json')
-        fetch('http://10.1.1.1/jsonFiles/effets.json')
+        fetch('http://192.168.1.117/jsonFiles/effets.json')
+        // fetch('http://10.1.1.1/jsonFiles/effets.json')
             .then(response => response.json())
             .then(data => {
                 // use the 'data' variable which contains the parsed JSON data

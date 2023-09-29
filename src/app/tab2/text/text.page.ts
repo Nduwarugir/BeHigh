@@ -114,8 +114,8 @@ export class TextPage implements OnInit {
     read(): void {
 
         // fetch('assets/json/font.json')
-        // fetch('http://192.168.1.117/jsonFiles/font.json')
-        fetch('http://10.1.1.1/jsonFiles/font.json')
+        fetch('http://192.168.1.117/jsonFiles/font.json')
+        // fetch('http://10.1.1.1/jsonFiles/font.json')
             .then(response => response.json())
             .then(data => {
                 // use the 'data' variable which contains the parsed JSON data
@@ -128,8 +128,8 @@ export class TextPage implements OnInit {
         });
 
         // fetch('assets/json/animation.json')
-        // fetch('http://192.168.1.117/jsonFiles/animation.json')
-        fetch('http://10.1.1.1/jsonFiles/animation.json')
+        fetch('http://192.168.1.117/jsonFiles/animation.json')
+        // fetch('http://10.1.1.1/jsonFiles/animation.json')
             .then(response => response.json())
             .then(data => {
                 // use the 'data' variable which contains the parsed JSON data

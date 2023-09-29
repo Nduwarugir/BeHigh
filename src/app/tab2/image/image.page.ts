@@ -94,8 +94,8 @@ export class ImagePage implements OnInit {
     read(): void {
 
         // fetch('assets/json/images.json')
-        // fetch('http://192.168.1.117/jsonFiles/images.json')
-        fetch('http://10.1.1.1/jsonFiles/images.json')
+        fetch('http://192.168.1.117/jsonFiles/images.json')
+        // fetch('http://10.1.1.1/jsonFiles/images.json')
             .then(response => response.json())
             .then(data => {
                 // use the 'data' variable which contains the parsed JSON data

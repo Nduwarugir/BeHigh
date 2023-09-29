@@ -30,16 +30,16 @@ export class UpdatePage implements OnInit {
         this.read();
     }
 
-    summd5() {
-        console.log('Method not implemented.');
+    summd5() {//input = document.getElementById("fileName");
+        
     }
 
     send() {
         var xhr = new XMLHttpRequest();
         let formData = new FormData();
         formData.append("scenario", JSON.stringify(this.form, null, 4));
-        // xhr.open("POST", "http://192.168.1.117/update", true);
-        xhr.open("POST", "http://10.1.1.1/update", true);
+        xhr.open("POST", "http://192.168.1.117/update", true);
+        // xhr.open("POST", "http://10.1.1.1/update", true);
         xhr.send(formData);
 
         alert("Scénario enregistré avec succès !");
@@ -68,8 +68,8 @@ export class UpdatePage implements OnInit {
     read(): void {
 
         // fetch('assets/json/videos.json')
-        // fetch('http://192.168.1.117/jsonFiles/secret.json')
-        fetch('http://10.1.1.1/jsonFiles/secret.json')
+        fetch('http://192.168.1.117/jsonFiles/secret.json')
+        // fetch('http://10.1.1.1/jsonFiles/secret.json')
             .then(response => response.json())
             .then(data => {
                 // use the 'data' variable which contains the parsed JSON data

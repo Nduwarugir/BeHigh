@@ -88,6 +88,7 @@ export class Tab2Page implements OnInit {
                     }
                 }
             });
+            console.log(finalScenario);
             var xhr = new XMLHttpRequest();
             let formData = new FormData();
             formData.append("scenario", JSON.stringify(finalScenario, null, 4));
@@ -101,11 +102,11 @@ export class Tab2Page implements OnInit {
     }
 
     add(scenario: IScenario) {
-        if (this.nScript < this.scenariosLenght) {
-            this.scenarios.splice(this.nScript, 1, scenario);
-        } else {
-            this.scenarios.push(scenario);
-        }
+        // if (this.nScript < this.scenariosLenght) {
+        //     this.scenarios.splice(this.nScript, 1, scenario);
+        // } else {
+            // }
+                this.scenarios.push(scenario);
         this.toggleView(this.nScript+1);
     }
 
@@ -174,8 +175,8 @@ export class Tab2Page implements OnInit {
     read(): void {
 
         // fetch('assets/json/scenario.json')
-        // fetch('http://192.168.1.117/jsonFiles/scenario.json')
-        fetch('http://10.1.1.1/jsonFiles/scenario.json')
+        fetch('http://192.168.1.117/jsonFiles/scenario.json')
+        // fetch('http://10.1.1.1/jsonFiles/scenario.json')
             .then(response => response.json())
             .then(data => {
                 // use the 'data' variable which contains the parsed JSON data
