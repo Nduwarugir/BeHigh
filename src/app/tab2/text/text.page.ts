@@ -73,7 +73,7 @@ export class TextPage implements OnInit {
         if (this.form.valid) {
 
             let scenario: IScenario = {
-                type: 'Text',
+                type: 'Texte',
                 timing: Number(this.form.value.timing),
                 text: this.form.value.text,
                 ffamily: this.form.value.ffamily,

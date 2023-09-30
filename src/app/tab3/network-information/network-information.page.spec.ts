@@ -5,11 +5,11 @@ describe('NetworkInformationPage', () => {
   let component: NetworkInformationPage;
   let fixture: ComponentFixture<NetworkInformationPage>;
 
-  beforeEach(async(() => {
+  beforeEach(async() => {
     fixture = TestBed.createComponent(NetworkInformationPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();

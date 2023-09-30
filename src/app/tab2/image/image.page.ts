@@ -43,7 +43,7 @@ export class ImagePage implements OnInit {
         if (this.form.valid) {
 
             let scenario: IScenario = {
-                type: 'Effet',
+                type: 'Image',
                 timing: Number(this.form.value.timing),
                 text: '',
                 ffamily: '',

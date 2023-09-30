@@ -28,7 +28,7 @@ export class EffetPage implements OnInit {
         this.read();
     }
 
-    //On verifie que chaque champ soit remplir
+    //On vérifie que chaque champ soit remplir
     constructor(private fb : FormBuilder){
         this.form= this.fb.group({
             link:['', Validators.required],

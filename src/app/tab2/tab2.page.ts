@@ -21,7 +21,7 @@ export class Tab2Page implements OnInit {
     _nScrip: number = 0;
     _visibility: number = 0;
     errMsg!: string;
-    scenarios: IScenario[] = []; scenariosLenght!: number;
+    scenarios: IScenario[] = []; scenariosLength!: number;
 
     scripts!: string;
 
@@ -102,11 +102,14 @@ export class Tab2Page implements OnInit {
     }
 
     add(scenario: IScenario) {
-        // if (this.nScript < this.scenariosLenght) {
-        //     this.scenarios.splice(this.nScript, 1, scenario);
-        // } else {
-            // }
-                this.scenarios.push(scenario);
+        console.log("scenarioLength: ", this.scenariosLength);
+        if (this.nScript < this.scenariosLength) {
+            console.log(scenario);
+            this.scenarios.splice(this.nScript, 1, scenario);
+        } else {
+            this.scenarios.push(scenario);
+        }
+        // this.scenarios.push(scenario);
         this.toggleView(this.nScript+1);
     }
 
@@ -120,21 +123,6 @@ export class Tab2Page implements OnInit {
     get visual(){
         return this._visual;
     }
-/*
-    visualisation() {
-        this._visual = !this._visual;
-
-        this.param.globalScenario.forEach(element => {
-            console.log(element,element);
-
-        });
-
-    }
-
-    clear() {
-        this.param.clearScenario();
-    }
-*/
 
     //Les getters
     public get visibility(): number {
@@ -181,8 +169,8 @@ export class Tab2Page implements OnInit {
             .then(data => {
                 // use the 'data' variable which contains the parsed JSON data
                 this.scenarios = data;
-                this.scenariosLenght = this.scenarios.length;
-                console.log("Scenario Lenght: ", this.scenariosLenght);
+                this.scenariosLength = this.scenarios.length;
+                console.log("scenarioLength: ", this.scenariosLength);
                 console.log("Scénario: ", this.scenarios);
             })
             .catch(error => {

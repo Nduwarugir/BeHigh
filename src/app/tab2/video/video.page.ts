@@ -44,7 +44,7 @@ export class VideoPage  implements OnInit {
         if (this.form.valid) {
 
             let scenario: IScenario = {
-                type: 'Effet',
+                type: 'Video',
                 timing: Number(this.form.value.timing),
                 text: '',
                 ffamily: '',
