@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { IAnim } from 'src/app/model/amin';
 import { IFont } from 'src/app/model/font';
 import { IScenario } from 'src/app/model/scenario';
+import { ScenarioService } from 'src/app/services/scenario/scenario.service';
 
 @Component({
     selector: 'app-text',
@@ -13,7 +14,7 @@ import { IScenario } from 'src/app/model/scenario';
     standalone: true,
     imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
 })
-export class TextPage implements OnInit {
+export class TextPage implements OnInit, OnChanges {
 
     @Input() nScript!: number;
     @Input() scenario!: IScenario;
@@ -28,8 +29,12 @@ export class TextPage implements OnInit {
         this.load();
     }
 
+    ngOnChanges(changes: SimpleChanges): void {
+        if(changes) this.load();
+    }
+
     //On verifie que chaque champ soit remplir
-    constructor(private fb : FormBuilder){
+    constructor(private fb : FormBuilder, private scenarioService: ScenarioService){
         this.form= this.fb.group({
             text:['', Validators.required],
             ffamily:['', Validators.required],
@@ -113,33 +118,21 @@ export class TextPage implements OnInit {
 
     read(): void {
 
-        // fetch('assets/json/font.json')
-        fetch('http://192.168.1.117/jsonFiles/font.json')
-        // fetch('http://10.1.1.1/jsonFiles/font.json')
-            .then(response => response.json())
-            .then(data => {
-                // use the 'data' variable which contains the parsed JSON data
+        this.scenarioService.readFont().subscribe({
+			next: data => {
                 this.fonts = data;
                 console.log("Fonts: ", this.fonts);
-            })
-            .catch(error => {
-                // handle any errors that occur during the fetch request
-                console.error(error);
-        });
+            },
+			error: err => console.log("Error: ", err.error)
+		});
 
-        // fetch('assets/json/animation.json')
-        fetch('http://192.168.1.117/jsonFiles/animation.json')
-        // fetch('http://10.1.1.1/jsonFiles/animation.json')
-            .then(response => response.json())
-            .then(data => {
-                // use the 'data' variable which contains the parsed JSON data
+        this.scenarioService.readAnim().subscribe({
+			next: data => {
                 this.anims = data;
                 console.log("Animations: ", this.anims);
-            })
-            .catch(error => {
-                // handle any errors that occur during the fetch request
-                console.error(error);
-        });
+            },
+			error: err => console.log("Error: ", err.error)
+		});
 
     }
 

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { IWifiConfig } from 'src/app/model/wifi-config';
+import { AdminService } from 'src/app/services/admin/admin.service';
 
 @Component({
     selector: 'app-global-information',
@@ -16,7 +17,7 @@ export class GlobalInformationPage implements OnInit {
     form!: FormGroup;
     wifiConfig!: IWifiConfig;
 
-    constructor(private fb: FormBuilder) {
+    constructor(private fb: FormBuilder, private adminService: AdminService) {
         this.form = this.fb.group({
             devicename:['', Validators.required]
         });
@@ -29,35 +30,34 @@ export class GlobalInformationPage implements OnInit {
     submit() {
         if (this.form.valid) {
 
-            var xhr = new XMLHttpRequest();
             let formData = new FormData();
             formData.append("devicename", this.form.value.devicename);
-            xhr.open("POST", "http://192.168.1.117/admin/general", true);
-            // xhr.open("POST", "http://10.1.1.1/admin/general", true);
-            xhr.send(formData);
 
-            console.log(this.form.value.devicename);
+            this.adminService.send('/admin/general', formData).subscribe({
+                next: response => {
+                    console.log("Response: ", response);
+                    alert("Nom modifié avec succès !");
+                },
+                error: err => {
+                    console.log("Error: ", err.error);
+                    alert("Nom modifié avec succès !");
+                }
+            })
 
-            alert("Nom modifié avec succès !");
         }
     }
 
     read() {
-        // fetch('assets/json/config.json')
-        fetch('http://192.168.1.117/jsonFiles/config.json')
-        // fetch('http://10.1.1.1/jsonFiles/config.json')
-            .then(response => response.json())
-            .then(data => {
-                // use the 'data' variable which contains the parsed JSON data
+        
+        this.adminService.readData('jsonFiles/config.json').subscribe({
+			next: data => {
                 this.wifiConfig = data;
                 this.form.patchValue({
                     devicename: this.wifiConfig.deviceName,
                 })
 
-            })
-            .catch(error => {
-                // handle any errors that occur during the fetch request
-                console.error(error);
-            });
+            },
+			error: err => console.log("Error: ", err.error)
+		});
     }
 }

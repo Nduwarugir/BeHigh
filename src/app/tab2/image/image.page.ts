@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { IFile } from 'src/app/model/file';
 import { IScenario } from 'src/app/model/scenario';
+import { ScenarioService } from 'src/app/services/scenario/scenario.service';
 
 @Component({
     selector: 'app-image',
@@ -12,7 +13,7 @@ import { IScenario } from 'src/app/model/scenario';
     standalone: true,
     imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
 })
-export class ImagePage implements OnInit {
+export class ImagePage implements OnInit, OnChanges {
 
     @Input() nScript!: number;
     @Input() scenario!: IScenario;
@@ -29,8 +30,12 @@ export class ImagePage implements OnInit {
 
     }
 
+    ngOnChanges(changes: SimpleChanges): void {
+        if(changes) this.load();
+    }
+
     //On verifie que chaque champ soit remplir
-    constructor(private fb : FormBuilder){
+    constructor(private fb : FormBuilder, private scenarioService: ScenarioService){
         this.form= this.fb.group({
             link:['', Validators.required],
             timing:['00', Validators.required],
@@ -93,19 +98,13 @@ export class ImagePage implements OnInit {
 
     read(): void {
 
-        // fetch('assets/json/images.json')
-        fetch('http://192.168.1.117/jsonFiles/images.json')
-        // fetch('http://10.1.1.1/jsonFiles/images.json')
-            .then(response => response.json())
-            .then(data => {
-                // use the 'data' variable which contains the parsed JSON data
+        this.scenarioService.readFile('images.json').subscribe({
+			next: data => {
                 this.imgFiles = data;
-                console.log("Images: ", this.imgFiles);
-            })
-            .catch(error => {
-                // handle any errors that occur during the fetch request
-                console.error(error);
-        });
+                console.log("Images: ", data);
+            },
+			error: err => console.log("Error: ", err.error)
+		});
 
     }
 

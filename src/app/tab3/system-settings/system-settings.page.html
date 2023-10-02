@@ -1,5 +1,5 @@
 
-<div class="card mb-4 d-flex justify-content-center" style="font-size: small">
+<div class="card mb-4 d-flex justify-content-center" style="font-size: small; margin-bottom: 5%;">
     <div class="card-body">
 
         <div class="row mt-5 mb-2">
@@ -9,7 +9,7 @@
                     <hr class="mb-2">
                 </h4>
                 <div class="d-flex justify-content-end mb-lg-2" >
-                    <ion-button block color="primary" type="button" class="fa-lg gradient-custom-2 border border-color-none" href="/tabs/edit">
+                    <ion-button block color="tertiary" type="button" class="fa-lg gradient-custom-2 border border-color-none" href="/tabs/edit">
                         Editer
                     </ion-button>
                 </div>
@@ -23,7 +23,7 @@
                     <hr class="mb-2">
                 </h4>
                 <div class="d-flex justify-content-end mb-lg-2" >
-                    <ion-button block color="primary" type="button" class="fa-lg gradient-custom-2 border border-color-none" (click)="restartESP()" >
+                    <ion-button block color="tertiary" type="button" class="fa-lg gradient-custom-2 border border-color-none" (click)="restartESP()" >
                         Redémarrer
                     </ion-button>
                 </div>
@@ -37,7 +37,7 @@
                     <hr class="mb-2">
                 </h4>
                 <div class="d-flex justify-content-end mb-lg-2" >
-                    <ion-button block color="primary" type="button" class="fa-lg gradient-custom-2 border border-color-none" href="/tabs/update" >
+                    <ion-button block color="tertiary" type="button" class="fa-lg gradient-custom-2 border border-color-none" href="/tabs/update" >
                         Mise à jour
                     </ion-button>
                 </div>
@@ -60,7 +60,7 @@
                             <label for="wwwuser" class="mb-0">User: </label>
                         </div>
                         <div class="col-sm-3">
-                            <input style="border: solid black;" type="text" name="wwwuser" id="wwwuser" class="form-control form-control-sm" >
+                            <input style="border: solid black;" type="text" name="wwwuser" id="wwwuser" class="form-control form-control-sm" formControlName="user">
                         </div>
                     </div>
                     <hr>
@@ -69,7 +69,7 @@
                             <label for="wwwpass" class="mb-0">Password: </label>
                         </div>
                         <div class="col-sm-3">
-                            <input style="border: solid black;" type="password" id="wwwpass" name="wwwpass" class="form-control form-control-sm" >
+                            <input style="border: solid black;" type="password" id="wwwpass" name="wwwpass" class="form-control form-control-sm" formControlName="pass">
                         </div>
                     </div>
                     <div class="row d-flex justify-content-center">

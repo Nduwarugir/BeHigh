@@ -11,22 +11,30 @@ export class AdminService {
     constructor(private httpClient: HttpClient) { }
 
     private readonly API_URL = "http://192.168.1.117";
+    // private readonly API_URL = "http://10.1.1.1";
+    // private readonly API_URL = "assets/json";
 
-    private readonly ENDPOINT_SEND = "/valid";
+    private readonly ENDPOINT_SEND = "/";
 
     private readonly ENDPOINT_READ = "/";
 
-    // Teacher's operations
-    sendConfiguration(scenario: FormData): Observable<FormData> {
-        tap(scenario => console.log("Scenario: ", scenario))
+    // Admin's operations
+    send(url: string, datas: any): Observable<FormData> {
+        tap(data => console.log("data: ", data))
         catchError(this.handleError);
-        return this.httpClient.post<FormData>(this.API_URL + this.ENDPOINT_SEND, scenario);
+        return this.httpClient.post<FormData>(this.API_URL + url, datas);
     }
 
-    readDatas(fileName: string) {
-        tap(name => console.log("fileName: ", name))
+    update(file: File): Observable<any> {
+        tap(data => console.log("data: ", data))
         catchError(this.handleError);
-        return this.httpClient.get(this.API_URL + this.ENDPOINT_READ + fileName);
+        return this.httpClient.post<any>(this.API_URL + '/update', file);
+    }
+
+    readData(url: string): Observable<any> {
+        tap(data => console.log("data: ", data))
+        catchError(this.handleError);
+        return this.httpClient.get<any>(this.API_URL + this.ENDPOINT_READ + url);
     }
 
 

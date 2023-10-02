@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { IonicModule } from '@ionic/angular';
 import { IWifiConfig } from '../../model/wifi-config';
 import { INetwork } from 'src/app/model/network';
+import { AdminService } from 'src/app/services/admin/admin.service';
 
 @Component({
     selector: 'app-network-configuration',
@@ -22,7 +23,7 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
     networks!: INetwork[];
 
     //On verifie que chaque champ soit remplir
-    constructor(private fb : FormBuilder){
+    constructor(private fb : FormBuilder, private adminService: AdminService){
         this.form= this.fb.group({
             modeap:['', Validators.nullValidator],
             ssid:['', Validators.required],
@@ -139,14 +140,20 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
                 this.form.value.gw_1 = Number(this.gw_1?.value); this.form.value.gw_2 = Number(this.gw_2?.value); this.form.value.gw_3 = Number(this.gw_3?.value); this.form.value.gw_4 = Number(this.gw_4?.value);
                 this.form.value.dns_1 = Number(this.dns_1?.value); this.form.value.dns_2 = Number(this.dns_2?.value); this.form.value.dns_3 = Number(this.dns_3?.value); this.form.value.dns_4 = Number(this.dns_4?.value);
     
-                var xhr = new XMLHttpRequest();
                 let formData = new FormData();
                 formData.append("configs", JSON.stringify(this.form.value, null, 4));
-                xhr.open("POST", "http://192.168.1.117/admin/config", true);
-                // xhr.open("POST", "http://10.1.1.1/admin/config", true);
-                xhr.send(formData);
 
-                alert("Paramètres enregistrése avec succès !");
+                this.adminService.send('/admin/config', formData).subscribe({
+                    next: response => {
+                        console.log("Response: ", response);
+                        alert("Paramètres enregistrése avec succès !");
+                    },
+                    error: err => {
+                        console.log("Error: ", err.error);
+                        alert("Paramètres enregistrése avec succès !");
+                    }
+                });
+    
             }
 
         }
@@ -207,52 +214,46 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
     }
 
     read() {
-        // fetch('assets/json/config.json')
-        fetch('http://192.168.1.117/jsonFiles/config.json')
-        // fetch('http://10.1.1.1/jsonFiles/config.json')
-            .then(response => response.json())
-            .then(data => {
-                // use the 'data' variable which contains the parsed JSON data
+
+        this.adminService.readData('jsonFiles/config.json').subscribe({
+            next: data => {
                 this.wifiConfig = data;
                 console.log('wifiConfig: ', this.wifiConfig);
                 this.load();
-            })
-            .catch(error => {
-                // handle any errors that occur during the fetch request
-                console.error(error);
-            });
+            },
+            error: err => {
+                console.log("Error: ", err.error);
+            }
+        });
 
-        fetch('http://192.168.1.117/admin/connectionstate')
-        // fetch('http://10.1.1.1/admin/connectionstate')
-            .then(response => response.text())
-            .then(data => {
-                // use the 'data' variable which contains the parsed JSON data
+        this.adminService.readData('admin/connectionstate').subscribe({
+            next: data => {
                 let fields: string[] = data.split('|');
                 this.connectionState = fields[1];
                 console.log('/connectionstate: ', fields);
-            })
-            .catch(error => {
-                // handle any errors that occur during the fetch request
-                console.error(error);
-            });
+            },
+            error: err => {
+                console.log("Error: ", err.error);
+                let fields: string[] = err.error.text.split('|');
+                this.connectionState = fields[1];
+                console.log('/connectionstate: ', fields);
+            }
+        });
 
     }
 
     scan() {
 
-        fetch('http://192.168.1.117/scan')
-        // fetch('http://10.1.1.1/scan')
-            .then(response => response.json())
-            .then(data => {
-                // use the 'data' variable which contains the parsed JSON data
+        this.adminService.readData('scan').subscribe({
+            next: data => {
                 this.networks = data;
                 console.log("/scan: ", data);
+            },
+            error: err => {
+                console.log("Error: ", err.error);
+            }
+        });
 
-            })
-            .catch(error => {
-                // handle any errors that occur during the fetch request
-                console.error(error);
-            });
     }
 
     // Gestion de l'erreur

@@ -1,5 +1,5 @@
 
-<div class="card d-flex justify-content-center" style="margin-bottom: 5%">
+<div class="card d-flex justify-content-center" style="margin-bottom: 5%;">
     <form [formGroup]="form" (ngSubmit)="submit()" id="configForm">
         <div class="card-body d-flex justify-content-center">
             <div class="col-sm-10">
@@ -39,6 +39,28 @@
                     </div>
                 </div>
                 <hr>
+                <!--<ion-row class="mx-auto">
+                    <ion-col size="3">
+                        <ion-item>
+                            <input type="text" name="ip_1" id="ip_1" placeholder="{{ _disabled ? wifiConfig.ip[0]:''}}" class="form-control form-control-sm" formControlName="ip_1">
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="3">
+                        <ion-item>
+                            <input type="text" name="ip_1" id="ip_1" placeholder="{{ _disabled ? wifiConfig.ip[0]:''}}" class="form-control form-control-sm" formControlName="ip_1">
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="3">
+                        <ion-item>
+                            <input type="text" name="ip_1" id="ip_1" placeholder="{{ _disabled ? wifiConfig.ip[0]:''}}" class="form-control form-control-sm" formControlName="ip_1">
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="3">
+                        <ion-item>
+                            <input type="text" name="ip_1" id="ip_1" placeholder="{{ _disabled ? wifiConfig.ip[0]:''}}" class="form-control form-control-sm" formControlName="ip_1">
+                        </ion-item>
+                    </ion-col>
+                </ion-row>-->
                 <div class="row mx-auto" style="width: 90%;">
                     <div class="col-sm-3 d-flex justify-content-start">
                     <label class="mb-0">IP </label>
@@ -195,7 +217,7 @@
                                         </tbody>
                                         <tfoot>
                                             <tr class="d-flex justify-content-end">
-                                                <ion-button expand="block" (click)="refresh()" type="button"class="fa-lg gradient-custom-2 border border-color-none">
+                                                <ion-button expand="block" (click)="refresh()" type="button" class="fa-lg gradient-custom-2 border border-color-none">
                                                     Refresh
                                                 </ion-button>
                                             </tr>

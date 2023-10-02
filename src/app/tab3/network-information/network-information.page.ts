@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { AdminService } from 'src/app/services/admin/admin.service';
 
 @Component({
     selector: 'app-network-information',
@@ -14,7 +15,7 @@ export class NetworkInformationPage implements OnInit, AfterViewInit {
 
     wifiConfig!: IInfo;
 
-    constructor() { }
+    constructor( private adminService: AdminService) { }
 
     ngAfterViewInit(): void {
         this.read();
@@ -30,35 +31,18 @@ export class NetworkInformationPage implements OnInit, AfterViewInit {
 
 
     read() {
-        // fetch('assets/json/config.json')
-        // fetch('http://192.168.1.117/jsonFiles/config.json')
-        // // fetch('http://10.1.1.1/jsonFiles/config.json')
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         // use the 'data' variable which contains the parsed JSON data
-        //         this.wifiConfig = data;
-        //         console.log("datas: ", data);
 
-        //     })
-        //     .catch(error => {
-        //         // handle any errors that occur during the fetch request
-        //         console.error(error);
-        //     });
-
-        fetch('http://192.168.1.117/admin/infovalues2')
-        // fetch('http://10.1.1.1/admin/infovalues2')
-            .then(response => response.text())
-            .then(data => {
-                // use the 'data' variable which contains the parsed JSON data
+        this.adminService.readData('admin/infovalues2').subscribe({
+			next: data => {
                 let fields: string[] = data.split('\n');
                 this.wifiConfig = new IInfo(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], fields[7], fields[8], fields[9])
-                console.log(fields);
-            })
-            .catch(error => {
-                // handle any errors that occur during the fetch request
-                console.error(error);
-            });
-    
+            },
+			error: err => {
+                console.log("Error: ", err.error);
+                let fields: string[] = err.error.text.split('\n');
+                this.wifiConfig = new IInfo(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], fields[7], fields[8], fields[9])
+            }
+		});
     }
 
 }

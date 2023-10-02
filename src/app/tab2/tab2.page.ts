@@ -6,6 +6,7 @@ import { VideoPage } from "./video/video.page";
 import { ImagePage } from "./image/image.page";
 import { TextPage } from "./text/text.page";
 import { EffetPage } from "./effet/effet.page";
+import { ScenarioService } from '../services/scenario/scenario.service';
 
 @Component({
     selector: 'app-tab2',
@@ -30,7 +31,7 @@ export class Tab2Page implements OnInit {
 
     }
 
-    constructor() { }
+    constructor(private scenarioService: ScenarioService) {}
 
     toggleView(i: number) {
         if (this.scenarios[i] != null) {
@@ -88,15 +89,22 @@ export class Tab2Page implements OnInit {
                     }
                 }
             });
+
             console.log(finalScenario);
-            var xhr = new XMLHttpRequest();
             let formData = new FormData();
             formData.append("scenario", JSON.stringify(finalScenario, null, 4));
-            xhr.open("POST", "http://192.168.1.117/valid", true);
-            // xhr.open("POST", "http://10.1.1.1/valid", true);
-            xhr.send(formData);
 
-            alert("Scénario enregistré avec succès !");
+            this.scenarioService.sendConfiguration(formData).subscribe({
+                next: response => {
+                    console.log("Response: ", response);
+                    alert("Scénario enregistré avec succès !");
+                },
+                error: err => {
+                    console.log("Error: ", err.error);
+                    alert("Scénario enregistré avec succès !");
+                }
+            })
+
         }
 
     }
@@ -162,21 +170,15 @@ export class Tab2Page implements OnInit {
 
     read(): void {
 
-        // fetch('assets/json/scenario.json')
-        fetch('http://192.168.1.117/jsonFiles/scenario.json')
-        // fetch('http://10.1.1.1/jsonFiles/scenario.json')
-            .then(response => response.json())
-            .then(data => {
-                // use the 'data' variable which contains the parsed JSON data
+        this.scenarioService.readScenario().subscribe({
+			next: data => {
                 this.scenarios = data;
                 this.scenariosLength = this.scenarios.length;
                 console.log("scenarioLength: ", this.scenariosLength);
                 console.log("Scénario: ", this.scenarios);
-            })
-            .catch(error => {
-                // handle any errors that occur during the fetch request
-                console.error(error);
-        });
+            },
+			error: err => console.log("Error: ", err.error)
+		});
 
     }
 
@@ -189,29 +191,3 @@ export class Tab2Page implements OnInit {
     }
 
 }
-
-/*
-    toggleView(i: number) {
-        if (this._active !== -1) {
-           this.add();
-        }
-
-        if (this.scenario[i] != null) {
-            this.toggleType(i, this.scenario[i].type);
-        } else {
-            this.toggleType(i, 'null');
-        }
-
-        this._active = i;
-        console.log(i);
-    }
-
-    toggleType(i: number, type: string) {
-
-        this._type = type;
-        this._active = i;
-        this.setScriptView();
-        // load(i)
-        // setFileContent();
-    }
-*/
