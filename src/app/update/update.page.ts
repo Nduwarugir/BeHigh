@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { IonicModule } from '@ionic/angular';
 import { AdminService } from '../services/admin/admin.service';
 import { IAdmin } from '../model/admin';
+import { hashBinary } from '../shared/spark-md5';
 
 @Component({
     selector: 'app-update',
@@ -15,13 +16,18 @@ import { IAdmin } from '../model/admin';
 export class UpdatePage implements OnInit {
 
     @ViewChild('fileInput') fileInputRef!: ElementRef;
+    @ViewChild('md5row') md5rowRef!: ElementRef;
+    @ViewChild('clientHash') clientHashRef!: ElementRef;
+    @ViewChild('fileSize') fileSizeRef!: ElementRef;
+    @ViewChild('hash') hashRef!: ElementRef;
 
     form!: FormGroup;
     lvl: boolean = false;
-    isButtonDisabled: boolean = false;
     running!: boolean;
     disabled: boolean = true;
-    updatePossible!: string;
+    isUpdatePossible!: string;
+
+    md5hash!: string;
 
     file!: File;
     admin!: IAdmin;
@@ -35,7 +41,7 @@ export class UpdatePage implements OnInit {
 
         this.form.controls['confirm'].valueChanges.subscribe(
             (value: string) => {
-                this.disabled = value !== this.admin.pass;
+                this.disabled = value !== this.admin.pass
         });
     }
 
@@ -46,7 +52,6 @@ export class UpdatePage implements OnInit {
     summd5(event: any) {
 
         this.file = event.target.files[0];
-        console.log(this.file);
 
         if (this.running) {
             return;
@@ -59,6 +64,58 @@ export class UpdatePage implements OnInit {
             alert("Vous êtes déjà à jour..."); this.clearFileInput();
         } else {
             this.lvl = !this.lvl;
+
+            let fileReader: FileReader = new FileReader();
+            let file: File = this.file;
+            let time: number, md5hash!: string;
+
+            const md5row: HTMLInputElement = this.md5rowRef.nativeElement;
+            const clientHash: HTMLInputElement = this.clientHashRef.nativeElement;
+            const fileSize: HTMLInputElement = this.fileSizeRef.nativeElement;
+
+            console.log('md5row: ', md5row);
+
+            fileReader.onload = function (e: any) {
+                if (e.target?.result != null) {
+
+                    if (file.size !== e.target.result.length) {
+                        console.error('ERROR:Browser reported success but could not read the file until the end');
+                    } else {
+                        md5hash = hashBinary(e.target.result, file).toString();
+                        console.info('Finished loading!');
+                        console.info('Computed hash: ' + md5hash); // compute hash
+                        console.info('Total time: ' + (new Date().getTime() - time) + 'ms');
+
+                        md5row.hidden = false;
+                        clientHash.innerHTML = md5hash;
+                        fileSize.innerHTML = file.size.toString();
+
+
+                    }
+                } else console.error('e.target?.result === null');
+            };
+
+            fileReader.onerror = function () {
+                console.error('ERROR: FileReader onerror was triggered, maybe the browser aborted due to high memory usage');
+            };
+
+            this.running = true;
+            console.info('Starting normal test (' + file.name + ')');
+            time = new Date().getTime();
+            fileReader.readAsBinaryString(file);
+
+            //md5hash = fileReader.md5hash;
+            setTimeout(() => {
+            	this.adminService.readData('setmd5?md5=' + md5hash + '&size=' + file.size).subscribe({
+		            next: response => {
+		                console.log("Response: ", response);
+		            },
+		            error: err => {
+		                console.log("Error: ", err.error);
+		            }
+		        });
+        	}, 1000);
+
         }
 
     }
@@ -67,7 +124,10 @@ export class UpdatePage implements OnInit {
 
         this.lvl = !this.lvl;
 
-        this.adminService.update(this.file).subscribe({
+        let formData = new FormData();
+        formData.append("update", this.file);
+
+        this.adminService.update(formData).subscribe({
             next: response => {
                 console.log("Response: ", response);
                 alert("Mise à jour en cours...");
@@ -82,15 +142,15 @@ export class UpdatePage implements OnInit {
 
     }
 
-    changer() {
-        this.form.controls['confirm'].valueChanges.subscribe((value: string) => {
-            console.log(value);
-        });
-    }
-
     clearFileInput() {
         const fileInput: HTMLInputElement = this.fileInputRef.nativeElement;
         fileInput.value = '';
+    }
+
+    updatePossible() {
+        if (this.isUpdatePossible !== 'OK') {
+            this.form.controls['file'].disable();
+        }
     }
 
     read(): void {
@@ -118,11 +178,13 @@ export class UpdatePage implements OnInit {
         this.adminService.readData('update/updatepossible').subscribe({
 			next: data => {
                 let fields: string[] = data.split('|');
-                console.log("version: ", data);
+                console.log("version: ", fields);
+                this.updatePossible();
             },
 			error: err => {
                 let fields: string[] = err.error.text.split('|');
-                this.updatePossible = fields[1];
+                this.isUpdatePossible = fields[1];
+                this.updatePossible();
                 console.log("Error: ", err.error);
             }
 		});

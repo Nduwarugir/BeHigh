@@ -31,12 +31,12 @@
                         <hr class="mb-2">
                         <div class="mb-2" *ngIf="lvl">
                             <div class="row d-flex justify-content-end mb-1">
-                                <div class="col-sm-9 mb-2Pas  d-flex justify-content-end">
+                                <div class="col-sm-9 mb-2 d-flex justify-content-end">
                                     <label for="confirm">Veuillez confirmer votre identité pour effectuer la mise à
                                         jour...</label>
                                 </div>
                                 <div class="col-sm-2">
-                                    <input type="text" name="confirm" id="confirm" placeholder="mot de passe" formControlName="confirm"
+                                    <input type="text" name="confirm" id="confirm" placeholder="Mot de passe" formControlName="confirm"
                                         class="form-control form-control-sm" style="border: solid black">
                                 </div>
                             </div>
@@ -50,22 +50,16 @@
                             </div>
                         </div>
                         <hr>
-                        <div id="md5row" hidden>
+                        <div hidden #md5row>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Calculated file MD5 hash:
-                                </div>
-                                <div class="col-sm-8">
-                                    <span id="clientHash">Select a file</span>
+                                    Calculated file MD5 hash: <span #clientHash> Select a file</span> <span #hash hidden></span>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Size:
-                                </div>
-                                <div class="col-sm-8">
-                                    <span id="fileSize"></span> Bytes
+                                    Size: <span #fileSize></span> Bytes
                                 </div>
                             </div>
                         </div>
@@ -73,8 +67,8 @@
                             <div class="col-sm-6">
                                 Checking if remote update is possible...
                             </div>
-                            <div class="col-sm-6" *ngIf="updatePossible">
-                                <span id="remupd" style="color: #009dff;">{{ updatePossible }}</span>
+                            <div class="col-sm-6" *ngIf="isUpdatePossible">
+                                <span id="remupd" style="color: #009dff;">{{ isUpdatePossible }}</span>
                             </div>
                         </div>
                         <hr>

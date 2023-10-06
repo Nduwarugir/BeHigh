@@ -13,11 +13,36 @@
     
         <ion-content [fullscreen]="true">
     
-            <div class="card mb-4 d-flex justify-content-center" style="height: 550px">
-                <button type="button">click me</button>
-                <div  #myNameElem onclick="myJSFunction()"></div>
-                <button id="callMyJSFunction" onclick="myJSFunction()" style="display:none;"></button> <script> function myJSFunction(){ alert('IN'); } </script>
-            </div>
+            <ion-card style="height: 550px">
+                <ion-card-header class="mb-4 d-flex ion-align-items-center" style="background-color: aqua;">
+                    <ion-card-title>Awesome Title</ion-card-title>
+                    <ion-card-subtitle>Awesome Subtitle</ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content class="mx-auto">
+                    <ion-item>
+                        <div #header >hello</div>
+                    </ion-item>
+                    <ion-item>
+                        <div #tree ></div>
+                    </ion-item>
+                    <ion-item>
+                        <div #editor ></div>
+                    </ion-item>
+                    <ion-item>
+                        <div  style="display: none;" #preview></div>
+                    </ion-item>
+                    <ion-item>
+                        <div #loading class="loading-popup">
+                            <span #loadingMsg ></span><br/>
+                            <div class="spinner-anim ion-align-items-center" style="color: #005eff" >Loading...</div>
+                        </div>
+                    </ion-item>
+                    <ion-item>
+                        <iframe #downloadFrame style='display:none;'></iframe>
+                    </ion-item>
+
+                </ion-card-content>
+            </ion-card>
     
         </ion-content>
     

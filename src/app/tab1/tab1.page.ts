@@ -1,6 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { ScenarioService } from '../services/scenario/scenario.service';
 
 @Component({
     selector: 'app-tab1',
@@ -11,21 +10,13 @@ import { ScenarioService } from '../services/scenario/scenario.service';
 })
 export class Tab1Page implements OnInit, OnChanges {
 
-    constructor(private scenarioService: ScenarioService) {}
-
+	constructor() { }
 
 	ngOnInit(): void {
-		// this.readHttp();
 	}
+
 	ngOnChanges(changes: SimpleChanges): void {
 		console.log('changes: ', changes);
 	}
 
-
-    readHttp() {
-        this.scenarioService.readScenario().subscribe({
-			next: data => console.log("Datas: ", data),
-			error: err => console.log("Error: ", err.error),
-		})
-    }
 }

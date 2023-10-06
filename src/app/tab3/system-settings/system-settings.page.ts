@@ -30,7 +30,23 @@ export class SystemSettingsPage implements OnInit {
     }
 
     submit() {
-        console.log('Method not implemented.');
+        if (this.form.valid) {
+
+            let formData = new FormData();
+            formData.append("wwwauth", this.form.value);
+
+            this.adminService.send('/admin/wwwauth', formData).subscribe({
+                next: response => {
+                    console.log("Response: ", response);
+                    alert("Login modifié avec succès !");
+                },
+                error: err => {
+                    console.log("Error: ", err.error);
+                    alert("Login modifié avec succès !");
+                }
+            })
+
+        }
     }
 
     restartESP() {
@@ -52,7 +68,7 @@ export class SystemSettingsPage implements OnInit {
 			next: data => {
                 this.admin = data;
                 this.load();
-                console.log("Scénario: ", this.admin);
+                console.log("Secret: ", this.admin);
             },
 			error: err => {
                 console.log("Error: ", err.error);

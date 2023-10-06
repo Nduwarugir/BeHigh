@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -15,6 +15,8 @@ import { AdminService } from 'src/app/services/admin/admin.service';
 })
 export class NetworkConfigurationPage implements OnInit, AfterViewInit {
 
+    @ViewChild('numNets') numNetsRef!: ElementRef;
+    
     form! : FormGroup;
     _disabled!: boolean;
 
@@ -53,7 +55,12 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit(): void {
-        this.scan();
+        let intervalId: any;
+        intervalId = setInterval(() => {
+            if (this.networks) {
+              clearInterval(intervalId);
+            } else this.scan();
+          }, 5*1000);
     }
 
     disable(): void {
@@ -120,20 +127,15 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
         if (this.form.valid) {
 
             if (Number.isNaN(Number(this.ip_1?.value)) || Number.isNaN(Number(this.ip_2?.value)) || Number.isNaN(Number(this.ip_3?.value)) || Number.isNaN(Number(this.ip_4?.value)) ) {
-                console.log("Null IP");
                 this.setError(1);
             } else if (Number.isNaN(Number(this.nm_1?.value)) || Number.isNaN(Number(this.nm_2?.value)) || Number.isNaN(Number(this.nm_3?.value)) || Number.isNaN(Number(this.nm_4?.value)) ) {
-                console.log("Null NETMASK");
                 this.setError(2);
             } else if (Number.isNaN(Number(this.gw_1?.value)) || Number.isNaN(Number(this.gw_2?.value)) || Number.isNaN(Number(this.gw_3?.value)) || Number.isNaN(Number(this.gw_4?.value)) ) {
-                console.log("Null GATEWAY");
                 this.setError(3);
             } else if (Number.isNaN(Number(this.dns_1?.value)) || Number.isNaN(Number(this.dns_2?.value)) || Number.isNaN(Number(this.dns_3?.value)) || Number.isNaN(Number(this.dns_4?.value)) ) {
-                console.log("Null DNS");
                 this.setError(4);
             } else {
                 this.formToConfig();
-                console.log("WifiConfig: ", this.wifiConfig);
 
                 this.form.value.ip_1 = Number(this.ip_1?.value); this.form.value.ip_2 = Number(this.ip_2?.value); this.form.value.ip_3 = Number(this.ip_3?.value); this.form.value.ip_4 = Number(this.ip_4?.value);
                 this.form.value.nm_1 = Number(this.nm_1?.value); this.form.value.nm_2 = Number(this.nm_2?.value); this.form.value.nm_3 = Number(this.nm_3?.value); this.form.value.nm_4 = Number(this.nm_4?.value);
@@ -206,9 +208,6 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
     }
 
     refresh() {
-        // console.log("Form Values", this.form.value);
-        // console.log("wifiConfig: ", this.wifiConfig);
-
         this.read();
         this.scan();
     }
@@ -218,7 +217,6 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
         this.adminService.readData('jsonFiles/config.json').subscribe({
             next: data => {
                 this.wifiConfig = data;
-                console.log('wifiConfig: ', this.wifiConfig);
                 this.load();
             },
             error: err => {
@@ -236,7 +234,6 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
                 console.log("Error: ", err.error);
                 let fields: string[] = err.error.text.split('|');
                 this.connectionState = fields[1];
-                console.log('/connectionstate: ', fields);
             }
         });
 
@@ -247,6 +244,10 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
         this.adminService.readData('scan').subscribe({
             next: data => {
                 this.networks = data;
+                
+            	let numNets: HTMLInputElement = this.numNetsRef.nativeElement;
+            	numNets.innerHTML = data.length;
+            	
                 console.log("/scan: ", data);
             },
             error: err => {
@@ -266,16 +267,12 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
     formToConfig() {
 
         if (Number.isNaN(Number(this.ip_1?.value)) || Number.isNaN(Number(this.ip_2?.value)) || Number.isNaN(Number(this.ip_3?.value)) || Number.isNaN(Number(this.ip_4?.value)) ) {
-            console.log("Null ip");
             this.setError(1);
         } else if (Number.isNaN(Number(this.nm_1?.value)) || Number.isNaN(Number(this.nm_2?.value)) || Number.isNaN(Number(this.nm_3?.value)) || Number.isNaN(Number(this.nm_4?.value)) ) {
-            console.log("Null netmask");
             this.setError(2);
         } else if (Number.isNaN(Number(this.gw_1?.value)) || Number.isNaN(Number(this.gw_2?.value)) || Number.isNaN(Number(this.gw_3?.value)) || Number.isNaN(Number(this.gw_4?.value)) ) {
-            console.log("Null gateway");
             this.setError(3);
         } else if (Number.isNaN(Number(this.dns_1?.value)) || Number.isNaN(Number(this.dns_2?.value)) || Number.isNaN(Number(this.dns_3?.value)) || Number.isNaN(Number(this.dns_4?.value)) ) {
-            console.log("Null dns");
             this.setError(4);
         } else {
 
@@ -295,6 +292,10 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
     }
 
     //Les getters
+    get error(){
+        return this._err;
+    }
+
     get modeap(){
         return this.form.get('modeap');
     }
@@ -314,7 +315,6 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
     get ip_1(){
         return this.form.get('ip_1');
     }
-
 
     get ip_2(){
         return this.form.get('ip_2');
@@ -375,9 +375,9 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
     get dns_4(){
         return this.form.get('dns_4');
     }
-
-    get error(){
-        return this._err;
+    
+    test(name: string): void {
+    	console.log('name: ', name);
     }
 
 }

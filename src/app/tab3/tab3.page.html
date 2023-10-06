@@ -21,22 +21,22 @@
 
                         <div class="row row-cols-2 row-cols-md-2 mx-auto text-center" style="display: flex; justify-content: center;" >
                             <div class="col mb-4">
-                                <div class="card h-100 w-100 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" id="l01" (click)="toggleVisibility(1)" [class]="visibility == 1 ? 'active' : ''">
+                                <div class="card h-100 w-100 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" id="l01" (click)="toggleVisibility(1)" [class]="visibility === 1 ? 'active' : ''">
                                     <h4 class="my-auto">Configuration Generale</h4>
                                 </div>
                             </div>
                             <div class="col mb-4">
-                                <div class="card h-100 w-100 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" id="l02" (click)="toggleVisibility(2)" [class]="visibility == 2 ? 'active' : ''">
+                                <div class="card h-100 w-100 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" id="l02" (click)="toggleVisibility(2)" [class]="visibility === 2 ? 'active' : ''">
                                     <h4 class="my-auto">Configuration Réseau</h4>
                                 </div>
                             </div>
                             <div class="col mb-4">
-                                <div class="card h-100 w-100 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" id="l03" (click)="toggleVisibility(3)" [class]="visibility == 3 ? 'active' : ''">
+                                <div class="card h-100 w-100 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" id="l03" (click)="toggleVisibility(3)" [class]="visibility === 3 ? 'active' : ''">
                                     <h4 class="my-auto">Informations Réseau</h4>
                                 </div>
                             </div>
                             <div class="col mb-4">
-                                <div class="card h-100 w-100 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" id="l04" (click)="toggleVisibility(4)" [class]="visibility == 4 ? 'active' : ''">
+                                <div class="card h-100 w-100 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" id="l04" (click)="toggleVisibility(4)" [class]="visibility === 4 ? 'active' : ''">
                                     <h4 class="my-auto">Paramètres Système</h4>
                                 </div>
                             </div>
@@ -46,27 +46,27 @@
                             <div class="col-lg-9">
 
                                 <div class="settings mt-2">
-                                    <div *ngIf="visibility == 0">
-                                        <div class="card mb-4" style="height: 350px">
+                                    <div *ngIf="visibility === 0">
+                                        <ion-card class="card mb-4" style="height: 350px">
                                             <h3 class="sub-title"> Choose a setting ! </h3>
-                                        </div>
+                                        </ion-card>
                                     </div>
-                                    <div *ngIf="visibility == 1">
+                                    <div *ngIf="visibility === 1">
                                         <app-global-information></app-global-information>
                                     </div>
-                                    <div *ngIf="visibility == 2">
+                                    <div *ngIf="visibility === 2">
                                         <app-network-configuration></app-network-configuration>
                                     </div>
-                                    <div *ngIf="visibility == 3">
+                                    <div *ngIf="visibility === 3">
                                         <app-network-information></app-network-information>
                                     </div>
-                                    <div *ngIf="visibility == 4">
+                                    <div *ngIf="visibility === 4">
                                         <app-system-settings></app-system-settings>
                                     </div>
-                                    <!-- <div *ngIf="visibility == 5">
+                                    <!-- <div *ngIf="visibility === 5">
                                         <app-other></app-other>
                                     </div>
-                                    <div *ngIf="visibility == 6">
+                                    <div *ngIf="visibility === 6">
                                         <app-upload></app-upload>
                                     </div> -->
                                 </div>

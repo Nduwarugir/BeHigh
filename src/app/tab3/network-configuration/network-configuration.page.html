@@ -173,53 +173,53 @@
                 <div class="row">
                     <div class="d-flex justify-content-end mb-lg-2">
                         <p class="mr-4" id="message" style="color: #007bff; font-size: large; " ></p>
-                        <ion-button block color="primary" type="submit" [disabled]="form.invalid" class="fa-lg gradient-custom-2 border border-color-none me-4">
+                        <ion-button expand="block" color="primary" type="submit" [disabled]="form.invalid" class="fa-lg gradient-custom-2 border border-color-none me-4">
                             Sauvegarder
                         </ion-button> <!-- style="height: 40px;-->
                     </div>
                 </div>
 
-                <div style="font-size: large;">
+                <div style="font-size: small;">
                     <hr>
                     <div class="row mx-auto" style="width: 90%;">
-                        <div class="col-sm-4">
-                            <strong>Connection State:</strong>
-                        </div>
-                        <div class="col-sm-5">
-                            <div *ngIf="!connectionState">N/A</div>
-                            <div *ngIf="connectionState"> {{connectionState}} </div>
+                        <div class="col-sm-6">
+                            <strong>Connection State: </strong>
+                            <span *ngIf="!connectionState">N/A</span>
+                            <span *ngIf="connectionState"> {{connectionState}} </span>
                         </div>
                     </div>
                     <hr>
-                    <div class="row mx-auto" style="width: 90%;">
-                        <div class="col-sm-4">
-                            <strong>Networks: </strong><span id="numNets"></span>
+                    <div class="row mx-auto" style="width: 100%;">
+                        <div class="col-sm-4 ms-3 mb-2">
+                            <strong>Networks: </strong><span #numNets></span>
                         </div>
-                        <div class="col-sm-8">
-                            <div class="card">
-                                <div class="card-body">
-                                    <table border="0" cellspacing="3" style="width: 50px">
+                        <div class="col-sm-12">
+                            <div class="card64">
+                                <div class="card-body2">
+                                    <table border="0" cellspacing="3" style="width: 100%">
                                         <thead bgcolor='#DDDDDD'>
                                         <tr>
                                             <th style="width: 6%">SSID</th>
                                             <th>Channel</th>
-                                            <th style="width:5%">Secure</th>
+                                            <th style="width: 5%">Secure</th>
                                             <th>RSSI</th>
                                         </tr>
                                         </thead>
                                         <tbody id="networks" style="min-height: 100px;" *ngIf="networks">
-                                            <tr *ngFor="let network of networks">
-                                                <td>{{ network.ssid }}</td>
+                                            <tr *ngFor="let network of networks" class="my-1">
+                                                <td (click)="test(network.ssid)" class="btn btn-primary btn-block fa-lg gradient-custom-2 border border-color-none mb-2 w-75 h-50">{{ network.ssid }}</td>
                                                 <td>{{ network.channel }}</td>
                                                 <td>{{ network.secure }}</td>
                                                 <td>{{ network.rssi }}</td>
                                             </tr>
                                         </tbody>
                                         <tfoot>
-                                            <tr class="d-flex justify-content-end">
-                                                <ion-button expand="block" (click)="refresh()" type="button" class="fa-lg gradient-custom-2 border border-color-none">
-                                                    Refresh
-                                                </ion-button>
+                                            <tr>
+                                                <td>
+					                                <ion-button expand="block" color="dark" (click)="refresh()" type="button" class="fa-lg gradient-custom-2 border border-color-none w-75">
+					                                    Refresh
+					                                </ion-button>
+                                                </td>
                                             </tr>
                                         </tfoot>
                                     </table>

@@ -1,7 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap, catchError, throwError } from 'rxjs';
-import { IScenario } from 'src/app/model/scenario';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +24,7 @@ export class AdminService {
         return this.httpClient.post<FormData>(this.API_URL + url, datas);
     }
 
-    update(file: File): Observable<any> {
+    update(file: any): Observable<any> {
         tap(data => console.log("data: ", data))
         catchError(this.handleError);
         return this.httpClient.post<any>(this.API_URL + '/update', file);
