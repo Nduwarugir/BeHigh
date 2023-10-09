@@ -19,6 +19,8 @@ log.txt
 
 # Ionic
 /.ionic
+/android
+/ios
 /www
 /platforms
 /plugins
@@ -31,8 +33,6 @@ log.txt
 
 # Node
 /node_modules
-/android
-/ios
 npm-debug.log
 yarn-error.log
 

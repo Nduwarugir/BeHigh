@@ -13,7 +13,7 @@ export class ScenarioService {
 
     constructor(private httpClient: HttpClient) { }
 
-    private readonly API_URL = "http://192.168.1.117";
+    private readonly API_URL = "http://192.168.1.117:80";
     // private readonly API_URL = "http://10.1.1.1";
     // private readonly API_URL = "assets/json";
 

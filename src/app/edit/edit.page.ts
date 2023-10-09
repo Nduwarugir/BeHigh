@@ -2,6 +2,8 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { IFile } from 'src/app/model/file';
+import { ScenarioService } from 'src/app/services/scenario/scenario.service';
 
 @Component({
     selector: 'app-edit',
@@ -12,115 +14,69 @@ import { IonicModule } from '@ionic/angular';
 })
 export class EditPage implements OnInit, AfterViewInit {
 
-    @ViewChild('loadingMsg') loadingMsgRef!: ElementRef;
-    @ViewChild('loading') loadingRef!: ElementRef;
-    @ViewChild('header') headerRef!: ElementRef;
+    mode!: string;
+    type!: string;
+    visibility!: number
+    currentDirContents!: IFile[];
 
-	show: boolean = true;	
-	
-    constructor() { }
+    constructor(private scenarioService: ScenarioService) { }
 
     ngAfterViewInit(): void {
-        this.setLoading(this.show, 'Listing...');
-        setTimeout(() => {
-        	this.show = false;
-        	console.log(this.show);
-        }, 5*1000);
-        //setInterval("console.log(this.show);", 1000);
     }
 
     ngOnInit() {
+        this.currentDirContents = [];
     }
 
-    /////////////////////////
-    // UTILS
-    setLoading(show: boolean, message: any) {
-        const loadingMsg: HTMLElement = this.loadingMsgRef.nativeElement;
-        if (message) loadingMsg.innerHTML = message;
-
-        console.log('loadingMsgRef', this.loadingMsgRef);
-        console.log('loadingRef', this.loadingRef);
-        
-
-        const loading: HTMLElement = this.loadingRef.nativeElement;
-        if (show) loading.classList.add("shown");
-        else loading.classList.remove("shown");
-        document.body.style.cursor = show ? "wait" : "default";
-    }
-    
-    readableSize(bytes: number): string {
-        if (bytes < 1024) return bytes + " B";
-        let units: string[] = [' KiB', ' MiB', ' GiB', ' TiB', 'PiB'];
-        let i: number = -1;
-        do {
-            bytes = bytes / 1024;
-            i++;
-        } while (bytes > 1024);
-        return bytes.toFixed(2) + units[i];
+    toggleMode(mode: string, visibility: number) {
+        this.mode = mode;
+        this.visibility = visibility;
+        if(this.type) this.readDirContents();
     }
 
-	refreshStatus() {
-
-            // document.getElementById("status").innerHTML = "(refreshing...)";
+    toggleType(type: string) {
+        this.type = type;
+        if(this.mode && this.mode ==='delete') this.readDirContents();
     }
 
-    showHttpError(request: XMLHttpRequest): void {
-        alert("ERROR: [" + request.status + "] " + request.responseText);
+    readDirContents() {
+    	if(this.type === 'Image')
+		    this.scenarioService.readFile('images.json').subscribe({
+				next: data => {
+		            this.currentDirContents = data;
+		            console.log("Effets: ", this.currentDirContents);
+		        },
+				error: err => console.log("Error: ", err.error)
+			});
+		else if(this.type === 'Video')
+		    this.scenarioService.readFile('videos.json').subscribe({
+				next: data => {
+		            this.currentDirContents = data;
+		            console.log("Effets: ", this.currentDirContents);
+		        },
+				error: err => console.log("Error: ", err.error)
+			});
+		else 
+		    this.scenarioService.readFile('effets.json').subscribe({
+				next: data => {
+		            this.currentDirContents = data;
+		            console.log("Effets: ", this.currentDirContents);
+		        },
+				error: err => console.log("Error: ", err.error)
+			});
+
     }
 
-    canLoadNewContents(): boolean {
-        // The fact the save button is enabled indicates the editor has unsaved changes
-        // if (document.getElementById("saveBtn").disabled) return true;
-        if (confirm("Changes to your document will be lost if you continue")) {
-            this.enableSaveDiscardBtns(false);
-            return true;
-        }
-        return false;
+    delete(fileName: string) {
+        console.log('fileName: ', fileName);
     }
 
-    enableSaveDiscardBtns(enabled: boolean) {
-        //document.getElementById("saveBtn").disabled = !enabled;
-        //document.getElementById("discardBtn").disabled = !enabled;
-    }
-
-    /*
-     * Returns the parent folder of a given path
-     * ""      > ""
-     * "/"     > ""
-     * "a"     > ""
-     * "/a"    > ""
-     * "a/"    > ""
-     * "/a/"   > ""
-     * "a/b"   > "/a"
-     * "/a/b"  > "/a"
-     * "a/b/"  > "/a"
-     * "/a/b/" > "/a"
-     */
-     
-    getParentFolder(path: string): string {
-        if (!path.startsWith("/")) path = "/" + path;
-        if (path.endsWith("/")) path = path.slice(0, -1);
-        return path.substring(0, path.lastIndexOf("/"));
-    }
-
-    /////////////////////////
-    // HEADER with uploader, buttons and status
-	createHeader(element: any, tree: any, editor: any) {
-	}
-
-    /////////////////////////
-    // FILE TREE
-    createTree(element: any, editor: any) {
-    }
-
-    /////////////////////////
-    // ACE EDITOR MANAGEMENT
-    createEditor(element: any, file: any, lang: any, theme: any, type: any) {
-    }
-
-    /////////////////////////
-    // MAIN ENTRY POINT
-    onBodyLoad() {
+    edit(fileName: string) {
+        console.log('fileName: ', fileName);
     }
 
 }
+
+// xmlHttp.open("DELETE", "/edit"); for deletion
+
+// xmlHttp.open("POST", "/edit"); for uploding

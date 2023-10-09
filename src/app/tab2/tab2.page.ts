@@ -18,17 +18,12 @@ import { ScenarioService } from '../services/scenario/scenario.service';
 export class Tab2Page implements OnInit {
 
     _type: string = 'null';
-    _active: number = -1;
-    _nScrip: number = 0;
-    _visibility: number = 0;
+    _nScrip: number = -1;
     errMsg!: string;
     scenarios: IScenario[] = []; scenariosLength!: number;
 
-    scripts!: string;
-
     ngOnInit(): void {
         this.read();
-
     }
 
     constructor(private scenarioService: ScenarioService) {}
@@ -40,16 +35,20 @@ export class Tab2Page implements OnInit {
             this.toggleType('null');
         }
 
-        this._active = i;
         this._nScrip = i;
         console.log(i);
     }
 
+	onSelectionChange(event: any, n: number) {
+        this.toggleNScript(n);
+        this.toggleType(event.detail.value);
+	}
+	  
     submit() {
         console.log("finalScénario: ", this.scenarios);
 
         if (this.scenarios.length < 1) {
-            alert("Definissez au moins un scénario !");
+            alert("Définissez au moins un scénario !");
 
         } else {
 
@@ -133,24 +132,12 @@ export class Tab2Page implements OnInit {
     }
 
     //Les getters
-    public get visibility(): number {
-        return this._visibility
-    }
-
-    public set visibility(v : number) {
-        this._visibility = v;
-    }
-
     get type(): string {
         return this._type;
     }
 
     get nScript(): number {
         return this._nScrip;
-    }
-
-    toggleVisibility(n: number){
-        this.visibility = n;
     }
 
     toggleType(t: string){

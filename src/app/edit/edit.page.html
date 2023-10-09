@@ -3,48 +3,109 @@
         <ion-title>Edit</ion-title>
     </ion-toolbar>
     </ion-header>
-    
+
     <ion-content [fullscreen]="true">
         <ion-header collapse="condense">
             <ion-toolbar>
                 <ion-title size="large">Edit</ion-title>
             </ion-toolbar>
         </ion-header>
-    
+
         <ion-content [fullscreen]="true">
-    
-            <ion-card style="height: 550px">
-                <ion-card-header class="mb-4 d-flex ion-align-items-center" style="background-color: aqua;">
-                    <ion-card-title>Awesome Title</ion-card-title>
-                    <ion-card-subtitle>Awesome Subtitle</ion-card-subtitle>
+
+            <ion-card style="height: 100%;">
+                <ion-card-header class="mb-4 d-flex ion-align-items-center">
+                    <ion-card-title class="mb-4 d-flex ion-align-items-center">
+                        <ion-item lines="none" (click)="toggleMode('upload', 1)">
+                            <ion-card [class]="visibility === 1 ? 'active' : ''">
+                                <ion-card-content>
+                                    <ion-label position="inline">
+                                        <ion-icon style="margin-bottom: -2px;" aria-hidden="true" [name]="mode ==='upload' ? 'cloud-upload-outline':'cloud-offline-outline'"></ion-icon>
+                                        Télécharger
+                                    </ion-label>
+                                </ion-card-content>
+                            </ion-card>
+                        </ion-item>
+                        <ion-item lines="none" (click)="toggleMode('delete', 2)">
+                            <ion-card [class]="visibility === 2 ? 'active' : ''">
+                                <ion-card-content>
+                                    <ion-label position="inline">
+                                        <ion-icon style="margin-bottom: -2px;" aria-hidden="true" [name]="mode ==='delete' ? 'folder-open-outline':'folder-outline'"></ion-icon>
+                                        Supprimer
+                                    </ion-label>
+                                </ion-card-content>
+                            </ion-card>
+                        </ion-item>
+                    </ion-card-title>
+                    <ion-card-subtitle class="mb-4 d-flex ion-align-items-center" style="width: 100%;">
+                        <ion-grid fixed>
+                            <ion-row>
+                                <ion-col (click)="toggleType('Image')">
+                                    <ion-card [class]="type === 'Image' ? 'active' : ''" style="margin: 0">
+                                        <ion-card-content>
+                                            <ion-label position="inline">
+                                                <ion-icon style="margin-bottom: -2px;" aria-hidden="true" name="image-outline"></ion-icon>
+                                                Image
+                                            </ion-label>
+                                        </ion-card-content>
+                                    </ion-card>
+                                </ion-col>
+                                <ion-col (click)="toggleType('Video')">
+                                    <ion-card [class]="type === 'Video' ? 'active' : ''" style="margin: 0">
+                                        <ion-card-content>
+                                            <ion-label position="inline">
+                                                <ion-icon style="margin-bottom: -2px;" aria-hidden="true" name="videocam-outline"></ion-icon>
+                                                Videos
+                                            </ion-label>
+                                        </ion-card-content>
+                                    </ion-card>
+                                </ion-col>
+                                <ion-col (click)="toggleType('Effet')">
+                                    <ion-card [class]="type === 'Effet' ? 'active' : ''" style="margin: 0">
+                                        <ion-card-content>
+                                            <ion-icon style="margin-bottom: -2px;" aria-hidden="true" name="aperture-outline"></ion-icon>
+                                            Gif
+                                        </ion-card-content>
+                                    </ion-card>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-card-subtitle>
                 </ion-card-header>
                 <ion-card-content class="mx-auto">
-                    <ion-item>
-                        <div #header >hello</div>
-                    </ion-item>
-                    <ion-item>
-                        <div #tree ></div>
-                    </ion-item>
-                    <ion-item>
-                        <div #editor ></div>
-                    </ion-item>
-                    <ion-item>
-                        <div  style="display: none;" #preview></div>
-                    </ion-item>
-                    <ion-item>
-                        <div #loading class="loading-popup">
-                            <span #loadingMsg ></span><br/>
-                            <div class="spinner-anim ion-align-items-center" style="color: #005eff" >Loading...</div>
+
+                    <ion-item lines="none" *ngIf="mode === 'upload'">
+                        <div *ngIf="type" style="width: 100%;">
+                            <ion-input *ngIf="type === 'Image'" type="file" accept= "image/jpg, image/jpeg, image/png"></ion-input>
+                            <ion-input *ngIf="type === 'Video'" type="file" accept= "video/mp4, video/mpg, video/mpeg, .rgb, .raw"></ion-input>
+                            <ion-input *ngIf="type === 'Effet'" type="file" accept= "image/gif"></ion-input>
                         </div>
                     </ion-item>
-                    <ion-item>
-                        <iframe #downloadFrame style='display:none;'></iframe>
+                    <ion-item lines="none" *ngIf="mode === 'delete'">
+                        <div *ngIf="type" style="width: 100%;">
+                            <ion-list>
+                                <ion-list-header>
+                                    <ion-label>Liste des fichiers: </ion-label>
+                                </ion-list-header>
+                                <ion-row lines="none" *ngFor="let file of currentDirContents">
+                                    <ion-col size="10">
+                                        <ion-label>{{ file.link }}</ion-label>
+                                    </ion-col>
+                                    <ion-col>
+                                        <ion-icon offset="11" style="margin-bottom: -2px;" name="create-outline" (click)="edit(file.link)"></ion-icon>
+                                    </ion-col>
+                                    <ion-col>
+                                        <ion-icon style="margin-bottom: -2px;" name="trash-outline" (click)="delete(file.link)"></ion-icon>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-list>
+                        </div>
                     </ion-item>
 
                 </ion-card-content>
             </ion-card>
-    
+
         </ion-content>
-    
+
     </ion-content>
-    
+

@@ -9,11 +9,11 @@ export class AdminService {
 
     constructor(private httpClient: HttpClient) { }
 
-    private readonly API_URL = "http://192.168.1.117";
+    private readonly API_URL = "http://192.168.1.117:80";
     // private readonly API_URL = "http://10.1.1.1";
     // private readonly API_URL = "assets/json";
 
-    private readonly ENDPOINT_SEND = "/";
+    // private readonly ENDPOINT_SEND = "/";
 
     private readonly ENDPOINT_READ = "/";
 
@@ -35,6 +35,13 @@ export class AdminService {
         catchError(this.handleError);
         return this.httpClient.get<any>(this.API_URL + this.ENDPOINT_READ + url);
     }
+
+    listDirContents(dir: string): Observable<any> {
+        tap(data => console.log("data: ", data))
+        catchError(this.handleError);
+        return this.httpClient.get<any>(this.API_URL + this.ENDPOINT_READ + "list?dir=/" + dir);
+    }
+
 
 
     private handleError(error: HttpErrorResponse) {
