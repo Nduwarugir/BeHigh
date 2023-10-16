@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { AlertController, IonicModule } from '@ionic/angular';
 import { IWifiConfig } from '../../model/wifi-config';
 import { INetwork } from 'src/app/model/network';
 import { AdminService } from 'src/app/services/admin/admin.service';
@@ -25,7 +25,7 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
     networks!: INetwork[];
 
     //On verifie que chaque champ soit remplir
-    constructor(private fb : FormBuilder, private adminService: AdminService){
+    constructor(private fb : FormBuilder, private alertController: AlertController, private adminService: AdminService){
         this.form= this.fb.group({
             modeap:['', Validators.nullValidator],
             ssid:['', Validators.required],
@@ -148,11 +148,16 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
                 this.adminService.send('/admin/config', formData).subscribe({
                     next: response => {
                         console.log("Response: ", response);
-                        alert("Paramètres enregistrése avec succès !");
+                        this.showPopup("Paramètres enregistrése avec succès !");
                     },
                     error: err => {
-                        console.log("Error: ", err.error);
-                        alert("Paramètres enregistrése avec succès !");
+                        if (err.statusText !== 'OK') {
+                            console.log("Error: ", err.error);
+                        } else {
+                            setTimeout(() => {
+                                this.showPopup("Paramètres enregistrése avec succès !");
+                            }, 1*1000);
+                        }
                     }
                 });
     
@@ -231,9 +236,12 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
                 console.log('/connectionstate: ', fields);
             },
             error: err => {
-                console.log("Error: ", err.error);
-                let fields: string[] = err.error.text.split('|');
-                this.connectionState = fields[1];
+                if (err.statusText !== 'OK') {
+                    console.log("Error: ", err.error);
+                } else {
+                    let fields: string[] = err.error.text.split('|');
+                    this.connectionState = fields[1];
+                }
             }
         });
 
@@ -276,8 +284,6 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
             this.setError(4);
         } else {
 
-            console.log("Form: ", this.form.value);
-
             this.wifiConfig.Wifi_Mode = this.modeap?.value;
             this.wifiConfig.ssid = this.ssid?.value;
             this.wifiConfig.pass= this.pass?.value;
@@ -291,6 +297,22 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
 
     }
 
+    switchNetwork(name: string): void {
+        this.form.patchValue({
+            ssid: name
+        });
+    }
+
+    async showPopup(message: string) {
+        const alert = await this.alertController.create({
+            header: 'Opération réussie.',
+            message: message,
+            buttons: ['OK'],
+            cssClass: 'custom-alert'
+        });
+        await alert.present();
+    }
+   
     //Les getters
     get error(){
         return this._err;
@@ -376,8 +398,4 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
         return this.form.get('dns_4');
     }
     
-    test(name: string): void {
-    	console.log('name: ', name);
-    }
-
 }

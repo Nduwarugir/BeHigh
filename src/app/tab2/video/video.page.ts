@@ -93,17 +93,13 @@ export class VideoPage  implements OnInit, OnChanges {
     }
 
     setFileContent() {
-
-        console.log('video');
         //innerHTML = '<video src="/Videos/'+ document.getElementById('link').value +'" width="100%" height="480" title="'+ document.getElementById('link').value +'" controls autoplay></video>';
-
     }
     read(): void {
 
         this.scenarioService.readFile('videos.json').subscribe({
 			next: data => {
                 this.vidFiles = data;
-                console.log("Videos: ", this.vidFiles);
             },
 			error: err => console.log("Error: ", err.error)
 		});

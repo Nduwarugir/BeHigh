@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { IonicModule } from '@ionic/angular';
 import { AdminService } from 'src/app/services/admin/admin.service';
 import { IAdmin } from 'src/app/model/admin';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-system-settings',
@@ -18,7 +19,7 @@ export class SystemSettingsPage implements OnInit {
 
     admin!: IAdmin;
 
-    constructor(private formBuilder: FormBuilder, private adminService: AdminService) {
+    constructor(private formBuilder: FormBuilder, private adminService: AdminService, private router: Router) {
         this.form = this.formBuilder.group({
             user: ['', [Validators.required]],
             pass: ['', [Validators.minLength(6), Validators.required]],
@@ -47,6 +48,10 @@ export class SystemSettingsPage implements OnInit {
             })
 
         }
+    }
+
+    edit() {
+		this.router.navigate(['/tabs/edit']);
     }
 
     restartESP() {

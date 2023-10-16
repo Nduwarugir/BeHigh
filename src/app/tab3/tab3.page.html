@@ -12,7 +12,7 @@
 
 
     <ion-content [fullscreen]="true">
-        <div class="container" xmlns="http://www.w3.org/1999/xhtml" style="margin-bottom: 5%;">
+        <div class="container" xmlns="http://www.w3.org/1999/xhtml" style="margin-bottom: 10%;">
 
             <div class="main-container md-8">
                 <section>
@@ -47,11 +47,11 @@
 
                                 <div class="settings mt-2">
                                     <div *ngIf="visibility === 0">
-                                        <ion-card class="card mb-4" style="height: 350px">
+                                        <ion-card class="card mb-4" style="height: 350px; width: 100%;">
                                             <h3 class="sub-title"> Choose a setting ! </h3>
                                         </ion-card>
                                     </div>
-                                    <div *ngIf="visibility === 1">
+                                    <div *ngIf="visibility === 1" style="width: 100%;">
                                         <app-global-information></app-global-information>
                                     </div>
                                     <div *ngIf="visibility === 2">

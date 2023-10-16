@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, PopoverController } from '@ionic/angular';
 import { IFile } from 'src/app/model/file';
 import { IScenario } from 'src/app/model/scenario';
 import { ScenarioService } from 'src/app/services/scenario/scenario.service';
+import { MediaPopupPage } from 'src/app/shared/components/media-popup/media-popup.page';
+import { GlobalsVariables } from 'src/app/shared/globals-variables';
 
 @Component({
   selector: 'app-effet',
@@ -34,7 +36,7 @@ export class EffetPage implements OnInit, OnChanges {
     }
 
     //On vérifie que chaque champ soit remplir
-    constructor(private fb : FormBuilder, private scenarioService: ScenarioService){
+    constructor(private fb : FormBuilder, private scenarioService: ScenarioService, private param: GlobalsVariables, private popoverController: PopoverController){
         this.form= this.fb.group({
             link:['', Validators.required],
             timing:['00', Validators.required]
@@ -78,11 +80,22 @@ export class EffetPage implements OnInit, OnChanges {
                 })
             }
         }
-        else { console.log('undefined');
-        }
 
     }
 
+    async presentImagePopover(ev: any) {
+        const popover = await this.popoverController.create({
+            component: MediaPopupPage,
+            componentProps: {
+                imageUrl: 'http://'+this.param.picoIp+'/Effets/' + this.form.value.link
+            },
+            translucent: true,
+            event: ev,
+            cssClass: 'my-popover-class custom-alert'
+        });
+        return await popover.present();
+    }
+      
     range(f: number, l: number): string[] {
         const array: string[] = [];
 
@@ -92,19 +105,11 @@ export class EffetPage implements OnInit, OnChanges {
         return array;
     }
 
-    setFileContent() {
-
-        console.log('video');
-        //innerHTML = '<video src="/Videos/'+ document.getElementById('link').value +'" width="100%" height="480" title="'+ document.getElementById('link').value +'" controls autoplay></video>';
-
-    }
-
     read(): void {
 
         this.scenarioService.readFile('effets.json').subscribe({
 			next: data => {
                 this.effFiles = data;
-                console.log("Effets: ", this.effFiles);
             },
 			error: err => console.log("Error: ", err.error)
 		});

@@ -1,5 +1,7 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { ConnectionStatus, Network } from '@capacitor/network';
+import { GlobalsVariables } from '../shared/globals-variables';
 
 @Component({
     selector: 'app-tab1',
@@ -10,9 +12,23 @@ import { IonicModule } from '@ionic/angular';
 })
 export class Tab1Page implements OnInit, OnChanges {
 
-	constructor() { }
+	status!: ConnectionStatus;
+
+	constructor(private param: GlobalsVariables) { }
 
 	ngOnInit(): void {
+
+		// Network.addListener('networkStatusChange', status => {
+		// 	this.status = status;
+		// 	console.log('Network status changed', this.status);
+		// });
+		
+		// const logCurrentNetworkStatus = async () => {
+		// 	const status = await Network.getStatus();
+		// 	this.status = status;
+		// 	console.log('Network status:', this.status);
+		// };
+		// logCurrentNetworkStatus();
 	}
 
 	ngOnChanges(changes: SimpleChanges): void {

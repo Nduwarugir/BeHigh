@@ -1,10 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { AlertController, IonicModule } from '@ionic/angular';
 import { AdminService } from '../services/admin/admin.service';
 import { IAdmin } from '../model/admin';
-import { hashBinary } from '../shared/spark-md5';
+import { hashBinary } from '../shared/libs/spark-md5';
 
 @Component({
     selector: 'app-update',
@@ -33,7 +33,7 @@ export class UpdatePage implements OnInit {
     admin!: IAdmin;
     version!: string;
 
-    constructor(private fb: FormBuilder, private adminService: AdminService) {
+    constructor(private fb: FormBuilder, private alertController: AlertController, private adminService: AdminService) {
         this.form = this.fb.group({
             file: ['', Validators.required],
             confirm: ['', [Validators.minLength(6), Validators.required]],
@@ -191,6 +191,16 @@ export class UpdatePage implements OnInit {
 
     }
 
+    async showPopup(message: string) {
+        const alert = await this.alertController.create({
+            header: 'Opération réussie.',
+            message: message,
+            buttons: ['OK'],
+            cssClass: 'custom-alert'
+        });
+        await alert.present();
+    }
+   
     get confirm() {
         return this.form.get('confirm');
     }

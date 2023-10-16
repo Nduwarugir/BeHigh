@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { AlertController, IonicModule, PopoverController } from '@ionic/angular';
 import { IFile } from 'src/app/model/file';
 import { IScenario } from 'src/app/model/scenario';
 import { ScenarioService } from 'src/app/services/scenario/scenario.service';
+import { MediaPopupPage } from 'src/app/shared/components/media-popup/media-popup.page';
+import { GlobalsVariables } from 'src/app/shared/globals-variables';
 
 @Component({
     selector: 'app-image',
@@ -35,10 +37,10 @@ export class ImagePage implements OnInit, OnChanges {
     }
 
     //On verifie que chaque champ soit remplir
-    constructor(private fb : FormBuilder, private scenarioService: ScenarioService){
+    constructor(private fb : FormBuilder, private scenarioService: ScenarioService, private param: GlobalsVariables, private popoverController: PopoverController){
         this.form= this.fb.group({
             link:['', Validators.required],
-            timing:['00', Validators.required],
+            timing:['30', Validators.required],
             type:['Image', Validators.nullValidator],
         });
     }
@@ -70,6 +72,19 @@ export class ImagePage implements OnInit, OnChanges {
         this.newScenarioEvent.emit(scenario);
     }
 
+    async presentImagePopover(ev: any) {
+        const popover = await this.popoverController.create({
+            component: MediaPopupPage,
+            componentProps: {
+                imageUrl: 'http://'+this.param.picoIp+'/images/'+this.form.value.link
+            },
+            translucent: true,
+            event: ev,
+            cssClass: 'my-popover-class custom-alert'
+        });
+        return await popover.present();
+    }
+      
     load() {
         if (this.scenario != undefined) {
             if ( this.scenario.type == 'Image') {
@@ -91,17 +106,11 @@ export class ImagePage implements OnInit, OnChanges {
         return array;
     }
 
-    setFileContent() {
-        console.log('video');
-        //innerHTML = '<video src="/Videos/'+ document.getElementById('link').value +'" width="100%" height="480" title="'+ document.getElementById('link').value +'" controls autoplay></video>';
-    }
-
     read(): void {
 
         this.scenarioService.readFile('images.json').subscribe({
 			next: data => {
                 this.imgFiles = data;
-                console.log("Images: ", data);
             },
 			error: err => console.log("Error: ", err.error)
 		});

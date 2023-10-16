@@ -1,17 +1,16 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap, catchError, throwError } from 'rxjs';
+import { GlobalsVariables } from 'src/app/shared/globals-variables';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AdminService {
 
-    constructor(private httpClient: HttpClient) { }
+    constructor(private param: GlobalsVariables, private httpClient: HttpClient) { }
 
-    private readonly API_URL = "http://192.168.1.117:80";
-    // private readonly API_URL = "http://10.1.1.1";
-    // private readonly API_URL = "assets/json";
+    private readonly API_URL = "http://"+ this.param.picoIp +":80";
 
     // private readonly ENDPOINT_SEND = "/";
 
@@ -40,6 +39,24 @@ export class AdminService {
         tap(data => console.log("data: ", data))
         catchError(this.handleError);
         return this.httpClient.get<any>(this.API_URL + this.ENDPOINT_READ + "list?dir=/" + dir);
+    }
+
+    upload(formData: FormData): Observable<any> {
+        tap(data => console.log("data: ", data))
+        catchError(this.handleError);
+        return this.httpClient.post<any>(this.API_URL + '/edit', formData); // edit/upload
+    }
+
+    delete(formData: FormData): Observable<any> {
+        tap(data => console.log("data: ", data))
+        catchError(this.handleError);
+        return this.httpClient.post<any>(this.API_URL + '/edit/delete', formData);
+    }
+
+    rename(formData: FormData): Observable<any> {
+        tap(data => console.log("data: ", data))
+        catchError(this.handleError);
+        return this.httpClient.post<any>(this.API_URL + '/edit/rename', formData);
     }
 
 

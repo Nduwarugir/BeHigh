@@ -1,0 +1,66 @@
+<ion-content [fullscreen]="true" style="width: 100%; height: 100%;">
+
+	<ng-container *ngIf="!timeOn; else found">
+		
+		<ng-container *ngIf="!timeOut; else notFound">
+			<div class="loading-container text-center d-flex ion-justify-content-center ion-align-items-center" style="width: 80%; height: 90%;">
+				<ion-row style="width: 80%;">
+					<ion-col size="12">
+						<ion-spinner name="lines-sharp" color="tertiary"></ion-spinner>
+					</ion-col>
+					<ion-col size="12">
+						<p>Searching...</p>
+					</ion-col>
+				</ion-row>
+			</div>
+		</ng-container>
+		<ng-template #notFound>
+			<div class="loading-container text-center d-flex ion-justify-content-center ion-align-items-center" style="width: 80%; height: 90%;">
+				<ion-row style="width: 80%;">
+					<ion-col size="12">
+						<ion-icon class="ionicon" (click)="refresh()" name="refresh-outline" color="tertiary"></ion-icon>
+					</ion-col>
+					<ion-col size="12">
+						<p>PICO not found <br> Please retry !</p>
+					</ion-col>
+				</ion-row>
+			</div>
+		</ng-template>
+
+	</ng-container>
+	<ng-template #found>
+		
+		<div class="loading-container text-center d-flex ion-justify-content-center ion-align-items-center" style="width: 80%; height: 90%;">
+			<ion-card class="mx-0">
+				<ion-card-header class="py-5">
+				  <ion-card-title>Devices found</ion-card-title>
+				</ion-card-header>
+				<ion-card-content class="py-3" >
+					<ion-list class="px-1">
+						<ion-item *ngFor="let item of onlineIps" (click)="setIp(item.ip)">
+							<ion-thumbnail slot="start">
+								<img alt="{{ item.name }}" src="assets/images/camtronics_logo.png" />
+							</ion-thumbnail>
+							<ion-row>
+								<ion-col size="12">
+									<h2> {{ item.name }}</h2>
+								</ion-col>
+								<ion-col size="12">
+									<h4> {{ item.ip }} </h4>
+								</ion-col>
+							</ion-row>
+						</ion-item>
+						<ion-item lines="none">
+							<ion-button (click)="refresh()">
+								<ion-icon slot="start" name="refresh-outline" color="tertiary"></ion-icon>
+								Refresh
+							</ion-button>
+						</ion-item>
+					</ion-list>
+				</ion-card-content>
+			</ion-card>
+		</div>
+
+	</ng-template>
+	
+</ion-content>

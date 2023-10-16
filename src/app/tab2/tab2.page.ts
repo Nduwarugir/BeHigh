@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { AlertController, IonicModule } from '@ionic/angular';
 import { IScenario } from '../model/scenario';
 import { CommonModule } from '@angular/common';
 import { VideoPage } from "./video/video.page";
@@ -22,11 +22,15 @@ export class Tab2Page implements OnInit {
     errMsg!: string;
     scenarios: IScenario[] = []; scenariosLength!: number;
 
+    constructor(private alertController: AlertController, private scenarioService: ScenarioService) {}
+
     ngOnInit(): void {
         this.read();
     }
 
-    constructor(private scenarioService: ScenarioService) {}
+    ionViewDidEnter() {
+        this.read(); console.log("ionViewDidEnter() called");
+    }
 
     toggleView(i: number) {
         if (this.scenarios[i] != null) {
@@ -36,16 +40,18 @@ export class Tab2Page implements OnInit {
         }
 
         this._nScrip = i;
-        console.log(i);
     }
 
 	onSelectionChange(event: any, n: number) {
         this.toggleNScript(n);
         this.toggleType(event.detail.value);
 	}
-	  
+
+    clear() {
+        this.scenarios = [];
+	}
+
     submit() {
-        console.log("finalScénario: ", this.scenarios);
 
         if (this.scenarios.length < 1) {
             alert("Définissez au moins un scénario !");
@@ -89,7 +95,6 @@ export class Tab2Page implements OnInit {
                 }
             });
 
-            console.log(finalScenario);
             let formData = new FormData();
             formData.append("scenario", JSON.stringify(finalScenario, null, 4));
 
@@ -99,8 +104,17 @@ export class Tab2Page implements OnInit {
                     alert("Scénario enregistré avec succès !");
                 },
                 error: err => {
-                    console.log("Error: ", err.error);
-                    alert("Scénario enregistré avec succès !");
+                    if (err.statusText !== 'OK') {
+                        console.log("Error: ", err.error);
+                        setTimeout(() => {
+                            this.showPopup("Error! Pleae try aigain...");
+                        }, 1*1000);
+                    } else {
+                        this.read();
+                        setTimeout(() => {
+                            this.showPopup("Scénario enregistré avec succès !");
+                        }, 1*1000);
+                    }
                 }
             })
 
@@ -109,9 +123,7 @@ export class Tab2Page implements OnInit {
     }
 
     add(scenario: IScenario) {
-        console.log("scenarioLength: ", this.scenariosLength);
         if (this.nScript < this.scenariosLength) {
-            console.log(scenario);
             this.scenarios.splice(this.nScript, 1, scenario);
         } else {
             this.scenarios.push(scenario);
@@ -122,13 +134,6 @@ export class Tab2Page implements OnInit {
 
     disabled() {
         return this.scenarios.length < 1;
-    }
-
-
-    private _visual: boolean = false;
-
-    get visual(){
-        return this._visual;
     }
 
     //Les getters
@@ -161,8 +166,6 @@ export class Tab2Page implements OnInit {
 			next: data => {
                 this.scenarios = data;
                 this.scenariosLength = this.scenarios.length;
-                console.log("scenarioLength: ", this.scenariosLength);
-                console.log("Scénario: ", this.scenarios);
             },
 			error: err => console.log("Error: ", err.error)
 		});
@@ -177,4 +180,14 @@ export class Tab2Page implements OnInit {
         return range64;
     }
 
+    async showPopup(message: string) {
+        const alert = await this.alertController.create({
+            header: 'Opération réussie.',
+            message: message,
+            buttons: ['OK'],
+            cssClass: 'custom-alert'
+        });
+        await alert.present();
+    }
+   
 }

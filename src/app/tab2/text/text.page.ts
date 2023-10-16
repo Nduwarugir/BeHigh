@@ -42,7 +42,7 @@ export class TextPage implements OnInit, OnChanges {
             fcolor:['#ff0000', Validators.required],
             bcolor:['#0000ff', Validators.required],
             animation:['', Validators.required],
-            timing:['00', Validators.required]
+            timing:['30', Validators.required]
         });
     }
 
@@ -121,7 +121,6 @@ export class TextPage implements OnInit, OnChanges {
         this.scenarioService.readFont().subscribe({
 			next: data => {
                 this.fonts = data;
-                console.log("Fonts: ", this.fonts);
             },
 			error: err => console.log("Error: ", err.error)
 		});
@@ -129,7 +128,6 @@ export class TextPage implements OnInit, OnChanges {
         this.scenarioService.readAnim().subscribe({
 			next: data => {
                 this.anims = data;
-                console.log("Animations: ", this.anims);
             },
 			error: err => console.log("Error: ", err.error)
 		});

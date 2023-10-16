@@ -5,17 +5,16 @@ import { Observable, tap, catchError, throwError } from 'rxjs';
 import { IFile } from 'src/app/model/file';
 import { IAnim } from 'src/app/model/amin';
 import { IFont } from 'src/app/model/font';
+import { GlobalsVariables } from 'src/app/shared/globals-variables';
 
 @Injectable({
     providedIn: 'root',
 })
 export class ScenarioService {
 
-    constructor(private httpClient: HttpClient) { }
+    constructor(private param: GlobalsVariables, private httpClient: HttpClient) { }
 
-    private readonly API_URL = "http://192.168.1.117:80";
-    // private readonly API_URL = "http://10.1.1.1";
-    // private readonly API_URL = "assets/json";
+    private readonly API_URL = "http://"+ this.param.picoIp +":80";
 
     private readonly ENDPOINT_SEND = "/valid";
 

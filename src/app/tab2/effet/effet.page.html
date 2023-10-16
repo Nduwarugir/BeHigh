@@ -6,7 +6,7 @@
                     <p class="mb-0">Choisissez un effet</p>
                 </div>
                 <div class="col-sm-9">
-                    <select class="select form-control form-control-sm" id="link" name="link" (change)="setFileContent()" formControlName="link">
+                    <select class="select form-control form-control-sm" id="link" name="link" formControlName="link">
                         <option *ngFor="let vid of effFiles" [value]="vid.link">{{ vid.link }}</option>
                     </select>
                 </div>
@@ -25,7 +25,7 @@
             <hr class="mb-4">
             <div class="row">
                 <div class="col-sm-3 d-flex justify-content-end mb-lg-2">
-                    <!-- <button class="btn btn-dark btn-block fa-lg gradient-custom-2 border border-color-none" style="height: 40px;" type="reset">Effacer</button> -->
+                    <button class="btn btn-dark btn-block fa-lg gradient-custom-2 border border-color-none" style="height: 40px;" type="button" (click)="presentImagePopover($event)">Aperçu</button>
                     <button [disabled]="form.invalid" class="btn btn-primary btn-block fa-lg gradient-custom-2 border border-color-none" style="height: 40px;" type="submit">Ajouter</button>
                 </div>
             </div>

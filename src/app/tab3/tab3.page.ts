@@ -15,26 +15,23 @@ import { CommonModule } from '@angular/common';
 })
 export class Tab3Page implements OnInit {
 
-    private _visibility: Number = 0;
+    private _visibility: number = 0;
 
     constructor() { }
 
     ngOnInit(): void {
-        console.log('Method not implemented.');
     }
 
-    public get visibility() : Number {
+    public get visibility() : number {
         return this._visibility
     }
 
-    public set visibility(v : Number) {
+    public set visibility(v : number) {
         this._visibility = v;
     }
 
-    toggleVisibility(n: Number){
+    toggleVisibility(n: number){
         this.visibility = n;
-        console.log(this.visibility);
-        
     }
 
 }

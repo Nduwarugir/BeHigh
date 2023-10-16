@@ -38,9 +38,14 @@ export class NetworkInformationPage implements OnInit, AfterViewInit {
                 this.wifiConfig = new IInfo(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], fields[7], fields[8], fields[9])
             },
 			error: err => {
-                console.log("Error: ", err.error);
-                let fields: string[] = err.error.text.split('\n');
-                this.wifiConfig = new IInfo(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], fields[7], fields[8], fields[9])
+                if (err.statusText !== 'OK') {
+                    console.log("Error: ", err.error);
+                } else {
+                    setTimeout(() => {
+                        let fields: string[] = err.error.text.split('\n');
+                        this.wifiConfig = new IInfo(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], fields[7], fields[8], fields[9])
+                    }, 1*1000);
+                }
             }
 		});
     }

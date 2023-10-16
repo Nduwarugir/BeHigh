@@ -7,16 +7,18 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+import { GlobalsVariables } from './app/shared/globals-variables';
 
 if (environment.production) {
-  enableProdMode();
+  	enableProdMode();
 }
 
 bootstrapApplication(AppComponent, {
-  providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    importProvidersFrom(IonicModule.forRoot({})),
-    provideRouter(routes),
-    importProvidersFrom(HttpClientModule),
-  ],
+	providers: [
+		{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+		importProvidersFrom(IonicModule.forRoot({})),
+		provideRouter(routes),
+		importProvidersFrom(HttpClientModule),
+		importProvidersFrom(GlobalsVariables), 
+	]
 });

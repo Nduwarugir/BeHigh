@@ -25,6 +25,12 @@ export const routes: Routes = [
                 path: 'update',
                 loadComponent: () => import('../update/update.page').then((m) => m.UpdatePage),
             },{
+                path: 'media-popup',
+                loadComponent: () => import('../shared/components/media-popup/media-popup.page').then( m => m.MediaPopupPage)
+            },{
+            //     path: 'loading',
+            //     loadComponent: () => import('../shared/components/loading/loading.page').then( m => m.LoadingPage)
+            // },{
                 path: '',
                 redirectTo: '/tabs/tab1',
                 pathMatch: 'full',
@@ -32,6 +38,14 @@ export const routes: Routes = [
         ],
     },{
         path: '',
+        redirectTo: '/loading',
+        pathMatch: 'full',
+    },{
+        path: 'loading',
+        redirectTo: '/loading',
+        pathMatch: 'full',
+    },{
+        path: '**',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full',
     },

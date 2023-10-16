@@ -17,235 +17,208 @@
 
                 <div class="main-container">
                     <section>
-                        <!-- <form onsubmit="send()"> -->
 
-                            <div class="container py-1">
-                                <div class="row row-cols-5 row-cols-md-5 mx-3 text-center" >
-				                    <div class="col mb-4">
-				                        <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(0)" [class]="_nScrip === 0 ? 'active' : ''">
-				                            <h4 class="my-auto">1</h4>
-				                        </div>
-				                    </div>
-				                    <div class="col mb-4">
-				                        <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(1)" [class]="_nScrip === 1 ? 'active' : ''">
-				                            <h4 class="my-auto">2</h4>
-				                        </div>
-				                    </div>
-				                    <div class="col mb-4">
-				                        <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(2)" [class]="_nScrip === 2 ? 'active' : ''">
-				                            <h4 class="my-auto">3</h4>
-				                        </div>
-				                    </div>
-				                    <div class="col mb-4">
-				                        <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(3)" [class]="_nScrip === 3 ? 'active' : ''">
-				                            <h4 class="my-auto">4</h4>
-				                        </div>
-				                    </div>
-				                    <div class="col mb-4">
-				                        <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(4)" [class]="_nScrip === 4 ? 'active' : ''">
-				                            <h4 class="my-auto">5</h4>
-				                        </div>
-				                    </div>
-				                    <div class="col mb-4">
-				                        <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(5)" [class]="_nScrip === 5 ? 'active' : ''">
-				                            <h4 class="my-auto">6</h4>
-				                        </div>
-				                    </div>
-				                    <div class="col mb-4">
-				                        <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(6)" [class]="_nScrip === 6 ? 'active' : ''">
-				                            <h4 class="my-auto">7</h4>
-				                        </div>
-				                    </div>
-				                    <div class="col mb-4">
-				                        <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(7)" [class]="_nScrip === 7 ? 'active' : ''">
-				                            <h4 class="my-auto">8</h4>
-				                        </div>
-				                    </div>
-				                    <div class="col mb-4">
-				                        <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(8)" [class]="_nScrip === 8 ? 'active' : ''">
-				                            <h4 class="my-auto">9</h4>
-				                        </div>
-				                    </div>
-				                    <div class="col mb-4">
-				                        <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(9)" [class]="_nScrip === 9 ? 'active' : ''">
-				                            <h4 class="my-auto">10</h4>
-				                        </div>
-				                    </div>
-				                </div>
-
-                                <ion-row>
-                                    <ion-col size="10" class="mx-auto">
-                                        <div class="card-2 mb-4 mb-lg-0">
-                                            <div class="card-2-body p-0">
-                                                <ul class="list-group list-group-flush rounded-3">
-                                                    <li *ngIf="_nScrip == 0" class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                                        <ion-item lines="none">
-                                                            <ion-select (ionChange)="onSelectionChange($event, 0)" aria-label="fruit" interface="action-sheet" placeholder="Choisissez le type de scénario" class="ion-select ion-select-sm" [value]="type">
-                                                                <ion-select-option value="null">Rien</ion-select-option>
-                                                                <ion-select-option value="Texte">Texte</ion-select-option>
-                                                                <ion-select-option value="Image">Image</ion-select-option>
-                                                                <ion-select-option value="Video">Video</ion-select-option>
-                                                                <ion-select-option value="Effet">Effet</ion-select-option>
-                                                            </ion-select>
-                                                        </ion-item>
-                                                    </li>
-
-                                                    <li *ngIf="_nScrip == 1" class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                                        <ion-item lines="none">
-                                                            <ion-select (ionChange)="onSelectionChange($event, 1)" aria-label="fruit" interface="action-sheet" placeholder="Choisissez le type de scénario" class="ion-select ion-select-sm" [value]="type">
-                                                                <ion-select-option value="null">Rien</ion-select-option>
-                                                                <ion-select-option value="Texte">Texte</ion-select-option>
-                                                                <ion-select-option value="Image">Image</ion-select-option>
-                                                                <ion-select-option value="Video">Video</ion-select-option>
-                                                                <ion-select-option value="Effet">Effet</ion-select-option>
-                                                            </ion-select>
-                                                        </ion-item>
-                                                    </li>
-
-                                                    <li *ngIf="_nScrip == 2" class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                                        <ion-item lines="none">
-                                                            <ion-select (ionChange)="onSelectionChange($event, 2)" aria-label="fruit" interface="action-sheet" placeholder="Choisissez le type de scénario" class="ion-select ion-select-sm" [value]="type">
-                                                                <ion-select-option value="null">Rien</ion-select-option>
-                                                                <ion-select-option value="Texte">Texte</ion-select-option>
-                                                                <ion-select-option value="Image">Image</ion-select-option>
-                                                                <ion-select-option value="Video">Video</ion-select-option>
-                                                                <ion-select-option value="Effet">Effet</ion-select-option>
-                                                            </ion-select>
-                                                        </ion-item>
-                                                    </li>
-
-                                                    <li *ngIf="_nScrip == 3" class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                                        <ion-item lines="none">
-                                                            <ion-select (ionChange)="onSelectionChange($event, 3)" aria-label="fruit" interface="action-sheet" placeholder="Choisissez le type de scénario" class="ion-select ion-select-sm" [value]="type">
-                                                                <ion-select-option value="null">Rien</ion-select-option>
-                                                                <ion-select-option value="Texte">Texte</ion-select-option>
-                                                                <ion-select-option value="Image">Image</ion-select-option>
-                                                                <ion-select-option value="Video">Video</ion-select-option>
-                                                                <ion-select-option value="Effet">Effet</ion-select-option>
-                                                            </ion-select>
-                                                        </ion-item>
-                                                    </li>
-
-                                                    <li *ngIf="_nScrip == 4" class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                                        <ion-item lines="none">
-                                                            <ion-select (ionChange)="onSelectionChange($event, 4)" aria-label="fruit" interface="action-sheet" placeholder="Choisissez le type de scénario" class="ion-select ion-select-sm" [value]="type">
-                                                                <ion-select-option value="null">Rien</ion-select-option>
-                                                                <ion-select-option value="Texte">Texte</ion-select-option>
-                                                                <ion-select-option value="Image">Image</ion-select-option>
-                                                                <ion-select-option value="Video">Video</ion-select-option>
-                                                                <ion-select-option value="Effet">Effet</ion-select-option>
-                                                            </ion-select>
-                                                        </ion-item>
-                                                    </li>
-
-                                                    <li *ngIf="_nScrip == 5" class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                                        <ion-item lines="none">
-                                                            <ion-select (ionChange)="onSelectionChange($event, 5)" aria-label="fruit" interface="action-sheet" placeholder="Choisissez le type de scénario" class="ion-select ion-select-sm" [value]="type">
-                                                                <ion-select-option value="null">Rien</ion-select-option>
-                                                                <ion-select-option value="Texte">Texte</ion-select-option>
-                                                                <ion-select-option value="Image">Image</ion-select-option>
-                                                                <ion-select-option value="Video">Video</ion-select-option>
-                                                                <ion-select-option value="Effet">Effet</ion-select-option>
-                                                            </ion-select>
-                                                        </ion-item>
-                                                    </li>
-
-                                                    <li *ngIf="_nScrip == 6" class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                                        <ion-item lines="none">
-                                                            <ion-select (ionChange)="onSelectionChange($event, 6)" aria-label="fruit" interface="action-sheet" placeholder="Choisissez le type de scénario" class="ion-select ion-select-sm" [value]="type">
-                                                                <ion-select-option value="null">Rien</ion-select-option>
-                                                                <ion-select-option value="Texte">Texte</ion-select-option>
-                                                                <ion-select-option value="Image">Image</ion-select-option>
-                                                                <ion-select-option value="Video">Video</ion-select-option>
-                                                                <ion-select-option value="Effet">Effet</ion-select-option>
-                                                            </ion-select>
-                                                        </ion-item>
-                                                    </li>
-
-                                                    <li *ngIf="_nScrip == 7" class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                                        <ion-item lines="none">
-                                                            <ion-select (ionChange)="onSelectionChange($event, 7)" aria-label="fruit" interface="action-sheet" placeholder="Choisissez le type de scénario" class="ion-select ion-select-sm" [value]="type">
-                                                                <ion-select-option value="null">Rien</ion-select-option>
-                                                                <ion-select-option value="Texte">Texte</ion-select-option>
-                                                                <ion-select-option value="Image">Image</ion-select-option>
-                                                                <ion-select-option value="Video">Video</ion-select-option>
-                                                                <ion-select-option value="Effet">Effet</ion-select-option>
-                                                            </ion-select>
-                                                        </ion-item>
-                                                    </li>
-
-                                                    <li *ngIf="_nScrip == 8" class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                                        <ion-item lines="none">
-                                                            <ion-select (ionChange)="onSelectionChange($event, 8)" aria-label="fruit" interface="action-sheet" placeholder="Choisissez le type de scénario" class="ion-select ion-select-sm" [value]="type">
-                                                                <ion-select-option value="null">Rien</ion-select-option>
-                                                                <ion-select-option value="Texte">Texte</ion-select-option>
-                                                                <ion-select-option value="Image">Image</ion-select-option>
-                                                                <ion-select-option value="Video">Video</ion-select-option>
-                                                                <ion-select-option value="Effet">Effet</ion-select-option>
-                                                            </ion-select>
-                                                        </ion-item>
-                                                    </li>
-
-                                                    <li *ngIf="_nScrip == 9" class="list-group-item d-flex justify-content-between align-items-center p-3" id="l110" >
-                                                        <ion-item lines="none">
-                                                            <ion-select (ionChange)="onSelectionChange($event, 9)" aria-label="fruit" interface="action-sheet" placeholder="Choisissez le type de scénario" class="ion-select ion-select-sm" [value]="type">
-                                                                <ion-select-option value="null">Rien</ion-select-option>
-                                                                <ion-select-option value="Texte">Texte</ion-select-option>
-                                                                <ion-select-option value="Image">Image</ion-select-option>
-                                                                <ion-select-option value="Video">Video</ion-select-option>
-                                                                <ion-select-option value="Effet">Effet</ion-select-option>
-                                                            </ion-select>
-                                                        </ion-item>
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </ion-col>
-                                </ion-row>
-
-                                <div class="row"></div>
-
-                                <div class="row">
-
-                                    <div class="col-lg-9">
-
-                                        <div class="scripts" [ngSwitch]="type" >
-                                            <div *ngSwitchCase="'null'">
-                                                <div class="card text-center mb-4" style="height: 350px">
-                                                    <h4 class="sub-title"> Choisissez <br> une <br> configuration ! </h4>
-                                                </div>
-                                            </div>
-                                            <div *ngSwitchCase="'Texte'">
-                                                <app-text [nScript]="nScript" [scenario]="scenarios[nScript]" (newScenarioEvent)="add($event)"></app-text>
-                                            </div>
-                                            <div *ngSwitchCase="'Image'">
-                                                <app-image [nScript]="nScript" [scenario]="scenarios[nScript]" (newScenarioEvent)="add($event)"></app-image>
-                                            </div>
-                                            <div *ngSwitchCase="'Video'">
-                                                <app-video [nScript]="nScript" [scenario]="scenarios[nScript]" (newScenarioEvent)="add($event)"></app-video>
-                                            </div>
-                                            <div *ngSwitchCase="'Effet'">
-                                                <app-effet [nScript]="nScript" [scenario]="scenarios[nScript]" (newScenarioEvent)="add($event)"></app-effet>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="button d-flex justify-content-end mb-4">
-                                                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 border border-color-none" style="margin-left: 20px; height: 40px;" [disabled]="disabled()" type="button" (click)="submit()">Envoyer</button>
-                                            </div>
-                                        </div>
-
-                                        <div class="visual" style="background-color: aquamarine; height: 300px; width: 100%;" *ngIf="visual">
-                                            <p>mama</p>
-                                        </div>
-
+                        <div class="container py-1">
+                            <div class="row row-cols-5 row-cols-md-5 mx-3 text-center" >
+                                <div class="col mb-4">
+                                    <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(0)" [class]="_nScrip === 0 ? 'active' : ''">
+                                        <h4 class="my-auto">1</h4>
                                     </div>
-
+                                </div>
+                                <div class="col mb-4">
+                                    <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(1)" [class]="_nScrip === 1 ? 'active' : ''">
+                                        <h4 class="my-auto">2</h4>
+                                    </div>
+                                </div>
+                                <div class="col mb-4">
+                                    <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(2)" [class]="_nScrip === 2 ? 'active' : ''">
+                                        <h4 class="my-auto">3</h4>
+                                    </div>
+                                </div>
+                                <div class="col mb-4">
+                                    <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(3)" [class]="_nScrip === 3 ? 'active' : ''">
+                                        <h4 class="my-auto">4</h4>
+                                    </div>
+                                </div>
+                                <div class="col mb-4">
+                                    <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(4)" [class]="_nScrip === 4 ? 'active' : ''">
+                                        <h4 class="my-auto">5</h4>
+                                    </div>
+                                </div>
+                                <div class="col mb-4">
+                                    <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(5)" [class]="_nScrip === 5 ? 'active' : ''">
+                                        <h4 class="my-auto">6</h4>
+                                    </div>
+                                </div>
+                                <div class="col mb-4">
+                                    <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(6)" [class]="_nScrip === 6 ? 'active' : ''">
+                                        <h4 class="my-auto">7</h4>
+                                    </div>
+                                </div>
+                                <div class="col mb-4">
+                                    <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(7)" [class]="_nScrip === 7 ? 'active' : ''">
+                                        <h4 class="my-auto">8</h4>
+                                    </div>
+                                </div>
+                                <div class="col mb-4">
+                                    <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(8)" [class]="_nScrip === 8 ? 'active' : ''">
+                                        <h4 class="my-auto">9</h4>
+                                    </div>
+                                </div>
+                                <div class="col mb-4">
+                                    <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(9)" [class]="_nScrip === 9 ? 'active' : ''">
+                                        <h4 class="my-auto">10</h4>
+                                    </div>
                                 </div>
                             </div>
 
-                        <!-- </form> -->
+                            <ion-row>
+                                <ion-col size="11" class="mx-auto mb-2">
+                                    <ion-list>
+                                        <ion-item *ngIf="_nScrip == 0" lines="none">
+                                            <ion-select (ionChange)="onSelectionChange($event, 0)"  label="Choisissez un type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
+                                                <ion-select-option value="null">Rien</ion-select-option>
+                                                <ion-select-option value="Texte">Texte</ion-select-option>
+                                                <ion-select-option value="Image">Image</ion-select-option>
+                                                <ion-select-option value="Video">Video</ion-select-option>
+                                                <ion-select-option value="Effet">Effet</ion-select-option>
+                                            </ion-select>
+                                        </ion-item>
+
+                                        <ion-item *ngIf="_nScrip == 1" lines="none">
+                                            <ion-select (ionChange)="onSelectionChange($event, 1)"  label="Choisissez un type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
+                                                <ion-select-option value="null">Rien</ion-select-option>
+                                                <ion-select-option value="Texte">Texte</ion-select-option>
+                                                <ion-select-option value="Image">Image</ion-select-option>
+                                                <ion-select-option value="Video">Video</ion-select-option>
+                                                <ion-select-option value="Effet">Effet</ion-select-option>
+                                            </ion-select>
+                                        </ion-item>
+
+                                        <ion-item *ngIf="_nScrip == 2" lines="none">
+                                            <ion-select (ionChange)="onSelectionChange($event, 2)"  label="Choisissez un type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
+                                                <ion-select-option value="null">Rien</ion-select-option>
+                                                <ion-select-option value="Texte">Texte</ion-select-option>
+                                                <ion-select-option value="Image">Image</ion-select-option>
+                                                <ion-select-option value="Video">Video</ion-select-option>
+                                                <ion-select-option value="Effet">Effet</ion-select-option>
+                                            </ion-select>
+                                        </ion-item>
+
+                                        <ion-item *ngIf="_nScrip == 3" lines="none">
+                                            <ion-select (ionChange)="onSelectionChange($event, 3)"  label="Choisissez un type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
+                                                <ion-select-option value="null">Rien</ion-select-option>
+                                                <ion-select-option value="Texte">Texte</ion-select-option>
+                                                <ion-select-option value="Image">Image</ion-select-option>
+                                                <ion-select-option value="Video">Video</ion-select-option>
+                                                <ion-select-option value="Effet">Effet</ion-select-option>
+                                            </ion-select>
+                                        </ion-item>
+
+                                        <ion-item *ngIf="_nScrip == 4" lines="none">
+                                            <ion-select (ionChange)="onSelectionChange($event, 4)"  label="Choisissez un type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
+                                                <ion-select-option value="null">Rien</ion-select-option>
+                                                <ion-select-option value="Texte">Texte</ion-select-option>
+                                                <ion-select-option value="Image">Image</ion-select-option>
+                                                <ion-select-option value="Video">Video</ion-select-option>
+                                                <ion-select-option value="Effet">Effet</ion-select-option>
+                                            </ion-select>
+                                        </ion-item>
+
+                                        <ion-item *ngIf="_nScrip == 5" lines="none">
+                                            <ion-select (ionChange)="onSelectionChange($event, 5)"  label="Choisissez un type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
+                                                <ion-select-option value="null">Rien</ion-select-option>
+                                                <ion-select-option value="Texte">Texte</ion-select-option>
+                                                <ion-select-option value="Image">Image</ion-select-option>
+                                                <ion-select-option value="Video">Video</ion-select-option>
+                                                <ion-select-option value="Effet">Effet</ion-select-option>
+                                            </ion-select>
+                                        </ion-item>
+
+                                        <ion-item *ngIf="_nScrip == 6" lines="none">
+                                            <ion-select (ionChange)="onSelectionChange($event, 6)"  label="Choisissez un type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
+                                                <ion-select-option value="null">Rien</ion-select-option>
+                                                <ion-select-option value="Texte">Texte</ion-select-option>
+                                                <ion-select-option value="Image">Image</ion-select-option>
+                                                <ion-select-option value="Video">Video</ion-select-option>
+                                                <ion-select-option value="Effet">Effet</ion-select-option>
+                                            </ion-select>
+                                        </ion-item>
+
+                                        <ion-item *ngIf="_nScrip == 7" lines="none">
+                                            <ion-select (ionChange)="onSelectionChange($event, 7)"  label="Choisissez un type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
+                                                <ion-select-option value="null">Rien</ion-select-option>
+                                                <ion-select-option value="Texte">Texte</ion-select-option>
+                                                <ion-select-option value="Image">Image</ion-select-option>
+                                                <ion-select-option value="Video">Video</ion-select-option>
+                                                <ion-select-option value="Effet">Effet</ion-select-option>
+                                            </ion-select>
+                                        </ion-item>
+
+                                        <ion-item *ngIf="_nScrip == 8" lines="none">
+                                            <ion-select (ionChange)="onSelectionChange($event, 8)"  label="Choisissez un type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
+                                                <ion-select-option value="null">Rien</ion-select-option>
+                                                <ion-select-option value="Texte">Texte</ion-select-option>
+                                                <ion-select-option value="Image">Image</ion-select-option>
+                                                <ion-select-option value="Video">Video</ion-select-option>
+                                                <ion-select-option value="Effet">Effet</ion-select-option>
+                                            </ion-select>
+                                        </ion-item>
+
+                                        <ion-item *ngIf="_nScrip == 9" lines="none">
+                                            <ion-select (ionChange)="onSelectionChange($event, 9)"  label="Choisissez un type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
+                                                <ion-select-option value="null">Rien</ion-select-option>
+                                                <ion-select-option value="Texte">Texte</ion-select-option>
+                                                <ion-select-option value="Image">Image</ion-select-option>
+                                                <ion-select-option value="Video">Video</ion-select-option>
+                                                <ion-select-option value="Effet">Effet</ion-select-option>
+                                            </ion-select>
+                                        </ion-item>
+
+                                    </ion-list>
+                                </ion-col>
+                            </ion-row>
+
+                            <div class="row">
+
+                                <div class="col-lg-9" style="margin-bottom: 25%;">
+
+                                    <div class="scripts" [ngSwitch]="type" >
+                                        <div *ngSwitchCase="'null'">
+                                            <div class="card text-center mb-4" style="height: 350px; width: 100%;">
+                                                <h4 class="sub-title"> Choisissez <br> une <br> configuration ! </h4>
+                                            </div>
+                                        </div>
+                                        <div *ngSwitchCase="'Texte'">
+                                            <app-text [nScript]="nScript" [scenario]="scenarios[nScript]" (newScenarioEvent)="add($event)"></app-text>
+                                        </div>
+                                        <div *ngSwitchCase="'Image'">
+                                            <app-image [nScript]="nScript" [scenario]="scenarios[nScript]" (newScenarioEvent)="add($event)"></app-image>
+                                        </div>
+                                        <div *ngSwitchCase="'Video'">
+                                            <app-video [nScript]="nScript" [scenario]="scenarios[nScript]" (newScenarioEvent)="add($event)"></app-video>
+                                        </div>
+                                        <div *ngSwitchCase="'Effet'">
+                                            <app-effet [nScript]="nScript" [scenario]="scenarios[nScript]" (newScenarioEvent)="add($event)"></app-effet>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="button d-flex justify-content-end mb-4">
+                                            <ion-button [disabled]="disabled()" (click)="clear()" expand="block" fill="solid" style="width: 35%;" color="danger">
+                                                Reinitialiser
+                                            </ion-button>
+                                            <ion-button [disabled]="disabled()" (click)="submit()" expand="block" fill="solid" style="width: 35%;">
+                                                Enregistrer
+                                            </ion-button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
                     </section>
 
                 </div>
