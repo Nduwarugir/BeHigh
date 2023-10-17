@@ -205,11 +205,14 @@
 
                                     <div class="row">
                                         <div class="button d-flex justify-content-end mb-4">
-                                            <ion-button [disabled]="disabled()" (click)="clear()" expand="block" fill="solid" style="width: 35%;" color="danger">
-                                                Reinitialiser
+                                            <ion-button [disabled]="disabled()" (click)="visual()" expand="block" fill="solid" style="font-size: x-small;" color="dark">
+                                                Visual
                                             </ion-button>
-                                            <ion-button [disabled]="disabled()" (click)="submit()" expand="block" fill="solid" style="width: 35%;">
-                                                Enregistrer
+                                            <ion-button [disabled]="disabled()" (click)="clear()" expand="block" fill="solid" style="font-size: x-small;" color="danger">
+                                                Reset
+                                            </ion-button>
+                                            <ion-button [disabled]="disabled()" (click)="submit()" expand="block" fill="solid" style="font-size: x-small;">
+                                                Save
                                             </ion-button>
                                         </div>
                                     </div>

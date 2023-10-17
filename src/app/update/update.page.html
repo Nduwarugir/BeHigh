@@ -23,13 +23,23 @@
                                 <h4>Upload the file</h4>
                             </div>
                             <div class="col-sm-8">
-                                <input #fileInput class="form-control form-control-sm" id="fileName" type='file' name='update' formControlName="file"
-                                    accept=".ino.bin"
-                                    (change)="summd5($event)" style="border: solid black;">
+                                <ion-item lines="none">
+                                    <label for="fileUpload">
+                                        <ng-container *ngIf="!uploaded; else elseUploaded">
+                                            <ion-img [src]="'assets/images/label.png'"></ion-img>
+                                        </ng-container>
+                                        <ng-template #elseUploaded>
+                                            <ion-img [src]="valid ? 'assets/images/selected.png':'assets/images/invalid.png'"></ion-img>
+                                        </ng-template>
+                                        
+                                    </label>
+                                	<input #fileInput class="form-control form-control-sm" id="fileUpload" type='file' name='update' formControlName="file" accept=".ino.bin" (change)="summd5($event)" hidden>
+                                </ion-item>
+                            
                             </div>
                         </div>
                         <hr class="mb-2">
-                        <div class="mb-2" *ngIf="lvl">
+                        <div class="mb-2" *ngIf="valid">
                             <div class="row d-flex justify-content-end mb-1">
                                 <div class="col-sm-9 mb-2 d-flex justify-content-end">
                                     <label for="confirm">Veuillez confirmer votre identité pour effectuer la mise à

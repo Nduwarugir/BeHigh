@@ -27,6 +27,10 @@ export class GlobalInformationPage implements OnInit {
         this.read();
     }
 
+    ionViewDidEnter() {
+        this.read();
+    }
+
     submit() {
         if (this.form.valid) {
 

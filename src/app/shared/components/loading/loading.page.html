@@ -51,10 +51,17 @@
 							</ion-row>
 						</ion-item>
 						<ion-item lines="none">
-							<ion-button (click)="refresh()">
-								<ion-icon slot="start" name="refresh-outline" color="tertiary"></ion-icon>
-								Refresh
-							</ion-button>
+
+							<div class="row d-flex ">
+								<div class="button d-flex justify-content-end mb-4">
+									<ion-button (click)="refresh()" expand="block" fill="solid" >
+										<ion-icon slot="icon-only" name="refresh"></ion-icon>
+										<!-- <ion-icon slot="start" name="refresh" color="tertiary"></ion-icon> -->
+										<!-- Refresh -->
+									</ion-button>
+								</div>
+							</div>
+
 						</ion-item>
 					</ion-list>
 				</ion-card-content>

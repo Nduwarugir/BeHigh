@@ -21,7 +21,9 @@ export class TextPage implements OnInit, OnChanges {
 
     @Output() newScenarioEvent = new EventEmitter<IScenario>();
 
-    fonts: IFont[] = []; anims: IAnim[] = [];
+    fonts: IFont[] = []; anims: IAnim[] = []; 
+    rowPositions: {type: string}[] = [{ type: 'top' }, { type: 'center' }, { type: 'bottom' }]
+    colPositions: {type: string}[] = [{ type: 'start' }, { type: 'center' }, { type: 'end' }]
     form! : FormGroup;
 
     ngOnInit(): void {
@@ -41,36 +43,11 @@ export class TextPage implements OnInit, OnChanges {
             size:['12', Validators.required],
             fcolor:['#ff0000', Validators.required],
             bcolor:['#0000ff', Validators.required],
+            row:['center', Validators.required],
+            col:['center', Validators.required],
             animation:['', Validators.required],
             timing:['30', Validators.required]
         });
-    }
-
-    //Les getters
-    get text(){
-        return this.form.get('text');
-    }
-
-    get ffamily(){
-        return this.form.get('ffamily');
-    }
-
-    get size(){
-        return this.form.get('fcolor');
-    }
-
-    get fcolor(){
-        return this.form.get('fcolor');
-    }
-    get bcolor(){
-        return this.form.get('bcolor');
-    }
-    get animation(){
-        return this.form.get('animation');
-    }
-
-    get timing(){
-        return this.form.get('timing');
     }
 
     submit() {
@@ -85,6 +62,8 @@ export class TextPage implements OnInit, OnChanges {
                 size: Number(this.form.value.size),
                 fcolor: this.form.value.fcolor.replace('#', ''),
                 bcolor: this.form.value.bcolor.replace('#', ''),
+                row: this.form.value.row,
+                col: this.form.value.col,
                 animation: this.form.value.animation,
                 link: ''
             };
@@ -109,6 +88,8 @@ export class TextPage implements OnInit, OnChanges {
                     size: this.scenario.size,
                     fcolor: '#'+this.scenario.fcolor,
                     bcolor: '#'+this.scenario.bcolor,
+                    row: this.scenario.row,
+                    col: this.scenario.col,
                     animation: this.scenario.animation,
                     timing: this.scenario.timing.toString().padStart(2, '0')
                 });

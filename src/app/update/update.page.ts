@@ -22,8 +22,9 @@ export class UpdatePage implements OnInit {
     @ViewChild('hash') hashRef!: ElementRef;
 
     form!: FormGroup;
-    lvl: boolean = false;
     running!: boolean;
+    valid!: boolean;
+    uploaded: boolean = false;
     disabled: boolean = true;
     isUpdatePossible!: string;
 
@@ -52,18 +53,25 @@ export class UpdatePage implements OnInit {
     summd5(event: any) {
 
         this.file = event.target.files[0];
+        this.uploaded = false;
+        this.valid = false;
 
         if (this.running) {
             return;
         } else if (!this.file.name.endsWith('.ino.bin')) {
-            alert("Seul les fichiers .ino.bin acceptés..."); this.clearFileInput();
+            this.showPopupAlert("Seul les fichiers .ino.bin acceptés...");
+            this.clearFileInput();
+            this.uploaded = true; this.valid = false;
         } else if (!this.file.size) {
-            alert('Please select a file');
-            this.clearFileInput(); return;
+            this.showPopupAlert("File size is null... Please select another file.");
+            this.clearFileInput(); 
+            this.uploaded = true; this.valid = false; 
         } else if (this.file.name === this.version) {
-            alert("Vous êtes déjà à jour..."); this.clearFileInput();
+            this.showPopupAlert("Vous êtes déjà à jour...");
+            this.clearFileInput();
+            this.uploaded = true; this.valid = false; 
         } else {
-            this.lvl = !this.lvl;
+            this.uploaded = true;
 
             let fileReader: FileReader = new FileReader();
             let file: File = this.file;
@@ -90,7 +98,6 @@ export class UpdatePage implements OnInit {
                         clientHash.innerHTML = md5hash;
                         fileSize.innerHTML = file.size.toString();
 
-
                     }
                 } else console.error('e.target?.result === null');
             };
@@ -100,6 +107,7 @@ export class UpdatePage implements OnInit {
             };
 
             this.running = true;
+            this.valid = true;
             console.info('Starting normal test (' + file.name + ')');
             time = new Date().getTime();
             fileReader.readAsBinaryString(file);
@@ -110,8 +118,8 @@ export class UpdatePage implements OnInit {
 		            next: response => {
 		                console.log("Response: ", response);
 		            },
-		            error: err => {
-		                console.log("Error: ", err.error);
+                    error: err => {
+                        console.log("Error: ", err.error);
 		            }
 		        });
         	}, 1000);
@@ -122,20 +130,18 @@ export class UpdatePage implements OnInit {
 
     send() {
 
-        this.lvl = !this.lvl;
-
         let formData = new FormData();
         formData.append("update", this.file);
 
         this.adminService.update(formData).subscribe({
             next: response => {
                 console.log("Response: ", response);
-                alert("Mise à jour en cours...");
+                this.showPopup("Mise à jour en cours...");
                 this.disabled = true;
             },
             error: err => {
                 console.log("Error: ", err.error);
-                alert("Mise à jour en cours...");
+                this.showPopup("Mise à jour en cours...");
                 this.disabled = true;
             }
         });
@@ -191,6 +197,16 @@ export class UpdatePage implements OnInit {
 
     }
 
+    async showPopupAlert(message: string) {
+        const alert = await this.alertController.create({
+            header: 'Alert!',
+            message: message,
+            buttons: ['OK'],
+            cssClass: 'custom-alert'
+        });
+        await alert.present();
+    }
+   
     async showPopup(message: string) {
         const alert = await this.alertController.create({
             header: 'Opération réussie.',

@@ -57,6 +57,8 @@ export class ImagePage implements OnInit, OnChanges {
                 size: 0,
                 fcolor: 'p3',
                 bcolor: 'p3',
+                row: '',
+                col: '',
                 animation: '',
                 link: this.form.value.link
             };

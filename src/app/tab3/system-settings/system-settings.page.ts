@@ -30,6 +30,10 @@ export class SystemSettingsPage implements OnInit {
         this.read();
     }
 
+    ionViewDidEnter() {
+        this.read();
+    }
+
     submit() {
         if (this.form.valid) {
 
@@ -52,6 +56,10 @@ export class SystemSettingsPage implements OnInit {
 
     edit() {
 		this.router.navigate(['/tabs/edit']);
+    }
+
+    update() {
+		this.router.navigate(['/tabs/update']);
     }
 
     restartESP() {

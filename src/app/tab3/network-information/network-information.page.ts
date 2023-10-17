@@ -25,10 +25,9 @@ export class NetworkInformationPage implements OnInit, AfterViewInit {
         this.read();
     }
 
-    submit() {
-
+    ionViewDidEnter() {
+        this.read();
     }
-
 
     read() {
 

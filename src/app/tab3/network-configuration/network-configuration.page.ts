@@ -63,6 +63,10 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
           }, 5*1000);
     }
 
+    ionViewDidEnter() {
+        this.read();
+    }
+
     disable(): void {
         // Désactivation des configs
         this.dhcp?.valueChanges.subscribe(

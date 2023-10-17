@@ -7,6 +7,8 @@ export interface IScenario {
     size: number,
     fcolor: ColorGamut,
     bcolor: ColorGamut,
+    row: string,
+    col: string,
     animation: string,
 
     link: string

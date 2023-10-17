@@ -29,7 +29,7 @@ export class Tab2Page implements OnInit {
     }
 
     ionViewDidEnter() {
-        this.read(); console.log("ionViewDidEnter() called");
+        this.read();
     }
 
     toggleView(i: number) {
@@ -51,10 +51,13 @@ export class Tab2Page implements OnInit {
         this.scenarios = [];
 	}
 
+    visual() {
+        console.log("visual() called");
+    }
     submit() {
 
         if (this.scenarios.length < 1) {
-            alert("Définissez au moins un scénario !");
+            this.showPopupAlert("Définissez au moins un scénario !");
 
         } else {
 
@@ -98,6 +101,8 @@ export class Tab2Page implements OnInit {
             let formData = new FormData();
             formData.append("scenario", JSON.stringify(finalScenario, null, 4));
 
+            console.log(finalScenario);
+                
             this.scenarioService.sendConfiguration(formData).subscribe({
                 next: response => {
                     console.log("Response: ", response);
@@ -165,6 +170,7 @@ export class Tab2Page implements OnInit {
         this.scenarioService.readScenario().subscribe({
 			next: data => {
                 this.scenarios = data;
+                console.log(data);
                 this.scenariosLength = this.scenarios.length;
             },
 			error: err => console.log("Error: ", err.error)
@@ -183,6 +189,16 @@ export class Tab2Page implements OnInit {
     async showPopup(message: string) {
         const alert = await this.alertController.create({
             header: 'Opération réussie.',
+            message: message,
+            buttons: ['OK'],
+            cssClass: 'custom-alert'
+        });
+        await alert.present();
+    }
+   
+    async showPopupAlert(message: string) {
+        const alert = await this.alertController.create({
+            header: 'Alert !!!',
             message: message,
             buttons: ['OK'],
             cssClass: 'custom-alert'

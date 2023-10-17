@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AlertController, IonicModule } from '@ionic/angular';
+import { AlertController, IonicModule, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Network } from '@capacitor/network';
 import { GlobalsVariables } from '../../globals-variables';
@@ -22,7 +22,7 @@ export class LoadingPage implements OnInit {
 	onlineIps: { ip: string, name: string, version: string }[] = [];
 	max: boolean = false;
 
-    constructor(private param: GlobalsVariables, private alertController: AlertController, private httpClient: HttpClient, private router: Router) { }
+	constructor(private param: GlobalsVariables, private alertController: AlertController, private loadingController: LoadingController, private httpClient: HttpClient, private router: Router) { }
 
     ngOnInit() {
 		
@@ -75,7 +75,10 @@ export class LoadingPage implements OnInit {
 
 	setIp(ip: string) {
 		this.param.picoIp = ip;
-		this.hideLoadingPage();
+		this.presentLoading();
+		setTimeout(() => {
+			this.hideLoadingPage();
+		}, 2*1000);
 	}
 
 	refresh() {
@@ -92,6 +95,15 @@ export class LoadingPage implements OnInit {
 			this.scanNetwork();
 		
 		}
+	}
+
+	async presentLoading() {
+		const loading = await this.loadingController.create({
+			// message: 'Loading...', // Optional, the message to display
+			duration: 4000 // Optional, the duration in milliseconds after which to automatically dismiss the loading overlay
+		});
+	  
+		await loading.present();
 	}
 
     async showPopupError(message: string) {

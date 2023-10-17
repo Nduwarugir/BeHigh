@@ -1,5 +1,5 @@
 
-<div class="card mb-4">
+<div class="card mb-4" style="font-size: small;">
     <form [formGroup]="form" (ngSubmit)="submit()">
         <div class="card-body">
             <div class="row">
@@ -12,69 +12,63 @@
                 </div>
             </div>
             <hr>
-            <div class="row">
-                <div class="col-sm-2">
-                    <p class="mb-0">Police</p>
-                </div>
-                <div class="col-sm-2">
+            <ion-row>
+                <ion-col size="6"><p class="mb-0">Police</p></ion-col>
+                <ion-col size="6"><p class="mb-0">Taille</p></ion-col>
+                <ion-col size="6">
                     <select class="select form-control form-control-sm" id="ffamily" name="ffamily" formControlName="ffamily">
                         <option *ngFor="let item of fonts" [value]="item.type">{{item.type}}</option>
                     </select>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-sm-4">
-                <p class="mb-0">Taille</p>
-                </div>
-                <div class="col-sm-1">
+                </ion-col>
+                <ion-col size="6">
                     <select class="select form-control form-control-sm" formControlName="size">
                         <option value="12">12</option>
                         <option value="16">16</option>
                         <option value="24">24</option>
                     </select>
-                </div>
-            </div>
+                </ion-col>
+            </ion-row>
             <hr>
-            <div class="row">
-                <div class="col-sm-4">
-                <p class="mb-0">Couleur du texte</p>
-                </div>
-                <div class="col-sm-8">
-                <input type="color" name="fcolor" id="fcolor" formControlName="fcolor">
-                </div>
-            </div>
+            <ion-row>
+                <ion-col size="6"><p class="mb-0">Couleur du texte</p></ion-col>
+                <ion-col size="6"><p class="mb-0">Couleur de fond</p></ion-col>
+                <ion-col size="6">
+                    <ion-input type="color" name="fcolor" id="fcolor" formControlName="fcolor"></ion-input>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-input type="color" name="bcolor" id="bcolor" formControlName="bcolor"></ion-input>
+                </ion-col>
+            </ion-row>
             <hr>
-            <div class="row">
-                <div class="col-sm-4">
-                <p class="mb-0">Couleur de fond</p>
-                </div>
-                <div class="col-sm-8">
-                <input type="color" name="bcolor" id="bcolor" formControlName="bcolor">
-                </div>
-            </div>
+            <ion-row>
+                <ion-col size="6"><p class="mb-0">Debut Ligne</p></ion-col>
+                <ion-col size="6"><p class="mb-0">Debut Collone</p></ion-col>
+                <ion-col size="6">
+                    <select class="select form-control form-control-sm" formControlName="row">
+                        <option *ngFor="let item of rowPositions" [value]="item.type">{{item.type}}</option>
+                    </select>
+                </ion-col>
+                <ion-col size="6">
+                    <select class="select form-control form-control-sm" formControlName="col">
+                        <option *ngFor="let item of colPositions" [value]="item.type">{{item.type}}</option>
+                    </select>
+                </ion-col>
+            </ion-row>
             <hr>
-            <div class="row">
-                <div class="col-sm-4">
-                <p class="mb-0">Animation</p>
-                </div>
-                <div class="col-sm-3">
+            <ion-row>
+                <ion-col size="6"><p class="mb-0">Animation</p></ion-col>
+                <ion-col size="6"><p class="mb-0">Durée</p></ion-col>
+                <ion-col size="6">
                     <select class="select form-control form-control-sm" formControlName="animation">
                         <option *ngFor="let item of anims" [value]="item.type">{{item.type}}</option>
                     </select>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-sm-4">
-                <p class="mb-0">Durée</p>
-                </div>
-                <div class="col-sm-1">
+                </ion-col>
+                <ion-col size="6">
                     <select class="select form-control form-control-sm" formControlName="timing">
                         <option *ngFor="let item of range(0, 59)" [value]="item">{{item}}</option>
                     </select>
-                </div>
-            </div>
+                </ion-col>
+            </ion-row>
             <hr class="mb-4">
             <div class="row">
                 <div class="col-sm-3 d-flex justify-content-end mb-lg-2">
