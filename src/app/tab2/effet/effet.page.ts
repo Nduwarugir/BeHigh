@@ -89,7 +89,7 @@ export class EffetPage implements OnInit, OnChanges {
         const popover = await this.popoverController.create({
             component: MediaPopupPage,
             componentProps: {
-                imageUrl: 'http://'+this.param.picoIp+'/Effets/' + this.form.value.link
+                imageUrl: `http://${this.param.picoIp}/Effets/${this.form.value.link}`
             },
             translucent: true,
             event: ev,

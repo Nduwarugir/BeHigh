@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertController, IonicModule, ModalController } from '@ionic/angular';
 import { IFile } from 'src/app/model/file';
 import { ScenarioService } from 'src/app/services/scenario/scenario.service';
 import { AdminService } from '../services/admin/admin.service';
-import { DomSanitizer } from '@angular/platform-browser';
 import { MediaPopupPage } from '../shared/components/media-popup/media-popup.page';
 
 @Component({
@@ -35,7 +33,7 @@ export class EditPage implements OnInit {
     invalid: boolean = true;
 
     constructor(private modalController: ModalController, private alertController: AlertController,
-        private scenarioService: ScenarioService, private adminService: AdminService, private router: Router) { }
+        private scenarioService: ScenarioService, private adminService: AdminService) { }
 
     async openMediaPopup(mediaUrl: string) {
         const modal = await this.modalController.create({
@@ -44,7 +42,7 @@ export class EditPage implements OnInit {
                 mediaUrl: mediaUrl
             }
         });
-        
+
         return await modal.present();
     }
 
@@ -54,13 +52,13 @@ export class EditPage implements OnInit {
 
     handleFileInput(event: any) {
         event.preventDefault();
-        
+
         const file = event.target.files[0];
-        
+
         if (this.type == 'Image') this.selectedImage = URL.createObjectURL(file);
         else if (this.type == 'Video') this.selectedVideo = URL.createObjectURL(file);
         else this.selectedGif = URL.createObjectURL(file);
-            
+
         this.uploadedFile = file;
 
         this.invalid = !((this.type == 'Image' && this.selectedImage) || (this.type == 'Video' && this.selectedVideo) || (this.type == 'Effet' && this.selectedGif));
@@ -81,7 +79,7 @@ export class EditPage implements OnInit {
 
         else this.selectedImage = this.selectedVideo = this.selectedGif = null;
     }
-	
+
     readDirContents() {
     	if(this.type === 'Image')
 		    this.scenarioService.readFile('images.json').subscribe({
@@ -92,7 +90,7 @@ export class EditPage implements OnInit {
                     if (err.error.statusText !== 'OK') {
                         console.log("Error: ", err.error);
                     } else {
-                        
+
                     }
                 }
 			});
@@ -105,11 +103,11 @@ export class EditPage implements OnInit {
                     if (err.statusText !== 'OK') {
                         console.log("Error: ", err.error);
                     } else {
-                        
+
                     }
                 }
 			});
-		else 
+		else
 		    this.scenarioService.readFile('effets.json').subscribe({
 				next: data => {
 		            this.currentDirContents = data;
@@ -118,7 +116,7 @@ export class EditPage implements OnInit {
                     if (err.statusText !== 'OK') {
                         console.log("Error: ", err.error);
                     } else {
-                        
+
                     }
                 }
 			});
@@ -138,7 +136,7 @@ export class EditPage implements OnInit {
                 setTimeout(() => {
                     this.showPopupUpdate("Fichier importé avec succes !");
                     this.readDirContents();
-                }, 1*1000);
+                }, 1000);
             },
             error: err => {
                 if (err.statusText !== 'OK') {
@@ -184,7 +182,7 @@ export class EditPage implements OnInit {
             }
         });
     }
-    
+
     edit(oldFileName: string, newfileName: string) {
 
         let formData = new FormData(); let srcPath: string, dstPath: string;
@@ -231,7 +229,7 @@ export class EditPage implements OnInit {
         });
         await alert.present();
     }
-   
+
     async showPopup(oldFileName: string) {
         const alert = await this.alertController.create({
             header: 'Modifier le nom du fichier',
@@ -257,16 +255,5 @@ export class EditPage implements OnInit {
         });
         await alert.present();
     }
-   
-}
 
-/*
-    async showImagePopup(imageUrl: string) {
-        const alert = await this.alertController.create({
-            header: 'Image',
-            message: `<img src=/images/`+`"${imageUrl}" class="image-popup">`,
-            buttons: ['Fermer']
-        });
-        await alert.present();
-    }
-*/
+}

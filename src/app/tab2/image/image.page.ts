@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AlertController, IonicModule, PopoverController } from '@ionic/angular';
+import { IonicModule, PopoverController } from '@ionic/angular';
 import { IFile } from 'src/app/model/file';
 import { IScenario } from 'src/app/model/scenario';
 import { ScenarioService } from 'src/app/services/scenario/scenario.service';
@@ -78,7 +78,7 @@ export class ImagePage implements OnInit, OnChanges {
         const popover = await this.popoverController.create({
             component: MediaPopupPage,
             componentProps: {
-                imageUrl: 'http://'+this.param.picoIp+'/images/'+this.form.value.link
+                imageUrl: `http://${this.param.picoIp}/images/${this.form.value.link}`
             },
             translucent: true,
             event: ev,
@@ -86,7 +86,7 @@ export class ImagePage implements OnInit, OnChanges {
         });
         return await popover.present();
     }
-      
+
     load() {
         if (this.scenario != undefined) {
             if ( this.scenario.type == 'Image') {

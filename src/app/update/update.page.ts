@@ -81,8 +81,6 @@ export class UpdatePage implements OnInit {
             const clientHash: HTMLInputElement = this.clientHashRef.nativeElement;
             const fileSize: HTMLInputElement = this.fileSizeRef.nativeElement;
 
-            console.log('md5row: ', md5row);
-
             fileReader.onload = function (e: any) {
                 if (e.target?.result != null) {
 
@@ -135,14 +133,16 @@ export class UpdatePage implements OnInit {
 
         this.adminService.update(formData).subscribe({
             next: response => {
-                console.log("Response: ", response);
                 this.showPopup("Mise à jour en cours...");
                 this.disabled = true;
             },
-            error: err => {
-                console.log("Error: ", err.error);
-                this.showPopup("Mise à jour en cours...");
-                this.disabled = true;
+			error: err => {
+                if (err.statusText !== 'OK') {
+                    console.log("Error: ", err.error);
+                } else {
+                    this.showPopup("Mise à jour en cours...");
+                    this.disabled = true;
+                }
             }
         });
 
@@ -164,7 +164,6 @@ export class UpdatePage implements OnInit {
         this.adminService.readData('jsonFiles/secret.json').subscribe({
 			next: data => {
                 this.admin = data;
-                console.log("Admin: ", this.admin);
             },
 			error: err => {
                 console.log("Error: ", err.error);
@@ -174,7 +173,6 @@ export class UpdatePage implements OnInit {
         this.adminService.readData('jsonFiles/config.json').subscribe({
 			next: data => {
                 this.version = data.version;
-                console.log("version: ", this.version);
             },
 			error: err => {
                 console.log("Error: ", err.error);
@@ -184,14 +182,16 @@ export class UpdatePage implements OnInit {
         this.adminService.readData('update/updatepossible').subscribe({
 			next: data => {
                 let fields: string[] = data.split('|');
-                console.log("version: ", fields);
                 this.updatePossible();
             },
 			error: err => {
-                let fields: string[] = err.error.text.split('|');
-                this.isUpdatePossible = fields[1];
-                this.updatePossible();
-                console.log("Error: ", err.error);
+                if (err.statusText !== 'OK') {
+                    console.log("Error: ", err.error);
+                } else {
+                    let fields: string[] = err.error.text.split('|');
+                    this.isUpdatePossible = fields[1];
+                    this.updatePossible();
+                }
             }
 		});
 

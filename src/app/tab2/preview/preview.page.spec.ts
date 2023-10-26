@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { PreVisualPage } from './pre-visual.page';
+import { PreviewPage } from './preview.page';
 
-describe('PreVisualPage', () => {
-  let component: PreVisualPage;
-  let fixture: ComponentFixture<PreVisualPage>;
+describe('PreviewPage', () => {
+  let component: PreviewPage;
+  let fixture: ComponentFixture<PreviewPage>;
 
   beforeEach(async(() => {
-    fixture = TestBed.createComponent(PreVisualPage);
+    fixture = TestBed.createComponent(PreviewPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

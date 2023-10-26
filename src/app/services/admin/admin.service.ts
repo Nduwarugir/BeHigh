@@ -10,7 +10,8 @@ export class AdminService {
 
     constructor(private param: GlobalsVariables, private httpClient: HttpClient) { }
 
-    private readonly API_URL = "http://"+ this.param.picoIp +":80";
+    private readonly API_URL = `http://${this.param.picoIp}:80`;
+    // private readonly API_URL = "http://"+ this.param.picoIp +":80";
 
     // private readonly ENDPOINT_SEND = "/";
 

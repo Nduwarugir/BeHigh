@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { IonicModule, PopoverController } from '@ionic/angular';
 import { IFile } from 'src/app/model/file';
 import { IScenario } from 'src/app/model/scenario';
@@ -71,12 +71,12 @@ export class VideoPage  implements OnInit, OnChanges {
         }
 
     }
-    
+
     async presentVideoPopover(ev: any) {
-    
-		const videoUrl = 'http://'+this.param.picoIp+'/Videos/'+this.form.value.link; // Replace with the actual URL of the video
+
+		const videoUrl = `http://${this.param.picoIp}/Videos/${this.form.value.link}`; // Replace with the actual URL of the video
 		let arrayBuffer: any;
-		
+
 		this.httpClient.get(videoUrl, { responseType: 'blob' }).subscribe(
 			(response: Blob) => {
 			  // Process the video data
@@ -88,10 +88,10 @@ export class VideoPage  implements OnInit, OnChanges {
 				console.log('err: ', err.error);
 			  // Handle any errors that occur during the HTTP request
 		});
-		
+
 		const blob = new Blob([arrayBuffer], { type: 'video/raw' });
 		const dataUrl = URL.createObjectURL(blob);
-    
+
         const popover = await this.popoverController.create({
             component: VideoPopupPage,
             componentProps: {
@@ -103,7 +103,7 @@ export class VideoPage  implements OnInit, OnChanges {
         });
         return await popover.present();
     }
-      
+
     addScenario(scenario: IScenario) {
         this.newScenarioEvent.emit(scenario);
     }

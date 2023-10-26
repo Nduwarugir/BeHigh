@@ -1,21 +1,79 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AnimationController, Animation , IonicModule, ToastController } from '@ionic/angular';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-	selector: 'app-pre-visual',
-	templateUrl: './pre-visual.page.html',
-	styleUrls: ['./pre-visual.page.scss'],
-	standalone: true,
-	imports: [IonicModule, CommonModule, FormsModule]
+  selector: 'app-preview',
+  templateUrl: './preview.page.html',
+  styleUrls: ['./preview.page.scss'],
+  standalone: true,
+  imports: [IonicModule, CommonModule, FormsModule]
 })
-export class PreVisualPage implements OnInit {
+export class PreviewPage implements OnInit {
 
-	constructor(private toastController: ToastController, private animationController: AnimationController) { }
+	@ViewChild('streamContainer') streamContainerRef!: ElementRef;
+	@ViewChild('stream') streamRef!: ElementRef;
+	@ViewChild('toggleStream') toggleStreamRef!: ElementRef;
+
+	streamUrl!: string;
+	streamEnabled: boolean = false;
+	streamButtonValue: string = 'Start Stream';
+	stream64!: any;
+	streamIntervalId!: any;
+	
+	constructor(private toastController: ToastController, private animationController: AnimationController, private http: HttpClient) { }
 
     ngOnInit() {
     }
+
+	open() {
+        if (this.streamEnabled) this.stopStream();
+        else this.startStream();
+	}
+
+	close() {
+		this.stopStream();
+	}
+
+	show(el: HTMLInputElement) {
+		el.classList.remove('hidden');
+	}
+
+	hide(el: HTMLInputElement) {
+		el.classList.add('hidden');
+	}
+
+	async startStream() {
+
+		this.streamIntervalId = setInterval(() => {
+			this.http.get(`http://192.168.1.117/stream`).subscribe({
+				next: (res: any) => {
+					this.stream64 = res;
+					console.log(res);
+				},
+				
+				error: err => console.log(err),
+			});
+		}, 5*1000);
+		
+		this.streamEnabled = true;
+		// this.streamUrl = `http://192.168.1.144:81/stream`;
+		this.streamButtonValue = 'Stop Stream';
+	}
+
+	async stopStream() {
+
+		clearInterval(this.streamIntervalId);
+
+		// window.stop();
+		this.streamEnabled = false;
+		// this.streamUrl = ``;
+		this.streamButtonValue = 'Start Stream';
+	}
+
+
 
 	async presentToast() {
 		const toast = await this.toastController.create({

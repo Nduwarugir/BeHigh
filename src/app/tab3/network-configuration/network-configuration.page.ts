@@ -16,7 +16,7 @@ import { AdminService } from 'src/app/services/admin/admin.service';
 export class NetworkConfigurationPage implements OnInit, AfterViewInit {
 
     @ViewChild('numNets') numNetsRef!: ElementRef;
-    
+
     form! : FormGroup;
     _disabled!: boolean;
 
@@ -58,9 +58,9 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
         let intervalId: any;
         intervalId = setInterval(() => {
             if (this.networks) {
-              clearInterval(intervalId);
+                clearInterval(intervalId);
             } else this.scan();
-          }, 5*1000);
+        }, 5*1000);
     }
 
     ionViewDidEnter() {
@@ -115,6 +115,7 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
 
                 } else {
                     this._disabled = false;
+                    this.ssid?.enable(); this.pass?.enable();
                     this.ip_1?.enable(); this.ip_2?.enable(); this.ip_3?.enable(); this.ip_4?.enable();
                     this.nm_1?.enable(); this.nm_2?.enable(); this.nm_3?.enable(); this.nm_4?.enable();
                     this.gw_1?.enable(); this.gw_2?.enable(); this.gw_3?.enable(); this.gw_4?.enable();
@@ -145,7 +146,7 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
                 this.form.value.nm_1 = Number(this.nm_1?.value); this.form.value.nm_2 = Number(this.nm_2?.value); this.form.value.nm_3 = Number(this.nm_3?.value); this.form.value.nm_4 = Number(this.nm_4?.value);
                 this.form.value.gw_1 = Number(this.gw_1?.value); this.form.value.gw_2 = Number(this.gw_2?.value); this.form.value.gw_3 = Number(this.gw_3?.value); this.form.value.gw_4 = Number(this.gw_4?.value);
                 this.form.value.dns_1 = Number(this.dns_1?.value); this.form.value.dns_2 = Number(this.dns_2?.value); this.form.value.dns_3 = Number(this.dns_3?.value); this.form.value.dns_4 = Number(this.dns_4?.value);
-    
+
                 let formData = new FormData();
                 formData.append("configs", JSON.stringify(this.form.value, null, 4));
 
@@ -160,11 +161,11 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
                         } else {
                             setTimeout(() => {
                                 this.showPopup("Paramètres enregistrése avec succès !");
-                            }, 1*1000);
+                            }, 1000);
                         }
                     }
                 });
-    
+
             }
 
         }
@@ -256,10 +257,10 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
         this.adminService.readData('scan').subscribe({
             next: data => {
                 this.networks = data;
-                
+
             	let numNets: HTMLInputElement = this.numNetsRef.nativeElement;
             	numNets.innerHTML = data.length;
-            	
+
                 console.log("/scan: ", data);
             },
             error: err => {
@@ -316,7 +317,7 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
         });
         await alert.present();
     }
-   
+
     //Les getters
     get error(){
         return this._err;
@@ -401,5 +402,5 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
     get dns_4(){
         return this.form.get('dns_4');
     }
-    
+
 }

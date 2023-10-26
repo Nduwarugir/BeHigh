@@ -1,9 +1,9 @@
-<div class="card mb-4">
+<div class="card mb-4" style="font-size: small;">
     <form [formGroup]="form" (ngSubmit)="submit()">
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-3">
-                    <p class="mb-0">Choisissez une vidéo</p>
+                    <p class="mb-0">Select a video</p>
                 </div>
                 <div class="col-sm-9">
                     <select class="select form-control form-control-sm" id="link" name="link" (change)="setFileContent()" formControlName="link">
@@ -14,7 +14,7 @@
             <hr>
             <div class="row">
                 <div class="col-sm-3">
-                    <p class="mb-0">Durée</p>
+                    <p class="mb-0">Timing</p>
                 </div>
                 <div class="col-sm-1">
                     <select class="select form-control form-control-sm" formControlName="timing">
@@ -25,8 +25,8 @@
             <hr class="mb-4">
             <div class="row">
                 <div class="col-sm-3 d-flex justify-content-end mb-lg-2">
-                    <button class="btn btn-dark btn-block fa-lg gradient-custom-2 border border-color-none" style="height: 40px;" type="button" (click)="presentVideoPopover($event)">Aperçu</button>
-                    <button [disabled]="form.invalid" class="btn btn-primary btn-block fa-lg gradient-custom-2 border border-color-none" style="height: 40px;" type="submit">Ajouter</button>
+                    <!-- <button [disabled]="form.invalid" class="btn btn-dark btn-block fa-lg gradient-custom-2 border border-color-none" style="height: 40px;" type="button" (click)="presentVideoPopover($event)">Overview</button> -->
+                    <button [disabled]="form.invalid" class="btn btn-primary btn-block fa-lg gradient-custom-2 border border-color-none" style="height: 40px;" type="submit">Add</button>
                 </div>
             </div>
         </div>

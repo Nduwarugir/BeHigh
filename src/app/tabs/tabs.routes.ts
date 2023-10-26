@@ -28,8 +28,8 @@ export const routes: Routes = [
                 path: 'media-popup',
                 loadComponent: () => import('../shared/components/media-popup/media-popup.page').then( m => m.MediaPopupPage)
             },{
-                path: 'visual',
-                loadComponent: () => import('../tab2/pre-visual/pre-visual.page').then( m => m.PreVisualPage)
+                path: 'preview',
+                loadComponent: () => import('../tab2/preview/preview.page').then( m => m.PreviewPage)
             },{
                 path: '',
                 redirectTo: '/tabs/tab1',

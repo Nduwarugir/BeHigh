@@ -1,0 +1,68 @@
+<!-- <ion-header [translucent]="true">
+	<ion-toolbar>
+		<ion-title>Preview</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+	<ion-card>
+		<ion-card-header>
+			<ion-card-title>Preview</ion-card-title>
+		</ion-card-header>
+		<ion-card-content>
+			<ion-row>
+				<ion-col size="12">
+					<div #streamContainer class="image-container hidden">
+						<ion-button (click)="close()">
+							<ion-icon slot="icon-only" name="close"></ion-icon>
+						</ion-button>
+						<img #stream src="{{streamUrl}}">
+					</div>
+				</ion-col>
+			</ion-row>
+			
+			<ion-row>
+				<ion-col size="12">
+					<ion-button (click)="open()" expand="block" fill="clear" shape="round">
+						{{streamButtonValue}}
+					</ion-button>
+				</ion-col>
+			</ion-row>
+			
+		</ion-card-content>
+	</ion-card>
+</ion-content> -->
+<ion-header [translucent]="true">
+	<ion-toolbar>
+		<ion-title>Preview</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+	<ion-card>
+		<ion-card-header>
+			<ion-card-title>Preview</ion-card-title>
+		</ion-card-header>
+		<ion-card-content>
+			<ion-row>
+				<ion-col size="12">
+					<div #streamContainer class="image-container hidden">
+						<ion-button (click)="close()">
+							<ion-icon slot="icon-only" name="close"></ion-icon>
+						</ion-button>
+						<img #stream [src]="stream64 ? stream64:'assets/images/link-broken.png'" alt="link-broken">
+					</div>
+				</ion-col>
+			</ion-row>
+			
+			<ion-row>
+				<ion-col size="12">
+					<ion-button (click)="open()" expand="block" fill="clear" shape="round">
+						{{streamButtonValue}}
+					</ion-button>
+				</ion-col>
+			</ion-row>
+			
+		</ion-card-content>
+	</ion-card>
+</ion-content>

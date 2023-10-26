@@ -1,23 +1,23 @@
 <ion-header [translucent]="true">
 <ion-toolbar>
-    <ion-title>Mise à jour</ion-title>
+    <ion-title>Upgrade</ion-title>
 </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
     <ion-header collapse="condense">
         <ion-toolbar>
-            <ion-title size="large">Mise à jour</ion-title>
+            <ion-title size="large">Upgrade</ion-title>
         </ion-toolbar>
     </ion-header>
 
     <ion-content [fullscreen]="true">
 
-        <div class="card my-4 d-flex justify-content-center" style="height: 85%;">
+        <div class="card my-4 d-flex justify-content-center" style="height: 95%;">
             <form [formGroup]="form" (ngSubmit)="send()" enctype='multipart/form-data'>
                 <div class="card-body mx-auto d-flex justify-content-center">
 
-                    <div class="col-sm-10" style=" width: 90%">
+                    <div class="col-sm-10" style=" width: 95%">
                         <div class="row">
                             <div class="col-sm-4">
                                 <h4>Upload the file</h4>
@@ -40,50 +40,49 @@
                         </div>
                         <hr class="mb-2">
                         <div class="mb-2" *ngIf="valid">
-                            <div class="row d-flex justify-content-end mb-1">
-                                <div class="col-sm-9 mb-2 d-flex justify-content-end">
-                                    <label for="confirm">Veuillez confirmer votre identité pour effectuer la mise à
-                                        jour...</label>
-                                </div>
-                                <div class="col-sm-2">
-                                    <input type="text" name="confirm" id="confirm" placeholder="Mot de passe" formControlName="confirm"
-                                        class="form-control form-control-sm" style="border: solid black">
-                                </div>
-                            </div>
+                            <ion-row class="mx-auto" style="width: 100%;">
+                                <ion-col size="6"><label for="confirm" class="mt-1">Please confirm your identity to update </label></ion-col>
+                                <ion-col>
+                                    <ion-item lines="none">
+                                        <input type="text" name="confirm" id="confirm" placeholder="Mot de passe" formControlName="confirm" class="form-control form-control-sm" style="border: solid black">
+                                    </ion-item>
+                                </ion-col>
+                            </ion-row>
                         </div>
                         <div class="row">
                             <div class="button d-flex justify-content-end mb-4" id="updateButton2">
                                 <button class="btn btn-primary btn-block fa-lg gradient-custom-2 border border-color-none"
                                         style="margin-left: 20px; height: 40px;"
-                                        id="updateButton" type="submit" [disabled]="disabled" >Mettre à jour
+                                        id="updateButton" type="submit" [disabled]="disabled" >Update
                                 </button>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                Checking if remote update is possible...
+                            </div>
+                            <div class="col-sm-6" *ngIf="isUpdatePossible">
+                                <span id="remupd" style="color: var(--ion-color-primary);">{{ isUpdatePossible }}</span>
                             </div>
                         </div>
                         <hr>
                         <div hidden #md5row>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Calculated file MD5 hash: <span #clientHash> Select a file</span> <span #hash hidden></span>
+                                    Calculated file MD5 hash: <span #clientHash style="color: var(--ion-color-primary);"> Select a file</span> <span #hash hidden></span>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-sm-4">
-                                    Size: <span #fileSize></span> Bytes
+                                    Size: <span #fileSize style="color: var(--ion-color-primary);"></span> Bytes
                                 </div>
                             </div>
+                            <hr>
                         </div>
                         <div class="row">
-                            <div class="col-sm-6">
-                                Checking if remote update is possible...
-                            </div>
-                            <div class="col-sm-6" *ngIf="isUpdatePossible">
-                                <span id="remupd" style="color: #009dff;">{{ isUpdatePossible }}</span>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <span id="remupdResult" style="color: #009dff;"></span>
+                            <span id="remupdResult" style="color: var(--ion-color-primary);"></span>
                         </div>
                     </div>
                 </div>

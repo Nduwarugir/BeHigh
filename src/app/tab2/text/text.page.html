@@ -13,8 +13,8 @@
             </div>
             <hr>
             <ion-row>
-                <ion-col size="6"><p class="mb-0">Police</p></ion-col>
-                <ion-col size="6"><p class="mb-0">Taille</p></ion-col>
+                <ion-col size="6"><p class="mb-0">Font</p></ion-col>
+                <ion-col size="6"><p class="mb-0">Size</p></ion-col>
                 <ion-col size="6">
                     <select class="select form-control form-control-sm" id="ffamily" name="ffamily" formControlName="ffamily">
                         <option *ngFor="let item of fonts" [value]="item.type">{{item.type}}</option>
@@ -30,19 +30,19 @@
             </ion-row>
             <hr>
             <ion-row>
-                <ion-col size="6"><p class="mb-0">Couleur du texte</p></ion-col>
-                <ion-col size="6"><p class="mb-0">Couleur de fond</p></ion-col>
+                <ion-col size="6"><p class="mb-0">Text color</p></ion-col>
+                <ion-col size="6"><p class="mb-0">Background color</p></ion-col>
                 <ion-col size="6">
-                    <ion-input type="color" name="fcolor" id="fcolor" formControlName="fcolor"></ion-input>
+                    <input type="color" name="fcolor" id="fcolor" class="form-control form-control-sm" formControlName="fcolor">
                 </ion-col>
                 <ion-col size="6">
-                    <ion-input type="color" name="bcolor" id="bcolor" formControlName="bcolor"></ion-input>
+                    <input type="color" name="bcolor" id="bcolor" class="form-control form-control-sm" formControlName="bcolor">
                 </ion-col>
             </ion-row>
             <hr>
             <ion-row>
-                <ion-col size="6"><p class="mb-0">Debut Ligne</p></ion-col>
-                <ion-col size="6"><p class="mb-0">Debut Collone</p></ion-col>
+                <ion-col size="6"><p class="mb-0">Row alignment</p></ion-col>
+                <ion-col size="6"><p class="mb-0">Column alignment</p></ion-col>
                 <ion-col size="6">
                     <select class="select form-control form-control-sm" formControlName="row">
                         <option *ngFor="let item of rowPositions" [value]="item.type">{{item.type}}</option>
@@ -57,7 +57,7 @@
             <hr>
             <ion-row>
                 <ion-col size="6"><p class="mb-0">Animation</p></ion-col>
-                <ion-col size="6"><p class="mb-0">Durée</p></ion-col>
+                <ion-col size="6"><p class="mb-0">Timing</p></ion-col>
                 <ion-col size="6">
                     <select class="select form-control form-control-sm" formControlName="animation">
                         <option *ngFor="let item of anims" [value]="item.type">{{item.type}}</option>
@@ -73,7 +73,7 @@
             <div class="row">
                 <div class="col-sm-3 d-flex justify-content-end mb-lg-2">
                     <!-- <button class="btn btn-dark btn-block fa-lg gradient-custom-2 border border-color-none" style="height: 40px;" type="reset">Effacer</button> -->
-                    <button [disabled]="form.invalid" class="btn btn-primary btn-block fa-lg gradient-custom-2 border border-color-none" style="height: 40px;" type="submit">Ajouter</button>
+                    <button [disabled]="form.invalid" class="btn btn-primary btn-block fa-lg gradient-custom-2 border border-color-none" style="height: 40px;" type="submit">Add</button>
                 </div>
             </div>
         </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController, IonicModule } from '@ionic/angular';
 import { IScenario } from '../model/scenario';
 import { CommonModule } from '@angular/common';
@@ -7,6 +8,7 @@ import { ImagePage } from "./image/image.page";
 import { TextPage } from "./text/text.page";
 import { EffetPage } from "./effet/effet.page";
 import { ScenarioService } from '../services/scenario/scenario.service';
+import { GlobalsVariables } from "../shared/globals-variables";
 
 @Component({
     selector: 'app-tab2',
@@ -22,7 +24,7 @@ export class Tab2Page implements OnInit {
     errMsg!: string;
     scenarios: IScenario[] = []; scenariosLength!: number;
 
-    constructor(private alertController: AlertController, private scenarioService: ScenarioService) {}
+    constructor(private alertController: AlertController, private scenarioService: ScenarioService, private param: GlobalsVariables, private router: Router) {}
 
     ngOnInit(): void {
         this.read();
@@ -43,6 +45,21 @@ export class Tab2Page implements OnInit {
     }
 
 	onSelectionChange(event: any, n: number) {
+        if (event.detail.value === 'null') {
+            this.add({
+                type: 'null',
+                timing: 0,
+                text: '',
+                ffamily: '',
+                size: 0,
+                fcolor: 'p3',
+                bcolor: 'p3',
+                row: '',
+                col: '',
+                animation: '',
+                link: ''
+            });
+        }
         this.toggleNScript(n);
         this.toggleType(event.detail.value);
 	}
@@ -52,8 +69,9 @@ export class Tab2Page implements OnInit {
 	}
 
     visual() {
-        console.log("visual() called");
+		this.router.navigate(['/tabs/preview']);
     }
+
     submit() {
 
         if (this.scenarios.length < 1) {
@@ -72,6 +90,8 @@ export class Tab2Page implements OnInit {
                             size: elmt.size,
                             fcolor: elmt.fcolor,
                             bcolor: elmt.bcolor,
+						    row: elmt.row,
+						    col: elmt.col,
                             animation: elmt.animation,
                             timing: elmt.timing,
                             type: 'Texte'
@@ -101,24 +121,24 @@ export class Tab2Page implements OnInit {
             let formData = new FormData();
             formData.append("scenario", JSON.stringify(finalScenario, null, 4));
 
-            console.log(finalScenario);
-                
             this.scenarioService.sendConfiguration(formData).subscribe({
                 next: response => {
                     console.log("Response: ", response);
-                    alert("Scénario enregistré avec succès !");
+                    setTimeout(() => {
+                        this.showPopup("Scénario enregistré avec succès !");
+                    }, 1000);
                 },
                 error: err => {
                     if (err.statusText !== 'OK') {
                         console.log("Error: ", err.error);
                         setTimeout(() => {
                             this.showPopup("Error! Pleae try aigain...");
-                        }, 1*1000);
+                        }, 1000);
                     } else {
                         this.read();
                         setTimeout(() => {
                             this.showPopup("Scénario enregistré avec succès !");
-                        }, 1*1000);
+                        }, 1000);
                     }
                 }
             })
@@ -195,7 +215,7 @@ export class Tab2Page implements OnInit {
         });
         await alert.present();
     }
-   
+
     async showPopupAlert(message: string) {
         const alert = await this.alertController.create({
             header: 'Alert !!!',
@@ -205,5 +225,5 @@ export class Tab2Page implements OnInit {
         });
         await alert.present();
     }
-   
+
 }

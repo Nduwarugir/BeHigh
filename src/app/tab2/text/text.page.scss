@@ -2,3 +2,7 @@
 input, select, textarea, ion-select {
     border: solid black;
 }
+
+ion-col {
+    --ion-grid-column-padding: 1%;
+}
