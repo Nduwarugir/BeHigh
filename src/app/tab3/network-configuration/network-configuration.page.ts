@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AlertController, IonicModule } from '@ionic/angular';
 import { IWifiConfig } from '../../model/wifi-config';
@@ -11,7 +13,7 @@ import { AdminService } from 'src/app/services/admin/admin.service';
     templateUrl: './network-configuration.page.html',
     styleUrls: ['./network-configuration.page.scss'],
     standalone: true,
-    imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
+    imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, MatTableModule, MatPaginatorModule]
 })
 export class NetworkConfigurationPage implements OnInit, AfterViewInit {
 
@@ -22,7 +24,8 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
 
     wifiConfig!: IWifiConfig;
     connectionState!: string;
-    networks!: INetwork[];
+    networks!: INetwork[]; displayedColumns: string[] = ['SSID', 'Channel', 'Secure', 'RSSI'];
+    dataSource!: MatTableDataSource<INetwork>
 
     //On verifie que chaque champ soit remplir
     constructor(private fb : FormBuilder, private alertController: AlertController, private adminService: AdminService){
@@ -235,7 +238,7 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
         });
 
         this.adminService.readData('admin/connectionstate').subscribe({
-            next: data => {
+            next: (data:string) => {
                 let fields: string[] = data.split('|');
                 this.connectionState = fields[1];
                 console.log('/connectionstate: ', fields);
@@ -257,6 +260,7 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
         this.adminService.readData('scan').subscribe({
             next: data => {
                 this.networks = data;
+                this.dataSource = new MatTableDataSource(data)
 
             	let numNets: HTMLInputElement = this.numNetsRef.nativeElement;
             	numNets.innerHTML = data.length;
@@ -304,7 +308,8 @@ export class NetworkConfigurationPage implements OnInit, AfterViewInit {
 
     switchNetwork(name: string): void {
         this.form.patchValue({
-            ssid: name
+            ssid: name,
+            pass: ''
         });
     }
 

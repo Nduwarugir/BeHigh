@@ -17,7 +17,7 @@
             <form [formGroup]="form" (ngSubmit)="send()" enctype='multipart/form-data'>
                 <div class="card-body mx-auto d-flex justify-content-center">
 
-                    <div class="col-sm-10" style=" width: 95%">
+                    <div class="col-sm-10" style="font-size: small; width: 95%">
                         <div class="row">
                             <div class="col-sm-4">
                                 <h4>Upload the file</h4>
@@ -58,31 +58,37 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                Checking if remote update is possible...
-                            </div>
-                            <div class="col-sm-6" *ngIf="isUpdatePossible">
+                        <ion-row>
+                            <ion-col size="11">
+                                <ion-text>
+                                    <h6>Checking if remote update is possible...</h6>
+                                </ion-text>
+                            </ion-col>
+                            <ion-col size="1" *ngIf="isUpdatePossible">
                                 <span id="remupd" style="color: var(--ion-color-primary);">{{ isUpdatePossible }}</span>
-                            </div>
-                        </div>
+                            </ion-col>
+                        </ion-row>
                         <hr>
                         <div hidden #md5row>
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    Calculated file MD5 hash: <span #clientHash style="color: var(--ion-color-primary);"> Select a file</span> <span #hash hidden></span>
-                                </div>
-                            </div>
+                            <ion-row>
+                                <ion-col size="12">
+                                    <ion-text>
+                                        <h6>Calculated file MD5 hash: <span #clientHash style="color: var(--ion-color-primary);"> Select a file</span> <span #hash hidden></span></h6>
+                                    </ion-text>
+                                </ion-col>
+                            </ion-row>
 
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    Size: <span #fileSize style="color: var(--ion-color-primary);"></span> Bytes
-                                </div>
-                            </div>
+                            <ion-row>
+                                <ion-col size="12">
+                                    <ion-text>
+                                        <h6>Size: <span #fileSize style="color: var(--ion-color-primary);"></span> Bytes</h6>
+                                    </ion-text>
+                                </ion-col>
+                            </ion-row>
                             <hr>
                         </div>
                         <div class="row">
-                            <span id="remupdResult" style="color: var(--ion-color-primary);"></span>
+                            <span #remupdResult style="color: var(--ion-color-primary);"></span>
                         </div>
                     </div>
                 </div>

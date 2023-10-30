@@ -6,3 +6,7 @@ input, select, textarea, ion-select {
 ion-col {
     --ion-grid-column-padding: 1%;
 }
+
+ion-range{
+    --ion-grid-column-padding: 0;
+}

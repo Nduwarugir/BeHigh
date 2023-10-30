@@ -4,230 +4,180 @@
             Scenario space
         </ion-title>
     </ion-toolbar>
-    </ion-header>
+</ion-header>
 
-    <ion-content [fullscreen]="true">
-        <ion-header collapse="condense">
-        </ion-header>
+<ion-content [fullscreen]="true">
 
+    <div class="container" xmlns="http://www.w3.org/1999/xhtml">
 
-        <ion-content [fullscreen]="true">
+        <div class="main-container">
+            <section>
 
-            <div class="container" xmlns="http://www.w3.org/1999/xhtml">
+                <div class="container py-1">
+                    <div class="row row-cols-5 row-cols-md-5 ms-0 mx-3 text-center" >
+                        <div class="col mb-4" *ngFor="let i of range(0, 9)">
+                            <ion-card class="h-75 w-75 d-flex ion-justify-content-center ion-align-items-center px-4 py-2" style="border-radius: 50%" (click)="toggleView(i)" [class]="_nScrip === i ? 'active' : ''"> <!-- style="border-radius: 20px" -->
+                                <h4 class="my-auto">{{ i+1 }}</h4>
+                            </ion-card>
+                        </div>
+                    </div>
 
-                <div class="main-container">
-                    <section>
+                    <ion-row>
+                        <ion-col size="11" class="mx-auto mb-2">
+                            <ion-list>
+                                <ion-item *ngIf="_nScrip === 0" lines="none">
+                                    <ion-select (ionChange)="onSelectionChange($event, 0)"  label="Choose a type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
+                                        <ion-select-option value="null">Nothing</ion-select-option>
+                                        <ion-select-option value="Texte">Text</ion-select-option>
+                                        <ion-select-option value="Image">Image</ion-select-option>
+                                        <ion-select-option value="Video">Video</ion-select-option>
+                                        <ion-select-option value="Effet">Effect</ion-select-option>
+                                    </ion-select>
+                                </ion-item>
 
-                        <div class="container py-1">
-                            <div class="row row-cols-5 row-cols-md-5 mx-3 text-center" >
-                                <div class="col mb-4">
-                                    <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(0)" [class]="_nScrip === 0 ? 'active' : ''">
-                                        <h4 class="my-auto">1</h4>
-                                    </div>
+                                <ion-item *ngIf="_nScrip === 1" lines="none">
+                                    <ion-select (ionChange)="onSelectionChange($event, 1)"  label="Choose a type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
+                                        <ion-select-option value="null">Nothing</ion-select-option>
+                                        <ion-select-option value="Texte">Text</ion-select-option>
+                                        <ion-select-option value="Image">Image</ion-select-option>
+                                        <ion-select-option value="Video">Video</ion-select-option>
+                                        <ion-select-option value="Effet">Effect</ion-select-option>
+                                    </ion-select>
+                                </ion-item>
+
+                                <ion-item *ngIf="_nScrip === 2" lines="none">
+                                    <ion-select (ionChange)="onSelectionChange($event, 2)"  label="Choose a type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
+                                        <ion-select-option value="null">Nothing</ion-select-option>
+                                        <ion-select-option value="Texte">Text</ion-select-option>
+                                        <ion-select-option value="Image">Image</ion-select-option>
+                                        <ion-select-option value="Video">Video</ion-select-option>
+                                        <ion-select-option value="Effet">Effect</ion-select-option>
+                                    </ion-select>
+                                </ion-item>
+
+                                <ion-item *ngIf="_nScrip === 3" lines="none">
+                                    <ion-select (ionChange)="onSelectionChange($event, 3)"  label="Choose a type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
+                                        <ion-select-option value="null">Nothing</ion-select-option>
+                                        <ion-select-option value="Texte">Text</ion-select-option>
+                                        <ion-select-option value="Image">Image</ion-select-option>
+                                        <ion-select-option value="Video">Video</ion-select-option>
+                                        <ion-select-option value="Effet">Effect</ion-select-option>
+                                    </ion-select>
+                                </ion-item>
+
+                                <ion-item *ngIf="_nScrip === 4" lines="none">
+                                    <ion-select (ionChange)="onSelectionChange($event, 4)"  label="Choose a type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
+                                        <ion-select-option value="null">Nothing</ion-select-option>
+                                        <ion-select-option value="Texte">Text</ion-select-option>
+                                        <ion-select-option value="Image">Image</ion-select-option>
+                                        <ion-select-option value="Video">Video</ion-select-option>
+                                        <ion-select-option value="Effet">Effect</ion-select-option>
+                                    </ion-select>
+                                </ion-item>
+
+                                <ion-item *ngIf="_nScrip === 5" lines="none">
+                                    <ion-select (ionChange)="onSelectionChange($event, 5)"  label="Choose a type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
+                                        <ion-select-option value="null">Nothing</ion-select-option>
+                                        <ion-select-option value="Texte">Text</ion-select-option>
+                                        <ion-select-option value="Image">Image</ion-select-option>
+                                        <ion-select-option value="Video">Video</ion-select-option>
+                                        <ion-select-option value="Effet">Effect</ion-select-option>
+                                    </ion-select>
+                                </ion-item>
+
+                                <ion-item *ngIf="_nScrip === 6" lines="none">
+                                    <ion-select (ionChange)="onSelectionChange($event, 6)"  label="Choose a type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
+                                        <ion-select-option value="null">Nothing</ion-select-option>
+                                        <ion-select-option value="Texte">Text</ion-select-option>
+                                        <ion-select-option value="Image">Image</ion-select-option>
+                                        <ion-select-option value="Video">Video</ion-select-option>
+                                        <ion-select-option value="Effet">Effect</ion-select-option>
+                                    </ion-select>
+                                </ion-item>
+
+                                <ion-item *ngIf="_nScrip === 7" lines="none">
+                                    <ion-select (ionChange)="onSelectionChange($event, 7)"  label="Choose a type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
+                                        <ion-select-option value="null">Nothing</ion-select-option>
+                                        <ion-select-option value="Texte">Text</ion-select-option>
+                                        <ion-select-option value="Image">Image</ion-select-option>
+                                        <ion-select-option value="Video">Video</ion-select-option>
+                                        <ion-select-option value="Effet">Effect</ion-select-option>
+                                    </ion-select>
+                                </ion-item>
+
+                                <ion-item *ngIf="_nScrip === 8" lines="none">
+                                    <ion-select (ionChange)="onSelectionChange($event, 8)"  label="Choose a type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
+                                        <ion-select-option value="null">Nothing</ion-select-option>
+                                        <ion-select-option value="Texte">Text</ion-select-option>
+                                        <ion-select-option value="Image">Image</ion-select-option>
+                                        <ion-select-option value="Video">Video</ion-select-option>
+                                        <ion-select-option value="Effet">Effect</ion-select-option>
+                                    </ion-select>
+                                </ion-item>
+
+                                <ion-item *ngIf="_nScrip === 9" lines="none">
+                                    <ion-select (ionChange)="onSelectionChange($event, 9)"  label="Choose a type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
+                                        <ion-select-option value="null">Nothing</ion-select-option>
+                                        <ion-select-option value="Texte">Text</ion-select-option>
+                                        <ion-select-option value="Image">Image</ion-select-option>
+                                        <ion-select-option value="Video">Video</ion-select-option>
+                                        <ion-select-option value="Effet">Effect</ion-select-option>
+                                    </ion-select>
+                                </ion-item>
+
+                            </ion-list>
+                        </ion-col>
+                    </ion-row>
+
+                    <div class="row">
+
+                        <div class="col-lg-9" style="margin-bottom: 25%;">
+
+                            <div class="scripts" [ngSwitch]="type" >
+                                <div *ngSwitchCase="'null'">
+                                    <ion-card>
+                                        <ion-card-content class="text-center mb-4 d-flex ion-align-items-center" style="height: 350px; width: 100%;">
+                                            <h4 class="sub-title"> Choose <br> a <br> configuration ! </h4>
+                                        </ion-card-content>
+                                    </ion-card>
                                 </div>
-                                <div class="col mb-4">
-                                    <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(1)" [class]="_nScrip === 1 ? 'active' : ''">
-                                        <h4 class="my-auto">2</h4>
-                                    </div>
+                                <div *ngSwitchCase="'Texte'">
+                                    <app-text [nScript]="nScript" [scenario]="scenarios[nScript]" (newScenarioEvent)="add($event)"></app-text>
                                 </div>
-                                <div class="col mb-4">
-                                    <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(2)" [class]="_nScrip === 2 ? 'active' : ''">
-                                        <h4 class="my-auto">3</h4>
-                                    </div>
+                                <div *ngSwitchCase="'Image'">
+                                    <app-image [nScript]="nScript" [scenario]="scenarios[nScript]" (newScenarioEvent)="add($event)"></app-image>
                                 </div>
-                                <div class="col mb-4">
-                                    <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(3)" [class]="_nScrip === 3 ? 'active' : ''">
-                                        <h4 class="my-auto">4</h4>
-                                    </div>
+                                <div *ngSwitchCase="'Video'">
+                                    <app-video [nScript]="nScript" [scenario]="scenarios[nScript]" (newScenarioEvent)="add($event)"></app-video>
                                 </div>
-                                <div class="col mb-4">
-                                    <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(4)" [class]="_nScrip === 4 ? 'active' : ''">
-                                        <h4 class="my-auto">5</h4>
-                                    </div>
-                                </div>
-                                <div class="col mb-4">
-                                    <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(5)" [class]="_nScrip === 5 ? 'active' : ''">
-                                        <h4 class="my-auto">6</h4>
-                                    </div>
-                                </div>
-                                <div class="col mb-4">
-                                    <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(6)" [class]="_nScrip === 6 ? 'active' : ''">
-                                        <h4 class="my-auto">7</h4>
-                                    </div>
-                                </div>
-                                <div class="col mb-4">
-                                    <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(7)" [class]="_nScrip === 7 ? 'active' : ''">
-                                        <h4 class="my-auto">8</h4>
-                                    </div>
-                                </div>
-                                <div class="col mb-4">
-                                    <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(8)" [class]="_nScrip === 8 ? 'active' : ''">
-                                        <h4 class="my-auto">9</h4>
-                                    </div>
-                                </div>
-                                <div class="col mb-4">
-                                    <div class="card h-100 w-75 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleView(9)" [class]="_nScrip === 9 ? 'active' : ''">
-                                        <h4 class="my-auto">10</h4>
-                                    </div>
+                                <div *ngSwitchCase="'Effet'">
+                                    <app-effet [nScript]="nScript" [scenario]="scenarios[nScript]" (newScenarioEvent)="add($event)"></app-effet>
                                 </div>
                             </div>
-
-                            <ion-row>
-                                <ion-col size="11" class="mx-auto mb-2">
-                                    <ion-list>
-                                        <ion-item *ngIf="_nScrip === 0" lines="none">
-                                            <ion-select (ionChange)="onSelectionChange($event, 0)"  label="Choose a type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
-                                                <ion-select-option value="null">Nothing</ion-select-option>
-                                                <ion-select-option value="Texte">Text</ion-select-option>
-                                                <ion-select-option value="Image">Image</ion-select-option>
-                                                <ion-select-option value="Video">Video</ion-select-option>
-                                                <ion-select-option value="Effet">Effect</ion-select-option>
-                                            </ion-select>
-                                        </ion-item>
-
-                                        <ion-item *ngIf="_nScrip === 1" lines="none">
-                                            <ion-select (ionChange)="onSelectionChange($event, 1)"  label="Choose a type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
-                                                <ion-select-option value="null">Nothing</ion-select-option>
-                                                <ion-select-option value="Texte">Text</ion-select-option>
-                                                <ion-select-option value="Image">Image</ion-select-option>
-                                                <ion-select-option value="Video">Video</ion-select-option>
-                                                <ion-select-option value="Effet">Effect</ion-select-option>
-                                            </ion-select>
-                                        </ion-item>
-
-                                        <ion-item *ngIf="_nScrip === 2" lines="none">
-                                            <ion-select (ionChange)="onSelectionChange($event, 2)"  label="Choose a type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
-                                                <ion-select-option value="null">Nothing</ion-select-option>
-                                                <ion-select-option value="Texte">Text</ion-select-option>
-                                                <ion-select-option value="Image">Image</ion-select-option>
-                                                <ion-select-option value="Video">Video</ion-select-option>
-                                                <ion-select-option value="Effet">Effect</ion-select-option>
-                                            </ion-select>
-                                        </ion-item>
-
-                                        <ion-item *ngIf="_nScrip === 3" lines="none">
-                                            <ion-select (ionChange)="onSelectionChange($event, 3)"  label="Choose a type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
-                                                <ion-select-option value="null">Nothing</ion-select-option>
-                                                <ion-select-option value="Texte">Text</ion-select-option>
-                                                <ion-select-option value="Image">Image</ion-select-option>
-                                                <ion-select-option value="Video">Video</ion-select-option>
-                                                <ion-select-option value="Effet">Effect</ion-select-option>
-                                            </ion-select>
-                                        </ion-item>
-
-                                        <ion-item *ngIf="_nScrip === 4" lines="none">
-                                            <ion-select (ionChange)="onSelectionChange($event, 4)"  label="Choose a type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
-                                                <ion-select-option value="null">Nothing</ion-select-option>
-                                                <ion-select-option value="Texte">Text</ion-select-option>
-                                                <ion-select-option value="Image">Image</ion-select-option>
-                                                <ion-select-option value="Video">Video</ion-select-option>
-                                                <ion-select-option value="Effet">Effect</ion-select-option>
-                                            </ion-select>
-                                        </ion-item>
-
-                                        <ion-item *ngIf="_nScrip === 5" lines="none">
-                                            <ion-select (ionChange)="onSelectionChange($event, 5)"  label="Choose a type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
-                                                <ion-select-option value="null">Nothing</ion-select-option>
-                                                <ion-select-option value="Texte">Text</ion-select-option>
-                                                <ion-select-option value="Image">Image</ion-select-option>
-                                                <ion-select-option value="Video">Video</ion-select-option>
-                                                <ion-select-option value="Effet">Effect</ion-select-option>
-                                            </ion-select>
-                                        </ion-item>
-
-                                        <ion-item *ngIf="_nScrip === 6" lines="none">
-                                            <ion-select (ionChange)="onSelectionChange($event, 6)"  label="Choose a type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
-                                                <ion-select-option value="null">Nothing</ion-select-option>
-                                                <ion-select-option value="Texte">Text</ion-select-option>
-                                                <ion-select-option value="Image">Image</ion-select-option>
-                                                <ion-select-option value="Video">Video</ion-select-option>
-                                                <ion-select-option value="Effet">Effect</ion-select-option>
-                                            </ion-select>
-                                        </ion-item>
-
-                                        <ion-item *ngIf="_nScrip === 7" lines="none">
-                                            <ion-select (ionChange)="onSelectionChange($event, 7)"  label="Choose a type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
-                                                <ion-select-option value="null">Nothing</ion-select-option>
-                                                <ion-select-option value="Texte">Text</ion-select-option>
-                                                <ion-select-option value="Image">Image</ion-select-option>
-                                                <ion-select-option value="Video">Video</ion-select-option>
-                                                <ion-select-option value="Effet">Effect</ion-select-option>
-                                            </ion-select>
-                                        </ion-item>
-
-                                        <ion-item *ngIf="_nScrip === 8" lines="none">
-                                            <ion-select (ionChange)="onSelectionChange($event, 8)"  label="Choose a type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
-                                                <ion-select-option value="null">Nothing</ion-select-option>
-                                                <ion-select-option value="Texte">Text</ion-select-option>
-                                                <ion-select-option value="Image">Image</ion-select-option>
-                                                <ion-select-option value="Video">Video</ion-select-option>
-                                                <ion-select-option value="Effet">Effect</ion-select-option>
-                                            </ion-select>
-                                        </ion-item>
-
-                                        <ion-item *ngIf="_nScrip === 9" lines="none">
-                                            <ion-select (ionChange)="onSelectionChange($event, 9)"  label="Choose a type" interface="action-sheet" class="ion-select ion-select-sm" [value]="type">
-                                                <ion-select-option value="null">Nothing</ion-select-option>
-                                                <ion-select-option value="Texte">Text</ion-select-option>
-                                                <ion-select-option value="Image">Image</ion-select-option>
-                                                <ion-select-option value="Video">Video</ion-select-option>
-                                                <ion-select-option value="Effet">Effect</ion-select-option>
-                                            </ion-select>
-                                        </ion-item>
-
-                                    </ion-list>
-                                </ion-col>
-                            </ion-row>
 
                             <div class="row">
-
-                                <div class="col-lg-9" style="margin-bottom: 25%;">
-
-                                    <div class="scripts" [ngSwitch]="type" >
-                                        <div *ngSwitchCase="'null'">
-                                            <div class="card text-center mb-4" style="height: 350px; width: 100%;">
-                                                <h4 class="sub-title"> Choose <br> a <br> configuration ! </h4>
-                                            </div>
-                                        </div>
-                                        <div *ngSwitchCase="'Texte'">
-                                            <app-text [nScript]="nScript" [scenario]="scenarios[nScript]" (newScenarioEvent)="add($event)"></app-text>
-                                        </div>
-                                        <div *ngSwitchCase="'Image'">
-                                            <app-image [nScript]="nScript" [scenario]="scenarios[nScript]" (newScenarioEvent)="add($event)"></app-image>
-                                        </div>
-                                        <div *ngSwitchCase="'Video'">
-                                            <app-video [nScript]="nScript" [scenario]="scenarios[nScript]" (newScenarioEvent)="add($event)"></app-video>
-                                        </div>
-                                        <div *ngSwitchCase="'Effet'">
-                                            <app-effet [nScript]="nScript" [scenario]="scenarios[nScript]" (newScenarioEvent)="add($event)"></app-effet>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="button d-flex justify-content-end mb-4">
-                                            <ion-button [disabled]="disabled()" (click)="visual()" expand="block" fill="solid" style="font-size: x-small;" color="dark">
-                                                Visual
-                                            </ion-button>
-                                            <ion-button [disabled]="disabled()" (click)="clear()" expand="block" fill="solid" style="font-size: x-small;" color="danger">
-                                                Reset
-                                            </ion-button>
-                                            <ion-button [disabled]="disabled()" (click)="submit()" expand="block" fill="solid" style="font-size: x-small;">
-                                                Save
-                                            </ion-button>
-                                        </div>
-                                    </div>
-
+                                <div class="button d-flex justify-content-end mb-4">
+                                    <ion-button [disabled]="disabled()" (click)="visual()" expand="block" fill="solid" style="font-size: x-small;" color="dark">
+                                        Visual
+                                    </ion-button>
+                                    <ion-button [disabled]="disabled()" (click)="clear()" expand="block" fill="solid" style="font-size: x-small;" color="danger">
+                                        Reset
+                                    </ion-button>
+                                    <ion-button [disabled]="disabled()" (click)="submit()" expand="block" fill="solid" style="font-size: x-small;">
+                                        Save
+                                    </ion-button>
                                 </div>
-
                             </div>
+
                         </div>
 
-                    </section>
-
+                    </div>
                 </div>
 
-            </div>
+            </section>
 
-        </ion-content>
+        </div>
 
-    </ion-content>
+    </div>
+
+</ion-content>

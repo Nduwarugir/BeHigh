@@ -1,23 +1,18 @@
 
-<div class="card mb-4 d-flex justify-content-center" style="height: 350px">
+<ion-card class="mx-auto d-flex ion-align-items-center ion-justify-content-center" style="height: 400px; width: 100%;">
     <form [formGroup]="form" (ngSubmit)="submit()">
-        <div class="card-body d-flex justify-content-center">
-            <div class="col-sm-9">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <h4>Device name</h4>
-                    </div>
-                    <div class="col-sm-8">
-                        <input type="text" id="devicename" name="devicename" class="form-control form-control-sm" formControlName="devicename">
-                    </div>
-                </div>
-                <hr class="mb-4">
-                <div class="row">
-                    <div class="button d-flex justify-content-end mb-4">
-                        <button [disabled]="form.invalid" class="btn btn-primary btn-block fa-lg gradient-custom-2 border border-color-none" style="margin-left: 20px; height: 40px;" id="submitButton" type="submit" >Save</button>
-                    </div>
+        <ion-card-content style="width: 100%;">
+            <ion-item>
+                <ion-input type="text" label="  Device name" labelPlacement="floating" placeholder="Device name" formControlName="devicename"></ion-input>
+            </ion-item>
+            <hr class="mb-4">
+            <div class="row">
+                <div class="d-flex justify-content-end mb-lg-2" >
+                    <ion-button [disabled]="form.invalid" expand="block" color="primary" type="submit">
+                        Save
+                    </ion-button>
                 </div>
             </div>
-        </div>
+        </ion-card-content>
     </form>
-</div>
+</ion-card>

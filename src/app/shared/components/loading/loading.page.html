@@ -1,7 +1,5 @@
 <ion-content [fullscreen]="true" style="width: 100%; height: 100%;">
-
 	<ng-container *ngIf="!timeOn; else found">
-		
 		<ng-container *ngIf="!timeOut; else notFound">
 			<div class="loading-container text-center d-flex ion-justify-content-center ion-align-items-center" style="width: 80%; height: 90%;">
 				<ion-row style="width: 80%;">
@@ -26,10 +24,8 @@
 				</ion-row>
 			</div>
 		</ng-template>
-
 	</ng-container>
 	<ng-template #found>
-		
 		<div class="loading-container text-center d-flex ion-justify-content-center ion-align-items-center" style="width: 100%; height: 100%;">
 			<ion-card class="mx-0">
 				<ion-card-header class="py-5">
@@ -67,7 +63,6 @@
 				</ion-card-content>
 			</ion-card>
 		</div>
-
 	</ng-template>
 	
 </ion-content>

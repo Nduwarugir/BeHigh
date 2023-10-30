@@ -46,7 +46,8 @@ export class TextPage implements OnInit, OnChanges {
             row:['center', Validators.required],
             col:['center', Validators.required],
             animation:['', Validators.required],
-            timing:['30', Validators.required]
+            timing:['30', Validators.required],
+            speed:['01', Validators.required]
         });
     }
 
@@ -65,7 +66,8 @@ export class TextPage implements OnInit, OnChanges {
                 row: this.form.value.row,
                 col: this.form.value.col,
                 animation: this.form.value.animation,
-                link: ''
+                link: '',
+                speed: Number(this.form.value.speed)
             };
             setTimeout(() => {
                 this.addScenario(scenario);

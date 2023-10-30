@@ -62,7 +62,8 @@ export class VideoPage  implements OnInit, OnChanges {
                 row: '',
                 col: '',
                 animation: '',
-                link: this.form.value.link
+                link: this.form.value.link,
+                speed: 0
             };
 
             setTimeout(() => {

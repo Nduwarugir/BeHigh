@@ -57,7 +57,8 @@ export class Tab2Page implements OnInit {
                 row: '',
                 col: '',
                 animation: '',
-                link: ''
+                link: '',
+                speed: 0
             });
         }
         this.toggleNScript(n);
@@ -94,6 +95,7 @@ export class Tab2Page implements OnInit {
 						    col: elmt.col,
                             animation: elmt.animation,
                             timing: elmt.timing,
+                            speed: elmt.speed,
                             type: 'Texte'
                         });
                     } else if(elmt.type === 'Video'){

@@ -1,22 +1,30 @@
 <ion-header [translucent]="true">
     <ion-toolbar>
-      <ion-title>
-          Accueil
-      </ion-title>
+		<ion-title>
+			Accueil
+		</ion-title>
     </ion-toolbar>
-  </ion-header>
+</ion-header>
 
-  <ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true">
     <ion-header collapse="condense">
-      <ion-toolbar>
-        <ion-title size="large">Home</ion-title>
-      </ion-toolbar>
+		<ion-toolbar>
+			<ion-title size="large">Home</ion-title>
+		</ion-toolbar>
     </ion-header>
-    <div class="cadr1" style="height: 20%; display: flex; justify-content: center;">
-        <ion-card style="width: 80%; height: 100%; display: flex; justify-content: center; align-items: center;">
+    <ng-container>
+		<ion-card style="width: 100%; height: 50%; display: flex; justify-content: center; align-items: center;">
 
-            <h4 class="hello">Hello</h4>
-        </ion-card>
-
-    </div>
+			<ion-row style="width: 80%;">
+			  <ion-col size="12"><p class="mb-0">Lighting</p></ion-col>
+			  <ion-col size="12">
+				  <ion-range min="0" max="100" pin="true" snaps="true" step="1" ticks="true" value="0" color="primary" (ionChange)="rangeChange($event)" formControlName="lighting">
+					  <ion-icon size="small" slot="start" name="sunny"></ion-icon>
+					  <ion-icon slot="end" name="sunny-outline"></ion-icon>
+					</ion-range>
+				</ion-col>
+			</ion-row>
+		</ion-card>
+    </ng-container>
+    
 </ion-content>

@@ -19,26 +19,26 @@
 
                     <div class="container py-1">
 
-                        <div class="row row-cols-2 row-cols-md-2 mx-auto text-center" style="display: flex; justify-content: center;" >
+                        <div class="row row-cols-2 row-cols-md-2 ms-0 mx-3 text-center" style="display: flex; justify-content: center;" >
                             <div class="col mb-4">
-                                <div class="card h-100 w-100 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" id="l01" (click)="toggleVisibility(1)" [class]="visibility === 1 ? 'active' : ''">
+                                <ion-card class="h-100 w-100 d-flex ion-justify-content-center ion-align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleVisibility(1)" [class]="visibility === 1 ? 'active' : ''">
                                     <h4 class="my-auto">General Configuration</h4>
-                                </div>
+                                </ion-card>
                             </div>
                             <div class="col mb-4">
-                                <div class="card h-100 w-100 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" id="l02" (click)="toggleVisibility(2)" [class]="visibility === 2 ? 'active' : ''">
+                                <ion-card class="h-100 w-100 d-flex ion-justify-content-center ion-align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleVisibility(2)" [class]="visibility === 2 ? 'active' : ''">
                                     <h4 class="my-auto">Network Configuration</h4>
-                                </div>
+                                </ion-card>
                             </div>
                             <div class="col mb-4">
-                                <div class="card h-100 w-100 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" id="l03" (click)="toggleVisibility(3)" [class]="visibility === 3 ? 'active' : ''">
+                                <ion-card class="h-100 w-100 d-flex ion-justify-content-center ion-align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleVisibility(3)" [class]="visibility === 3 ? 'active' : ''">
                                     <h4 class="my-auto">Network Informations</h4>
-                                </div>
+                                </ion-card>
                             </div>
                             <div class="col mb-4">
-                                <div class="card h-100 w-100 d-flex justify-content-center align-items-center px-4 py-2" style="border-radius: 20px" id="l04" (click)="toggleVisibility(4)" [class]="visibility === 4 ? 'active' : ''">
+                                <ion-card class="h-100 w-100 d-flex ion-justify-content-center ion-align-items-center px-4 py-2" style="border-radius: 20px" (click)="toggleVisibility(4)" [class]="visibility === 4 ? 'active' : ''">
                                     <h4 class="my-auto">System Settings</h4>
-                                </div>
+                                </ion-card>
                             </div>
                         </div>
                         <div class="row">
@@ -47,8 +47,10 @@
 
                                 <div class="settings mt-2">
                                     <div *ngIf="visibility === 0">
-                                        <ion-card class="card mb-4" style="height: 350px; width: 100%;">
-                                            <h3 class="sub-title"> Choose a setting ! </h3>
+                                        <ion-card class="mx-auto">
+                                            <ion-card-content class="text-center mb-4 d-flex ion-align-items-center" style="height: 350px; width: 100%;">
+                                                <h3 class="sub-title"> Choose a setting ! </h3>
+                                            </ion-card-content>
                                         </ion-card>
                                     </div>
                                     <div *ngIf="visibility === 1" style="width: 100%;">

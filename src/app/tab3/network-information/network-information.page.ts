@@ -22,6 +22,7 @@ export class NetworkInformationPage implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
+        // this.wifiConfig = new IInfo('STATION', 'BE_HIGH_COM', '192.168.1.127', '192.168.1.1', '255.255.255.0', '28:CD:C1:08:46:AF', '192.168.1.1', '14:35:05', '14:34:05', 'Fri 27 Oct 2023');
         this.read();
     }
 

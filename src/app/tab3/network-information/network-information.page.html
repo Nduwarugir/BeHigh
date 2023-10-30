@@ -1,93 +1,42 @@
 
-<div class="card pt-2 d-flex justify-content-center" style="margin-bottom: 5%;">
-    <div class="d-flex justify-content-center">
-        <div class="card-body d-flex justify-content-start">
-            <div class="col-sm-12 mx-auto" style="width: 80%">
-                <div class="row">
-                    <div class="col-sm-5 d-flex justify-content-between">
-                        <h6 class="mb-0">Wifi Mode :</h6>
-                        <span id="x_Wifi_Mode" class="ms-2" style="font-size: small" >{{wifiConfig.x_Wifi_Mode}}</span>
-                    </div>
-                </div>
-                <hr class="mx-auto" style="width: 90%;">
-                <div class="row">
-                    <div class="col-sm-5 d-flex justify-content-between">
-                        <h6 class="mb-0">SSID :</h6>
-                        <span id="x_ssid" class="ms-2" style="font-size: small" >{{wifiConfig.x_ssid}}</span>
-                    </div>
-                </div>
-                <hr class="mx-auto" style="width: 90%;">
-                <div class="row">
-                    <div class="col-sm-5 d-flex justify-content-between">
-                        <h6 class="mb-0">IP :</h6>
-                        <span id="x_ip" class="ms-2" style="font-size: small" >{{wifiConfig.x_ip}}</span>
-                    </div>
-                </div>
-                <hr class="mx-auto" style="width: 90%;">
-                <div class="row">
-                    <div class="col-sm-5 d-flex justify-content-between">
-                        <h6 class="mb-0">Netmask :</h6>
-                        <span id="x_netmask" class="ms-2" style="font-size: small" >{{wifiConfig.x_netmask}}</span>
-                    </div>
-                </div>
-                <hr class="mx-auto" style="width: 90%;">
-                <div class="row">
-                    <div class="col-sm-5 d-flex justify-content-between">
-                        <h6 class="mb-0">Gateway :</h6>
-                        <span id="x_gateway" class="ms-2" style="font-size: small" >{{wifiConfig.x_gateway}}</span>
-                    </div>
-                </div>
-                <hr class="mx-auto" style="width: 90%;">
-                <div class="row">
-                    <div class="col-sm-5 d-flex justify-content-between">
-                        <h6 class="mb-0">DNS :</h6>
-                        <span id="x_dns" class="ms-2" style="font-size: small" >{{wifiConfig.x_dns}}</span>
-                    </div>
-                </div>
-                <hr class="mx-auto" style="width: 90%;">
-                <div class="row">
-                    <div class="col-sm-5 d-flex justify-content-between">
-                        <h6 class="mb-0">Mac :</h6>
-                        <span id="x_mac" class="ms-2" style="font-size: small">{{wifiConfig.x_mac}}</span>
-                    </div>
-                </div>
-                <!--<hr class="mx-auto" style="width: 90%;">
-                <div class="row">
-                    <div class="col-sm-5 d-flex justify-content-between">
-                        <h6 class="mb-0">NTP Date:</h6>
-                        <span id="x_ntp_date" class="ms-2" style="font-size: small"></span>
-                    </div>
-                </div>
-                <hr class="mx-auto" style="width: 90%;">
-                <div class="row">
-                    <div class="col-sm-5 d-flex justify-content-between">
-                        <h6 class="mb-0">NTP Time:</h6>
-                        <span id="x_ntp_time" class="ms-2" style="font-size: small"></span>
-                    </div>
-                </div>
-                <hr class="mx-auto" style="width: 90%;">
-                <div class="row">
-                    <div class="col-sm-5 d-flex justify-content-between">
-                        <h6 class="mb-0">Last sync:</h6>
-                        <span id="x_ntp_sync" class="ms-2" style="font-size: small"></span>
-                    </div>
-                </div>
-                <hr class="mx-auto" style="width: 90%;">
-                <div class="row">
-                    <div class="col-sm-5 d-flex justify-content-between">
-                        <h6 class="mb-0">Uptime:</h6>
-                        <span id="x_uptime" class="ms-2" style="font-size: small"></span>
-                    </div>
-                </div>
-                <hr class="mx-auto" style="width: 90%;">
-                <div class="row">
-                    <div class="col-sm-5 d-flex justify-content-between">
-                        <h6 class="mb-0">Last boot:</h6>
-                        <span id="x_last_boot" class="ms-2" style="font-size: small"></span>
-                    </div>
-                </div>-->
-                <hr class="mx-auto mb-4" style="width: 70%;">
-            </div>
-        </div>
-    </div>
-</div>
+<ion-card class="mx-auto d-flex ion-align-items-center ion-justify-content-center">
+    <ion-card-content style="width: 90%;">
+        <hr class="mx-auto mb-4" style="width: 70%;">
+        <ion-row class="mx-auto" style="width: 80%;">
+            <ion-col size="8"><h6 class="mb-0">Wifi Mode :</h6></ion-col>
+            <ion-col size="4"><span class="ms-2 d-flex ion-justify-content-end" style="font-size: small" >{{wifiConfig.x_Wifi_Mode}}</span></ion-col>
+        </ion-row>
+        <hr class="mx-auto" style="width: 90%;">
+        <ion-row class="mx-auto" style="width: 80%;">
+            <ion-col size="8"><h6 class="mb-0">SSID :</h6></ion-col>
+            <ion-col size="4"><span class="ms-2 d-flex ion-justify-content-end" style="font-size: small" >{{wifiConfig.x_ssid}}</span></ion-col>
+        </ion-row>
+        <hr class="mx-auto" style="width: 90%;">
+        <ion-row class="mx-auto" style="width: 80%;">
+            <ion-col size="8"><h6 class="mb-0">IP :</h6></ion-col>
+            <ion-col size="4"><span class="ms-2 d-flex ion-justify-content-end" style="font-size: small" >{{wifiConfig.x_ip}}</span></ion-col>
+        </ion-row>
+        <hr class="mx-auto" style="width: 90%;">
+        <ion-row class="mx-auto" style="width: 80%;">
+            <ion-col size="8"><h6 class="mb-0">Netmask :</h6></ion-col>
+            <ion-col size="4"><span class="ms-2 d-flex ion-justify-content-end" style="font-size: small" >{{wifiConfig.x_netmask}}</span></ion-col>
+        </ion-row>
+        <hr class="mx-auto" style="width: 90%;">
+        <ion-row class="mx-auto" style="width: 80%;">
+            <ion-col size="8"><h6 class="mb-0">Gateway :</h6></ion-col>
+            <ion-col size="4"><span class="ms-2 d-flex ion-justify-content-end" style="font-size: small" >{{wifiConfig.x_gateway}}</span></ion-col>
+        </ion-row>
+        <hr class="mx-auto" style="width: 90%;">
+        <ion-row class="mx-auto" style="width: 80%;">
+            <ion-col size="8"><h6 class="mb-0">DNS :</h6></ion-col>
+            <ion-col size="4"><span class="ms-2 d-flex ion-justify-content-end" style="font-size: small" >{{wifiConfig.x_dns}}</span></ion-col>
+        </ion-row>
+        <hr class="mx-auto" style="width: 90%;">
+        <ion-row class="mx-auto" style="width: 80%;">
+            <ion-col size="8"><h6 class="mb-0">Mac :</h6></ion-col>
+            <ion-col size="4"><span class="ms-2 d-flex ion-justify-content-end" style="font-size: small" >{{wifiConfig.x_mac}}</span></ion-col>
+        </ion-row>
+        <hr class="mx-auto mb-4" style="width: 70%;">
+        
+    </ion-card-content>
+</ion-card>

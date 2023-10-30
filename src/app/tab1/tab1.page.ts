@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, RangeCustomEvent } from '@ionic/angular';
 import { ConnectionStatus, Network } from '@capacitor/network';
 import { GlobalsVariables } from '../shared/globals-variables';
 
@@ -34,5 +34,9 @@ export class Tab1Page implements OnInit, OnChanges {
 	ngOnChanges(changes: SimpleChanges): void {
 		console.log('changes: ', changes);
 	}
+
+    rangeChange(event: Event) {
+        console.log(`rangeEvent() called: `, (event as RangeCustomEvent).detail.value);
+    }
 
 }

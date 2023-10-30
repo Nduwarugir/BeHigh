@@ -10,6 +10,7 @@ export interface IScenario {
     row: string,
     col: string,
     animation: string,
+    speed: number,
 
     link: string
 }
