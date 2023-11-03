@@ -1,237 +1,216 @@
 
-<div class="card d-flex justify-content-center" style="margin-bottom: 35%;">
-    <form [formGroup]="form" (ngSubmit)="submit()" id="configForm">
-        <div class="card-body d-flex justify-content-center">
-            <div class="col-sm-10">
-                <ion-row class="mx-auto" style="width: 95%;">
-                    <ion-col>
-                        <ion-item lines="none">
-                            <ion-checkbox justify="space-between" name="modeap" id="modeap" formControlName="modeap" (click)="disable_ap()">
-                                AP mode
-                            </ion-checkbox>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
+<ion-card class="mx-auto" style="font-size: small; margin-bottom: 5%;">
+    <ion-card-header>
+        <ion-card-title>
+            <div>
+                Network configuration
                 <hr>
-                <ion-row class="mx-auto" style="width: 95%;">
-                    <ion-col size="3"><label for="ssid" class="mt-3 ms-3">SSID </label></ion-col>
-                    <ion-col>
-                        <ion-item lines="none">
-                            <input type="text" name="ssid" id="ssid" class="form-control form-control-sm" formControlName="ssid">
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-                <hr>
-                <ion-row class="mx-auto" style="width: 95%;">
-                    <ion-col size="3"><label for="password" class="mt-3 ms-3">Password </label></ion-col>
-                    <ion-col>
-                        <ion-item lines="none">
-                            <input type="password" name="password" id="password" class="form-control form-control-sm" formControlName="pass">
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-                <hr>
-                <ion-row class="mx-auto" style="width: 95%;">
-                    <ion-col>
-                        <ion-item lines="none">
-                            <ion-checkbox justify="space-between" name="dhcp" id="dhcp" formControlName="dhcp" (click)="disable()">
-                                Dhcp
-                            </ion-checkbox>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-                <hr>
-                <ion-row class="mx-auto" style="width: 95%;">
-                    <ion-col size="12"><p class="mb-0 ms-3">IP </p></ion-col>
-                    <ion-col size="3">
-                        <ion-item lines="none">
-                            <input type="text" placeholder="{{ _disabled ? wifiConfig.ip[0]:''}}" class="form-control form-control-sm" formControlName="ip_1">
-                        </ion-item>
-                    </ion-col>
-                    <ion-col size="3">
-                        <ion-item lines="none">
-                            <input type="text" placeholder="{{ _disabled ? wifiConfig.ip[0]:''}}" class="form-control form-control-sm" formControlName="ip_2">
-                        </ion-item>
-                    </ion-col>
-                    <ion-col size="3">
-                        <ion-item lines="none">
-                            <input type="text" placeholder="{{ _disabled ? wifiConfig.ip[0]:''}}" class="form-control form-control-sm" formControlName="ip_3">
-                        </ion-item>
-                    </ion-col>
-                    <ion-col size="3">
-                        <ion-item lines="none">
-                            <input type="text" placeholder="{{ _disabled ? wifiConfig.ip[0]:''}}" class="form-control form-control-sm" formControlName="ip_4">
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-                <hr>
-                <ion-row class="mx-auto" style="width: 95%;">
-                    <ion-col size="12"><p class="mb-0 ms-3">Netmask </p></ion-col>
-                    <ion-col size="3">
-                        <ion-item lines="none">
-                            <input type="text" placeholder="{{ _disabled ? wifiConfig.netmask[0]:''}}" class="form-control form-control-sm" formControlName="nm_1">
-                        </ion-item>
-                    </ion-col>
-                    <ion-col size="3">
-                        <ion-item lines="none">
-                            <input type="text" placeholder="{{ _disabled ? wifiConfig.netmask[1]:''}}" class="form-control form-control-sm" formControlName="nm_2">
-                        </ion-item>
-                    </ion-col>
-                    <ion-col size="3">
-                        <ion-item lines="none">
-                            <input type="text" placeholder="{{ _disabled ? wifiConfig.netmask[2]:''}}" class="form-control form-control-sm" formControlName="nm_3">
-                        </ion-item>
-                    </ion-col>
-                    <ion-col size="3">
-                        <ion-item lines="none">
-                            <input type="text" placeholder="{{ _disabled ? wifiConfig.netmask[3]:''}}" class="form-control form-control-sm" formControlName="nm_4">
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-                <hr>
-                <ion-row class="mx-auto" style="width: 95%;">
-                    <ion-col size="12"><p class="mb-0 ms-3">Gateway </p></ion-col>
-                    <ion-col size="3">
-                        <ion-item lines="none">
-                            <input type="text" placeholder="{{ _disabled ? wifiConfig.gateway[0]:''}}" class="form-control form-control-sm" formControlName="gw_1">
-                        </ion-item>
-                    </ion-col>
-                    <ion-col size="3">
-                        <ion-item lines="none">
-                            <input type="text" placeholder="{{ _disabled ? wifiConfig.gateway[1]:''}}" class="form-control form-control-sm" formControlName="gw_2">
-                        </ion-item>
-                    </ion-col>
-                    <ion-col size="3">
-                        <ion-item lines="none">
-                            <input type="text" placeholder="{{ _disabled ? wifiConfig.gateway[2]:''}}" class="form-control form-control-sm" formControlName="gw_3">
-                        </ion-item>
-                    </ion-col>
-                    <ion-col size="3">
-                        <ion-item lines="none">
-                            <input type="text" placeholder="{{ _disabled ? wifiConfig.gateway[3]:''}}" class="form-control form-control-sm" formControlName="gw_4">
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-                <hr>
-                <ion-row class="mx-auto" style="width: 95%;">
-                    <ion-col size="12"><p class="mb-0 ms-3">DNS </p></ion-col>
-                    <ion-col size="3">
-                        <ion-item lines="none">
-                            <input type="text" placeholder="{{ _disabled ? wifiConfig.dns[0]:''}}" class="form-control form-control-sm" formControlName="dns_1">
-                        </ion-item>
-                    </ion-col>
-                    <ion-col size="3">
-                        <ion-item lines="none">
-                            <input type="text" placeholder="{{ _disabled ? wifiConfig.dns[1]:''}}" class="form-control form-control-sm" formControlName="dns_2">
-                        </ion-item>
-                    </ion-col>
-                    <ion-col size="3">
-                        <ion-item lines="none">
-                            <input type="text" placeholder="{{ _disabled ? wifiConfig.dns[2]:''}}" class="form-control form-control-sm" formControlName="dns_3">
-                        </ion-item>
-                    </ion-col>
-                    <ion-col size="3">
-                        <ion-item lines="none">
-                            <input type="text" placeholder="{{ _disabled ? wifiConfig.dns[3]:''}}" class="form-control form-control-sm" formControlName="dns_4">
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-                <hr class="mb-4">
-                <div class="row">
-                    <div class="d-flex justify-content-end mb-lg-2">
-                        <p class="mr-4" id="message" style="color: #007bff; font-size: large; " ></p>
-                        <ion-button expand="block" color="primary" type="submit" [disabled]="form.invalid" class="fa-lg gradient-custom-2 border border-color-none me-4">
-                            Save
-                        </ion-button> <!-- style="height: 40px;-->
-                    </div>
-                </div>
-
-                <div style="font-size: small;">
-                    <hr>
-                    <div class="row mx-auto" style="width: 95%;">
-                        <div class="col-sm-6 ms-2">
-                            <strong>Connection State: </strong>
-                            <span *ngIf="!connectionState">N/A</span>
-                            <span *ngIf="connectionState" style="color: var(--ion-color-primary);"> {{connectionState}} </span>
-                        </div>
-                    </div>
-                    <hr>
-                <!--->
-                    <ion-row style="width: 100%;">
-                        <ion-col size="12">
-                            <p class="ms-3 mb-2"><strong>Networks: </strong><span #numNets style="color: var(--ion-color-primary);"></span></p>
-                        </ion-col>
-                        <ion-col size="12" *ngIf="networks">
-                            <table mat-table #networks64 [dataSource]="dataSource">
-
-                                <ng-container matColumnDef="ssid">
-                                  <th mat-header-cell *matHeaderCellDef>SSID</th>
-                                  <td mat-cell *matCellDef="let network">{{ network.ssid }}</td>
-                                </ng-container>
-                              
-                                <ng-container matColumnDef="channel">
-                                  <th mat-header-cell *matHeaderCellDef>Channel</th>
-                                  <td mat-cell *matCellDef="let network">{{ network.channel }}</td>
-                                </ng-container>
-                              
-                                <ng-container matColumnDef="secure">
-                                    <th mat-header-cell *matHeaderCellDef>RSSI</th>
-                                    <td mat-cell *matCellDef="let network">{{ network.secure }}</td>
-                                  </ng-container>
-                              
-                                <ng-container matColumnDef="rssi">
-                                    <th mat-header-cell *matHeaderCellDef>RSSI</th>
-                                    <td mat-cell *matCellDef="let network">{{ network.rssi }}</td>
-                                </ng-container>
-                                  
-
-                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                            </table>
-
+            </div>
+        </ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="mb-4 mt-1 mx-2 d-flex ion-align-items-center ion-justify-content-center" style="width: 100%;">
+        <form [formGroup]="form" (ngSubmit)="submit()" id="configForm">
+            <div class="d-flex justify-content-center">
+                <div>
+                    <ion-row class="mx-auto" style="width: 95%;">
+                        <ion-col>
+                            <ion-item lines="none">
+                                <ion-checkbox justify="space-between" name="modeap" id="modeap" formControlName="modeap" (click)="disable_ap()">
+                                    AP mode
+                                </ion-checkbox>
+                            </ion-item>
                         </ion-col>
                     </ion-row>
-                <!---->
-                    <div class="row mx-auto" style="width: 100%;">
-                        <div class="col-sm-4 ms-3 mb-2">
-                            <strong>Networks: </strong><span #numNets style="color: var(--ion-color-primary);"></span>
+                    <hr>
+                    <ion-row class="mx-auto" style="width: 95%;">
+                        <ion-col size="3"><label for="ssid" class="mt-3 ms-3">SSID </label></ion-col>
+                        <ion-col>
+                            <ion-item lines="none">
+                                <input type="text" name="ssid" id="ssid" class="form-control form-control-sm" formControlName="ssid">
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <hr>
+                    <ion-row class="mx-auto" style="width: 95%;">
+                        <ion-col size="3"><label for="password" class="mt-3 ms-3">Password </label></ion-col>
+                        <ion-col>
+                            <ion-item lines="none">
+                                <input type="password" name="password" id="password" class="form-control form-control-sm" formControlName="pass">
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <hr>
+                    <ion-row class="mx-auto" style="width: 95%;">
+                        <ion-col>
+                            <ion-item lines="none">
+                                <ion-checkbox justify="space-between" name="dhcp" id="dhcp" formControlName="dhcp" (click)="disable()">
+                                    Dhcp
+                                </ion-checkbox>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <hr>
+                    <ion-row class="mx-auto" style="width: 95%;">
+                        <ion-col size="12"><p class="mb-0 ms-3">IP </p></ion-col>
+                        <ion-col size="3">
+                            <ion-item lines="none">
+                                <input type="text" placeholder="{{ _disabled ? wifiConfig.ip[0]:''}}" class="form-control form-control-sm" formControlName="ip_1">
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="3">
+                            <ion-item lines="none">
+                                <input type="text" placeholder="{{ _disabled ? wifiConfig.ip[0]:''}}" class="form-control form-control-sm" formControlName="ip_2">
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="3">
+                            <ion-item lines="none">
+                                <input type="text" placeholder="{{ _disabled ? wifiConfig.ip[0]:''}}" class="form-control form-control-sm" formControlName="ip_3">
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="3">
+                            <ion-item lines="none">
+                                <input type="text" placeholder="{{ _disabled ? wifiConfig.ip[0]:''}}" class="form-control form-control-sm" formControlName="ip_4">
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <hr>
+                    <ion-row class="mx-auto" style="width: 95%;">
+                        <ion-col size="12"><p class="mb-0 ms-3">Netmask </p></ion-col>
+                        <ion-col size="3">
+                            <ion-item lines="none">
+                                <input type="text" placeholder="{{ _disabled ? wifiConfig.netmask[0]:''}}" class="form-control form-control-sm" formControlName="nm_1">
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="3">
+                            <ion-item lines="none">
+                                <input type="text" placeholder="{{ _disabled ? wifiConfig.netmask[1]:''}}" class="form-control form-control-sm" formControlName="nm_2">
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="3">
+                            <ion-item lines="none">
+                                <input type="text" placeholder="{{ _disabled ? wifiConfig.netmask[2]:''}}" class="form-control form-control-sm" formControlName="nm_3">
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="3">
+                            <ion-item lines="none">
+                                <input type="text" placeholder="{{ _disabled ? wifiConfig.netmask[3]:''}}" class="form-control form-control-sm" formControlName="nm_4">
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <hr>
+                    <ion-row class="mx-auto" style="width: 95%;">
+                        <ion-col size="12"><p class="mb-0 ms-3">Gateway </p></ion-col>
+                        <ion-col size="3">
+                            <ion-item lines="none">
+                                <input type="text" placeholder="{{ _disabled ? wifiConfig.gateway[0]:''}}" class="form-control form-control-sm" formControlName="gw_1">
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="3">
+                            <ion-item lines="none">
+                                <input type="text" placeholder="{{ _disabled ? wifiConfig.gateway[1]:''}}" class="form-control form-control-sm" formControlName="gw_2">
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="3">
+                            <ion-item lines="none">
+                                <input type="text" placeholder="{{ _disabled ? wifiConfig.gateway[2]:''}}" class="form-control form-control-sm" formControlName="gw_3">
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="3">
+                            <ion-item lines="none">
+                                <input type="text" placeholder="{{ _disabled ? wifiConfig.gateway[3]:''}}" class="form-control form-control-sm" formControlName="gw_4">
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <hr>
+                    <ion-row class="mx-auto" style="width: 95%;">
+                        <ion-col size="12"><p class="mb-0 ms-3">DNS </p></ion-col>
+                        <ion-col size="3">
+                            <ion-item lines="none">
+                                <input type="text" placeholder="{{ _disabled ? wifiConfig.dns[0]:''}}" class="form-control form-control-sm" formControlName="dns_1">
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="3">
+                            <ion-item lines="none">
+                                <input type="text" placeholder="{{ _disabled ? wifiConfig.dns[1]:''}}" class="form-control form-control-sm" formControlName="dns_2">
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="3">
+                            <ion-item lines="none">
+                                <input type="text" placeholder="{{ _disabled ? wifiConfig.dns[2]:''}}" class="form-control form-control-sm" formControlName="dns_3">
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size="3">
+                            <ion-item lines="none">
+                                <input type="text" placeholder="{{ _disabled ? wifiConfig.dns[3]:''}}" class="form-control form-control-sm" formControlName="dns_4">
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <hr class="mb-4">
+                    <div class="row">
+                        <div class="d-flex justify-content-end mb-lg-2">
+                            <p class="mr-4" id="message" style="color: #007bff; font-size: large; " ></p>
+                            <ion-button expand="block" color="primary" type="submit" [disabled]="form.invalid" class="me-4">
+                                Save
+                            </ion-button> <!-- style="height: 40px;-->
                         </div>
-                        <div class="col-sm-12">
-                            <div class="card64">
-                                <div class="card-body2">
-                                    <table border="0" cellspacing="3" style="width: 100%">
-                                        <thead bgcolor='#DDDDDD'>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ion-card-content>
+</ion-card>
+
+<ion-card class="mx-auto" style="font-size: small; margin-bottom: 20%;">
+    <ion-card-header>
+        <ion-card-title>
+            <div class="col-sm-10">
+                Choose another network
+                <hr>
+            </div>
+        </ion-card-title>
+    </ion-card-header>
+    <ion-card-content class=" d-flex ion-align-items-center ion-justify-content-center my-4 mx-2" style="width: 100%;">
+        <div class="d-flex justify-content-center">
+            <div>
+                <div class="row mx-auto" style="width: 100%;">
+                    <div class="col-sm-4 ms-3 mb-2">
+                        <strong>Available networks: </strong><span #numNets style="color: var(--ion-color-primary);"></span>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="card64">
+                            <div class="card-body2">
+                                <table cellspacing="3" style="width: 100%">
+                                    <thead class="mb-2 text-center" style="background-color: var(--ion-color-danger);">
                                         <tr>
-                                            <th style="width: 6%">SSID</th>
+                                            <th>SSID</th>
                                             <th>Channel</th>
-                                            <th style="width: 5%">Secure</th>
+                                            <th>Secure</th>
                                             <th>RSSI</th>
                                         </tr>
-                                        </thead>
-                                        <tbody id="networks" style="min-height: 100px; font-size: small;" *ngIf="networks">
-                                            <tr *ngFor="let network of networks" class="my-1">
-                                                <td (click)="switchNetwork(network.ssid)" class="btn btn-primary btn-block fa-sm border border-color-none mb-2 w-75 h-50">{{ network.ssid }}</td>
-                                                <td>{{ network.channel }}</td>
-                                                <td>{{ network.secure }}</td>
-                                                <td>{{ network.rssi }}</td>
-                                            </tr>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td>
-					                                <ion-button expand="block" color="dark" (click)="refresh()" type="button" class="fa-lg gradient-custom-2 border border-color-none w-75">
-					                                    Refresh
-					                                </ion-button>
-                                                </td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
+                                    </thead>
+                                    <tbody id="networks" style="min-height: 100px; font-size: small;" *ngIf="networks">
+                                        <tr *ngFor="let network of networks" class="my-1">
+                                            <td (click)="switchNetwork(network.ssid)" class="btn btn-primary btn-block fa-sm border border-color-none mb-2 w-75 h-50">{{ network.ssid }}</td>
+                                            <td>{{ network.channel }}</td>
+                                            <td>{{ network.secure }}</td>
+                                            <td>{{ network.rssi }}</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td>
+                                                <ion-button expand="block" color="dark" (click)="refresh()" type="button" class="w-75">
+                                                    Refresh
+                                                </ion-button>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
-</div>
+    </ion-card-content>
+</ion-card>

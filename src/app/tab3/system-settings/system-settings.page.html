@@ -40,47 +40,39 @@
     </ion-card-content>
 </ion-card>
 
-<ion-card class="mx-auto d-flex ion-align-items-center ion-justify-content-center" style="font-size: small; margin-bottom: 35%;">
-    <ion-card-content class="my-4 mx-2" style="width: 100%;">
-        
-        <form [formGroup]="form" (ngSubmit)="submit()" id="wwwAuthForm" action="" method="get">
-            <div class="d-flex justify-content-center mt-2">
-                <div class="col-sm-10">
-                    <ion-row class="mx-auto" style="width: 95%;">
-                        <ion-col size="3"><label for="wwwuser" class="mt-3 ms-3">User: </label></ion-col>
-                        <ion-col>
-                            <ion-item lines="none">
-                                <input style="border: solid black;" type="text" class="form-control form-control-sm" formControlName="user">
-                            </ion-item>
-                        </ion-col>
-                    </ion-row>
-                    <hr>
-                    <ion-row class="mx-auto" style="width: 95%;">
-                        <ion-col size="3"><label for="wwwpass" class="mt-3 ms-3">Password: </label></ion-col>
-                        <ion-col>
-                            <ion-item lines="none">
-                                <input style="border: solid black;" type="password" class="form-control form-control-sm" formControlName="pass">
-                            </ion-item>
-                        </ion-col>
-                    </ion-row>
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-sm-6">
-                            <p class="ms-1" id="submitResult" style="color: red; font-size: small; "></p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-sm-6">
-                            <p class="mb-0">Notice password is used for HTTP Auth, AP Mode and OTA.</p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="d-flex justify-content-end mb-lg-2" >
-                        <ion-button block color="primary" type="submit" href="/tabs/update" >
-                        	Save
-                    	</ion-button>
-                    </div>
-                </div>
+<ion-card class="mx-auto" style="font-size: small; margin-bottom: 35%;">
+    <ion-card-header>
+        <ion-card-title>
+            <div class="col-sm-10">
+                Screen Brightness
+                <hr>
+            </div>
+        </ion-card-title>
+    </ion-card-header>
+    <ion-card-content class=" d-flex ion-align-items-center ion-justify-content-center mb-4" style="width: 100%;">
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="d-flex justify-content-center" style="width: 120%;">
+                <ion-row class="mx-auto">
+                    <ion-col size="9"><p class="mb-0">Lighting: <span #light style="color: var(--ion-color-primary);"></span></p></ion-col>
+                    <ion-col size="3"><p class="mb-0">Auto</p></ion-col>
+                    <ion-col size="9">
+                        <ion-range #lighting min="0" max="8" pin="true" snaps="true" step="1" ticks="true" value="0" color="primary" (ionChange)="rangeChange($event)" formControlName="lighting">
+                            <ion-icon size="small" slot="start" name="sunny"></ion-icon>
+                            <ion-icon slot="end" name="sunny-outline"></ion-icon>
+                        </ion-range>
+                    </ion-col>
+                    <ion-col size="3">
+                        <ion-item lines="none">
+                            <ion-checkbox class="my-auto mx-auto" formControlName="auto" (click)="disable()"></ion-checkbox>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-end mb-lg-2" >
+                <ion-button expand="block" [disabled]="form.invalid" color="primary" type="submit" fill="solid">
+                    Save
+                </ion-button>
             </div>
         </form>
 

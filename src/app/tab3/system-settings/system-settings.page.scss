@@ -1,0 +1,19 @@
+
+// ion-col {
+//     --ion-grid-column-padding: 1%;
+// }
+
+ion-range {
+    padding: 5px;
+    border: inset black;
+}
+
+ion-checkbox::part(container) {
+    border-radius: 6px;
+    border: 2px solid var(--ion-color-primary);
+}
+ion-checkbox {
+    --size: 32px;
+    // --checkbox-background-checked: #6815ec;
+}
+  

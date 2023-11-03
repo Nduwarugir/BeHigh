@@ -5,24 +5,20 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-    <ion-header collapse="condense">
-        <ion-toolbar>
-            <ion-title size="large">Upgrade</ion-title>
-        </ion-toolbar>
-    </ion-header>
 
-    <ion-content [fullscreen]="true">
-
-        <div class="card my-4 d-flex justify-content-center" style="height: 95%;">
+    <ion-card style="height: 100%;">
+        <ion-card-header class="mb-0 d-flex ion-align-items-center">
+            <ion-card-title class="mb-0 d-flex ion-align-items-center">
+                <h4>Upload the file</h4>
+            </ion-card-title>
+        </ion-card-header>
+        <ion-card-content class="mx-auto" style="overflow: auto; max-height: 100%;">
             <form [formGroup]="form" (ngSubmit)="send()" enctype='multipart/form-data'>
                 <div class="card-body mx-auto d-flex justify-content-center">
-
+    
                     <div class="col-sm-10" style="font-size: small; width: 95%">
                         <div class="row">
-                            <div class="col-sm-4">
-                                <h4>Upload the file</h4>
-                            </div>
-                            <div class="col-sm-8">
+                            <div class="col-sm-8 mx-auto">
                                 <ion-item lines="none">
                                     <label for="fileUpload">
                                         <ng-container *ngIf="!uploaded; else elseUploaded">
@@ -33,7 +29,7 @@
                                         </ng-template>
                                         
                                     </label>
-                                	<input #fileInput class="form-control form-control-sm" id="fileUpload" type='file' name='update' formControlName="file" accept=".ino.bin" (change)="summd5($event)" hidden>
+                                    <input #fileInput class="form-control form-control-sm" id="fileUpload" type='file' name='update' formControlName="file" accept=".ino.bin" (change)="summd5($event)" hidden>
                                 </ion-item>
                             
                             </div>
@@ -43,18 +39,17 @@
                             <ion-row class="mx-auto" style="width: 100%;">
                                 <ion-col size="6"><label for="confirm" class="mt-1">Please confirm your identity to update </label></ion-col>
                                 <ion-col>
-                                    <ion-item lines="none">
+                                    <ion-item lines="none" class="me-0">
                                         <input type="text" name="confirm" id="confirm" placeholder="Mot de passe" formControlName="confirm" class="form-control form-control-sm" style="border: solid black">
                                     </ion-item>
                                 </ion-col>
                             </ion-row>
                         </div>
                         <div class="row">
-                            <div class="button d-flex justify-content-end mb-4" id="updateButton2">
-                                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 border border-color-none"
-                                        style="margin-left: 20px; height: 40px;"
-                                        id="updateButton" type="submit" [disabled]="disabled" >Update
-                                </button>
+                            <div class="button d-flex justify-content-end mb-4">
+                                <ion-button type="submit" [disabled]="disabled" expand="block" fill="solid" style="font-size: x-small;">
+                                    Update
+                                </ion-button>
                             </div>
                         </div>
                         <hr>
@@ -77,7 +72,7 @@
                                     </ion-text>
                                 </ion-col>
                             </ion-row>
-
+    
                             <ion-row>
                                 <ion-col size="12">
                                     <ion-text>
@@ -93,8 +88,7 @@
                     </div>
                 </div>
             </form>
-        </div>
-
-    </ion-content>
-
+        </ion-card-content>
+    </ion-card>
+    
 </ion-content>
