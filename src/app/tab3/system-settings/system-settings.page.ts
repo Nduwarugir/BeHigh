@@ -1,7 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AlertController, IonicModule, RangeCustomEvent } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 import { AdminService } from 'src/app/services/admin/admin.service';
 import { IAdmin } from 'src/app/model/admin';
 import { Router } from '@angular/router';
@@ -16,16 +16,13 @@ import { Router } from '@angular/router';
 export class SystemSettingsPage implements OnInit {
 
     form!: FormGroup;
+
     admin!: IAdmin;
 
-    @ViewChild('light') lightRef!: ElementRef;
-
-    constructor(private formBuilder: FormBuilder, private adminService: AdminService, private alertController: AlertController, private router: Router) {
+    constructor(private formBuilder: FormBuilder, private adminService: AdminService, private router: Router) {
         this.form = this.formBuilder.group({
-            lighting: ['', [Validators.required]],
-            auto: ['', [Validators.required]],
-            // user: ['', [Validators.required]],
-            // pass: ['', [Validators.required]]
+            user: ['', [Validators.required]],
+            pass: ['', [Validators.minLength(6), Validators.required]],
         });
     }
 
@@ -37,34 +34,22 @@ export class SystemSettingsPage implements OnInit {
         this.read();
     }
 
-    rangeChange(ev: Event) {
-        let light: HTMLInputElement = this.lightRef.nativeElement;
-        light.innerHTML = String((ev as RangeCustomEvent).detail.value);
-    }
-
     submit() {
         if (this.form.valid) {
-            let formData = new FormData();
-            
-			if(this.form.value.auto){
-	            formData.append("auto", this.form.value.auto);
-			} else {
-           		formData.append("lighting", this.form.value.lighting);
-			}
-            console.log(formData);
 
-            this.adminService.send('/admin/lighting', formData).subscribe({
+            let formData = new FormData();
+            formData.append("wwwauth", this.form.value);
+
+            this.adminService.send('/admin/wwwauth', formData).subscribe({
                 next: response => {
                     console.log("Response: ", response);
-                    this.showPopup("Luminosité modifiée avec succès !");
+                    alert("Login modifié avec succès !");
                 },
                 error: err => {
-                    if (err.error.statusText !== 'OK') {
-                        console.log("Error: ", err.error);
-                    }
-                    else this.showPopup("Luminosité modifiée avec succès !");
+                    console.log("Error: ", err.error);
+                    alert("Login modifié avec succès !");
                 }
-            });
+            })
 
         }
     }
@@ -92,40 +77,18 @@ export class SystemSettingsPage implements OnInit {
 
     read() {
 
-        this.adminService.readData('admin/lighting').subscribe({
+        this.adminService.readData('jsonFiles/secret.json').subscribe({
 			next: data => {
-                // this.admin = data;
-                // this.load();
-                this.form.patchValue({
-                    lighting: data.lighting,
-                    auto: data.auto
-                });
+                this.admin = data;
+                this.load();
+                console.log("Secret: ", this.admin);
             },
 			error: err => {
-                if (err.statusText !== 'OK') {
-                    console.log("Error: ", err.error);
-                } else {
-                	let fields: string[] = err.error.text.split('|');
-			        this.form.patchValue({
-			            lighting: +fields[1],
-			            auto: fields[4] === '0'
-			        });
-			        this.disable();
-                }
+                console.log("Error: ", err.error);
             }
 		});
     }
-    
-    async showPopup(message: string) {
-        const alert = await this.alertController.create({
-            header: 'Opération réussie.',
-            message: message,
-            buttons: ['OK'],
-            cssClass: 'custom-alert'
-        });
-        await alert.present();
-    }
-   
+
     load() {
         if (this.admin) {
             this.form.patchValue({
@@ -134,27 +97,4 @@ export class SystemSettingsPage implements OnInit {
             });
         }
     }
-
-    disable(): void {
-        // Désactivation des configs
-        this.auto?.valueChanges.subscribe(
-            (val) => {
-                if (val) {
-                    this.lighting?.disable();
-                } else {
-                    this.lighting?.enable();
-                }
-            }
-        )
-
-    }
-
-    get auto(){
-        return this.form.get('auto');
-    }
-
-    get lighting(){
-        return this.form.get('lighting');
-    }
-
 }

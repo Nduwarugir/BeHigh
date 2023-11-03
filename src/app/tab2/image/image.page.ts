@@ -81,7 +81,6 @@ export class ImagePage implements OnInit, OnChanges {
             componentProps: {
                 imageUrl: `http://${this.param.picoIp}/images/${this.form.value.link}`
             },
-            // side: 'top', alignment: 'center',
             translucent: true,
             event: ev,
             cssClass: 'my-popover-class custom-alert'

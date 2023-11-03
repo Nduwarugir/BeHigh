@@ -1,7 +1,7 @@
 
-<ion-card style="font-size: small;" class="pt-3">
-    <ion-card-content class="mb-4">
-        <form [formGroup]="form" (ngSubmit)="submit()">
+<div class="card mb-4" style="font-size: small;">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="card-body">
             <div class="row">
                 <div class="col-sm-4">
                 <p class="mb-0">Full Text</p>
@@ -86,6 +86,6 @@
                     <button [disabled]="form.invalid" class="btn btn-primary btn-block fa-lg gradient-custom-2 border border-color-none" style="height: 40px;" type="submit">Add</button>
                 </div>
             </div>
-        </form>
-    </ion-card-content>
-</ion-card>
+        </div>
+    </form>
+</div>

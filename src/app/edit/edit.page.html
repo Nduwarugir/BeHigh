@@ -2,153 +2,159 @@
     <ion-toolbar>
         <ion-title>Edit</ion-title>
     </ion-toolbar>
-</ion-header>
+    </ion-header>
 
-<ion-content [fullscreen]="true">
+    <ion-content [fullscreen]="true">
+        <ion-header collapse="condense">
+            <ion-toolbar>
+                <ion-title size="large">Edit</ion-title>
+            </ion-toolbar>
+        </ion-header>
 
-    <ion-card style="height: 100%;">
-        <ion-card-header class="mb-0 d-flex ion-align-items-center">
-            <ion-card-title class="mb-0 d-flex ion-align-items-center">
-                <ion-item lines="none" (click)="toggleMode('upload', 1)">
-                    <ion-card [class]="visibility === 1 ? 'active' : ''">
-                        <ion-card-content>
-                            <ion-label position="inline">
-                                <ion-icon style="margin-bottom: -2px;" aria-hidden="true" [name]="mode ==='upload' ? 'cloud-upload-outline':'cloud-offline-outline'"></ion-icon>
-                                Upload
-                            </ion-label>
-                        </ion-card-content>
-                    </ion-card>
-                </ion-item>
-                <ion-item lines="none" (click)="toggleMode('delete', 2)">
-                    <ion-card [class]="visibility === 2 ? 'active' : ''">
-                        <ion-card-content>
-                            <ion-label position="inline">
-                                <ion-icon style="margin-bottom: -2px;" aria-hidden="true" [name]="mode ==='delete' ? 'folder-open-outline':'folder-outline'"></ion-icon>
-                                Files
-                            </ion-label>
-                        </ion-card-content>
-                    </ion-card>
-                </ion-item>
-            </ion-card-title>
-            <ion-card-subtitle class="mb-0 d-flex ion-align-items-center" style="width: 100%;">
-                <ion-grid fixed="true" *ngIf="mode">
-                    <ion-row>
-                        <ion-col (click)="toggleType('Image')">
-                            <ion-card [class]="type === 'Image' ? 'active' : ''" style="margin: 0">
+        <ion-content [fullscreen]="true">
+
+            <ion-card style="height: 100%;">
+                <ion-card-header class="mb-0 d-flex ion-align-items-center">
+                    <ion-card-title class="mb-0 d-flex ion-align-items-center">
+                        <ion-item lines="none" (click)="toggleMode('upload', 1)">
+                            <ion-card [class]="visibility === 1 ? 'active' : ''">
                                 <ion-card-content>
                                     <ion-label position="inline">
-                                        <ion-icon style="margin-bottom: -2px;" aria-hidden="true" name="image-outline"></ion-icon>
-                                        Images
+                                        <ion-icon style="margin-bottom: -2px;" aria-hidden="true" [name]="mode ==='upload' ? 'cloud-upload-outline':'cloud-offline-outline'"></ion-icon>
+                                        Upload
                                     </ion-label>
                                 </ion-card-content>
                             </ion-card>
-                        </ion-col>
-                        <ion-col (click)="toggleType('Video')">
-                            <ion-card [class]="type === 'Video' ? 'active' : ''" style="margin: 0">
+                        </ion-item>
+                        <ion-item lines="none" (click)="toggleMode('delete', 2)">
+                            <ion-card [class]="visibility === 2 ? 'active' : ''">
                                 <ion-card-content>
                                     <ion-label position="inline">
-                                        <ion-icon style="margin-bottom: -2px;" aria-hidden="true" name="videocam-outline"></ion-icon>
-                                        Videos
+                                        <ion-icon style="margin-bottom: -2px;" aria-hidden="true" [name]="mode ==='delete' ? 'folder-open-outline':'folder-outline'"></ion-icon>
+                                        Files
                                     </ion-label>
                                 </ion-card-content>
                             </ion-card>
-                        </ion-col>
-                        <ion-col (click)="toggleType('Effet')">
-                            <ion-card [class]="type === 'Effet' ? 'active' : ''" style="margin: 0">
-                                <ion-card-content>
-                                    <ion-icon style="margin-bottom: -2px;" aria-hidden="true" name="aperture-outline"></ion-icon>
-                                    Effects
-                                </ion-card-content>
-                            </ion-card>
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
-            </ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content class="mx-auto" style="overflow: auto; max-height: 70%;">
-
-            <ion-item *ngIf="!mode" lines="none">
-                <ion-card class="mx-auto" style="width: 100%;">
-                    <ion-card-content class="text-center mb-4 d-flex ion-align-items-center" style="height: 350px; width: 100%;">
-                        <h4 class="mx-auto sub-title"> Select an option ! </h4>
-                    </ion-card-content>
-                </ion-card>
-            </ion-item>
-
-            <ion-item *ngIf="mode && !type" lines="none">
-                <ion-card class="mx-auto" style="width: 100%;">
-                    <ion-card-content class="text-center mb-4 d-flex ion-align-items-center" style="height: 350px; width: 100%;">
-                        <h4 class="mx-auto sub-title"> Select a file type ! </h4>
-                    </ion-card-content>
-                </ion-card>
-            </ion-item>
-
-            <ion-item lines="none" *ngIf="mode === 'upload'">
-                <div *ngIf="type" style="width: 100%; height: 100%;">
-                    <div *ngIf="type === 'Image'">
-                        <ion-item lines="none" class="px-auto">
-                            <label for="imageUpload">
-                                <ion-img [src]="selectedImage ? selectedImage:'assets/images/label.png'" style="width: 100%"></ion-img>
-                            </label>
-                            <input (change)="handleFileInput($event)" id="imageUpload" type="file" accept= "image/jpg, image/jpeg, image/png" hidden >
                         </ion-item>
-                    </div>
-                    <div *ngIf="type === 'Video'">
-                        <ion-item lines="none">
-                            <label for="videoUpload">
-                                <ion-img *ngIf="!selectedVideo" [src]="'assets/images/label.png'"></ion-img>
-                                <video *ngIf="selectedVideo" [src]="selectedVideo" width="100%" height="200" autoplay></video>
-                            </label>
-                            <input (change)="handleFileInput($event)" id="videoUpload" type="file" accept= "video/mp4, video/mpg, video/mpeg, .rgb, .raw" hidden >
-                        </ion-item>
-                    </div>
-                    <div *ngIf="type === 'Effet'">
-                        <ion-item lines="none">
-                            <label for="gifUpload">
-                                <ion-img [src]="selectedGif ? selectedGif:'assets/images/label.png'"></ion-img>
-                            </label>
-                            <input (change)="handleFileInput($event)" id="gifUpload" type="file" accept= "image/gif" hidden >
-                        </ion-item>
-                    </div>
-                    <ion-row style="width: 100%;">
-                        <ion-col col="12" class="button d-flex justify-content-end">
-                            <ion-item lines="none" style="margin-bottom: 35%;">
-                                <ion-button expand="block" fill="solid" style="font-size: large;" color="primary" (click)="upload()" [disabled]="invalid">
-                                    <ion-icon slot="end" name="send-outline"></ion-icon>
-                                    Save
-                                </ion-button>
-                            </ion-item>
-                        </ion-col>
-                    </ion-row>
-                </div>
-            </ion-item>
+                    </ion-card-title>
+                    <ion-card-subtitle class="mb-0 d-flex ion-align-items-center" style="width: 100%;">
+                        <ion-grid fixed="true" *ngIf="mode">
+                            <ion-row>
+                                <ion-col (click)="toggleType('Image')">
+                                    <ion-card [class]="type === 'Image' ? 'active' : ''" style="margin: 0">
+                                        <ion-card-content>
+                                            <ion-label position="inline">
+                                                <ion-icon style="margin-bottom: -2px;" aria-hidden="true" name="image-outline"></ion-icon>
+                                                Images
+                                            </ion-label>
+                                        </ion-card-content>
+                                    </ion-card>
+                                </ion-col>
+                                <ion-col (click)="toggleType('Video')">
+                                    <ion-card [class]="type === 'Video' ? 'active' : ''" style="margin: 0">
+                                        <ion-card-content>
+                                            <ion-label position="inline">
+                                                <ion-icon style="margin-bottom: -2px;" aria-hidden="true" name="videocam-outline"></ion-icon>
+                                                Videos
+                                            </ion-label>
+                                        </ion-card-content>
+                                    </ion-card>
+                                </ion-col>
+                                <ion-col (click)="toggleType('Effet')">
+                                    <ion-card [class]="type === 'Effet' ? 'active' : ''" style="margin: 0">
+                                        <ion-card-content>
+                                            <ion-icon style="margin-bottom: -2px;" aria-hidden="true" name="aperture-outline"></ion-icon>
+                                            Effects
+                                        </ion-card-content>
+                                    </ion-card>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content class="mx-auto" style="overflow: auto; max-height: 70%;">
 
-            <ion-item lines="none" *ngIf="mode === 'delete'" class="ion-align-items-start">
-                <div *ngIf="type" class="mt-0" style="width: 100%; height: 95%;">
-                    <ion-list class="mb-1">
-                        <ion-list-header>
-                            <ion-label>List of files: </ion-label>
-                        </ion-list-header>
-                        <ion-card *ngFor="let file of currentDirContents" class="card64">
-                            <ion-card-content>
-                                <ion-row>
-                                    <ion-col size="9">
-                                        <ion-label>{{ file.link }}</ion-label> <!-- (click)="openMediaPopup(file.link)" -->
-                                    </ion-col>
-                                    <ion-col>
-                                        <ion-icon style="margin-bottom: -2px;" name="create-outline" (click)="showPopup(file.link)"></ion-icon>
-                                    </ion-col>
-                                    <ion-col>
-                                        <ion-icon style="margin-bottom: -2px;" name="trash-outline" (click)="delete(file.link)"></ion-icon>
-                                    </ion-col>
-                                </ion-row>
-                            </ion-card-content>
-                        </ion-card>
-                    </ion-list>
-                </div>
-            </ion-item>
+                    <ion-item *ngIf="!mode" lines="none">
+                        <div class="card text-center d-flex justify-content-center mb-0" style="height: 350px; width: 100%;">
+                            <h4 class="sub-title"> Select an option ! </h4>
+                        </div>
+                    </ion-item>
 
-        </ion-card-content>
-    </ion-card>
+                    <ion-item *ngIf="mode && !type" lines="none">
+                        <div class="card text-center d-flex justify-content-center mb-0" style="height: 350px; width: 100%;">
+                            <h4 class="sub-title"> Select un file type ! </h4>
+                        </div>
+                    </ion-item>
 
-</ion-content>
+                    <ion-item lines="none" *ngIf="mode === 'upload'">
+                        <div *ngIf="type" style="width: 100%; height: 100%;">
+                            <div *ngIf="type === 'Image'">
+                                <ion-item lines="none">
+                                    <label for="imageUpload">
+                                        <ion-img [src]="selectedImage ? selectedImage:'assets/images/label.png'"></ion-img>
+                                    </label>
+                                    <input (change)="handleFileInput($event)" id="imageUpload" type="file" accept= "image/jpg, image/jpeg, image/png" hidden >
+                                </ion-item>
+                            </div>
+                            <div *ngIf="type === 'Video'">
+                                <ion-item lines="none">
+                                    <label for="videoUpload">
+                                        <ion-img *ngIf="!selectedVideo" [src]="'assets/images/label.png'"></ion-img>
+                                        <video *ngIf="selectedVideo" [src]="selectedVideo" width="100%" height="200" autoplay></video>
+                                    </label>
+                                    <input (change)="handleFileInput($event)" id="videoUpload" type="file" accept= "video/mp4, video/mpg, video/mpeg, .rgb, .raw" hidden >
+                                </ion-item>
+                            </div>
+                            <div *ngIf="type === 'Effet'">
+                                <ion-item lines="none">
+                                    <label for="gifUpload">
+                                        <ion-img [src]="selectedGif ? selectedGif:'assets/images/label.png'"></ion-img>
+                                    </label>
+                                    <input (change)="handleFileInput($event)" id="gifUpload" type="file" accept= "image/gif" hidden >
+                                </ion-item>
+                            </div>
+                            <ion-row>
+                                <ion-col offset="6">
+                                    <ion-item lines="none" style="margin-bottom: 35%;">
+                                        <ion-button expand="block" color="primary" (click)="upload()" [disabled]="invalid">
+                                            <ion-icon slot="start" name="send-outline"></ion-icon>
+                                            Save
+                                        </ion-button>
+                                    </ion-item>
+                                </ion-col>
+                            </ion-row>
+                        </div>
+                    </ion-item>
+
+                    <ion-item lines="none" *ngIf="mode === 'delete'" class="ion-align-items-start">
+                        <div *ngIf="type" class="mt-0" style="width: 100%; height: 95%;">
+                            <ion-list class="mb-1">
+                                <ion-list-header>
+                                    <ion-label>List of files: </ion-label>
+                                </ion-list-header>
+                                <ion-card *ngFor="let file of currentDirContents" class="card64">
+                                    <ion-card-content>
+                                        <ion-row>
+                                            <ion-col size="9">
+                                                <ion-label>{{ file.link }}</ion-label> <!-- (click)="openMediaPopup(file.link)" -->
+                                            </ion-col>
+                                            <ion-col>
+                                                <ion-icon style="margin-bottom: -2px;" name="create-outline" (click)="showPopup(file.link)"></ion-icon>
+                                            </ion-col>
+                                            <ion-col>
+                                                <ion-icon style="margin-bottom: -2px;" name="trash-outline" (click)="delete(file.link)"></ion-icon>
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-card-content>
+                                </ion-card>
+                            </ion-list>
+                        </div>
+                    </ion-item>
+
+                </ion-card-content>
+            </ion-card>
+
+        </ion-content>
+
+    </ion-content>
+
