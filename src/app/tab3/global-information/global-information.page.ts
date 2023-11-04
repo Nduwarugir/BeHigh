@@ -40,7 +40,7 @@ export class GlobalInformationPage implements OnInit {
             this.adminService.send('/admin/general', formData).subscribe({
                 next: response => {
                     console.log("Response: ", response);
-                    alert("Nom modifié avec succès !");
+                    this.showPopup("Nom modifié avec succès !");
                 },
                 error: err => {
                     if (err.statusText !== 'OK') {
@@ -48,23 +48,20 @@ export class GlobalInformationPage implements OnInit {
                     } else {
                         setTimeout(() => {
                             this.showPopup("Nom modifié avec succès !");
-                        }, 1*1000);
+                        }, 1000);
                     }
                 }
-            })
-
+            });
         }
     }
 
     read() {
-        
         this.adminService.readData('jsonFiles/config.json').subscribe({
 			next: data => {
                 this.wifiConfig = data;
                 this.form.patchValue({
                     devicename: this.wifiConfig.deviceName,
-                })
-
+                });
             },
 			error: err => console.log("Error: ", err.error)
 		});
@@ -79,5 +76,5 @@ export class GlobalInformationPage implements OnInit {
         });
         await alert.present();
     }
-   
+
 }

@@ -15,7 +15,7 @@
 
                 <div class="container py-1">
                     <div class="row row-cols-5 row-cols-md-5 ms-0 mx-3 text-center" >
-                        <div class="col mb-4" *ngFor="let i of range(0, 9)">
+                        <div class="col mb-2" *ngFor="let i of range(0, 9)">
                             <ion-card class="h-75 w-75 d-flex ion-justify-content-center ion-align-items-center px-4 py-2" style="border-radius: 50%" (click)="toggleView(i)" [class]="_nScrip === i ? 'active' : ''"> <!-- style="border-radius: 20px" -->
                                 <h4 class="my-auto">{{ i+1 }}</h4>
                             </ion-card>
@@ -131,7 +131,7 @@
 
                     <div class="row">
 
-                        <div class="col-lg-9" style="margin-bottom: 25%;">
+                        <div class="col-lg-9" style="margin-bottom: 10%;">
 
                             <div class="scripts" [ngSwitch]="type" >
                                 <div *ngSwitchCase="'null'">

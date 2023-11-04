@@ -1,6 +1,7 @@
-<div class="card mb-4" style="font-size: small;">
-    <form [formGroup]="form" (ngSubmit)="submit()">
-        <div class="card-body">
+
+<ion-card style="font-size: small;" class="pt-3">
+    <ion-card-content class="mb-4">
+        <form [formGroup]="form" (ngSubmit)="submit()">
             <div class="row">
                 <div class="col-sm-3">
                     <p class="mb-0">Select a picture</p>
@@ -33,6 +34,6 @@
                     </ion-button>
                 </div>
             </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </ion-card-content>
+</ion-card>

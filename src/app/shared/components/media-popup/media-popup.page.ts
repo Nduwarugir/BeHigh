@@ -4,11 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 @Component({
-  selector: 'app-media-popup',
-  templateUrl: './media-popup.page.html',
-  styleUrls: ['./media-popup.page.scss'],
-  standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+	selector: 'app-media-popup',
+	templateUrl: './media-popup.page.html',
+	styleUrls: ['./media-popup.page.scss'],
+	standalone: true,
+	imports: [IonicModule, CommonModule, FormsModule]
 })
 export class MediaPopupPage implements OnInit {
 
