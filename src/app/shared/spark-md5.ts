@@ -55,14 +55,14 @@ function hexToBinaryString(hex: any) {
 }
 
 export function hashBinary(content: any, raw: any) {
-    var hash = md51(content),
+    let hash = md51(content),
         ret = hex(hash);
 
     return raw ? ret : hexToBinaryString(ret);
 }
 
 function md5cycle(x: any, k: any) {
-    var a = x[0],
+    let a = x[0],
         b = x[1],
         c = x[2],
         d = x[3];
