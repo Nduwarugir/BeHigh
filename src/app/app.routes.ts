@@ -5,7 +5,7 @@ export const routes: Routes = [
     {
         path: '',
         loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
-		canActivate: [ LoadingGuard ] // Apply the guard to this route
+	    canActivate: [ LoadingGuard ] // Apply the guard to this route
     },{
         path: 'loading',
         loadComponent: () => import('./shared/components/loading/loading.page').then( m => m.LoadingPage)
